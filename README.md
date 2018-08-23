@@ -31,6 +31,7 @@ The backend should have:
 - Event broadcasting via Channels
 - Optional replica DB support
 - TSL/HTTPS support
+- A few simple example tests
 
 The frontend should have:
 
@@ -45,6 +46,7 @@ The frontend should have:
 - cache-busting
 - sane data layer (redux & custom code)
 - memoized re-rendering (reselect)
+- A few simple example tests
 
 The dev experience should entail:
 
@@ -84,5 +86,9 @@ Dependencies:
 `iex -S mix phx.server`
 
 ## Deploying
+
+Information Coming Soon
+
+## Testing
 
 Information Coming Soon
