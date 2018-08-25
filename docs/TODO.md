@@ -19,7 +19,7 @@
 - Integrate with Elixir app
 
   - Start frontend and backend w/ single line
-  - Production build uses prod webpack build
+  - Elixir serves the in-progress index in dev mode
 
 ## Ops
 
