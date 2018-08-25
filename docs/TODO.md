@@ -12,14 +12,19 @@
 ## Frontend
 
 - Webpack upgrade and cleanup
-- Replace React with Preact(Compat)
-- Add CSS Variables and very basic CSS
-- Integrate with Elixir app
+
+  - extract-text-webpack-plugin
+  -
 
 - Add React Router
 - Add Socket code from Phoenix
 - Add Fetcher
 - Add Simple Reducer
+
+- Integrate with Elixir app
+
+  - Start frontend and backend w/ single line
+  - Production build uses prod webpack build
 
 ## Ops
 
