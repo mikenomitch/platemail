@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
-import "./index.css";
+import "./index.scss";
 
 import Hello from "./components/hello/HelloContainer";
 import createStore from "./lib/createStore";

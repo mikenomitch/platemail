@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./Hello.css";
+import "./Hello.scss";
 
 export interface IProps {
   name: string;
@@ -20,9 +20,9 @@ function Hello({
 
   return (
     <div className="hello">
-      <div className="greeting">
+      <h2 className="greeting hero">
         Hello {name + getExclamationMarks(enthusiasmLevel)}
-      </div>
+      </h2>
       <div>
         <button onClick={onDecrement}>-</button>
         <button onClick={onIncrement}>+</button>
