@@ -11,11 +11,6 @@
 
 ## Frontend
 
-- Webpack upgrade and cleanup
-
-  - extract-text-webpack-plugin
-  -
-
 - Add React Router
 - Add Socket code from Phoenix
 - Add Fetcher
