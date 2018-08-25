@@ -16,6 +16,8 @@ defmodule PlatemailWeb.Endpoint do
     from: "priv/app/build/"
   )
 
+  plug(CORSPlug, origin: ["http://localhost:3000", "http://localhost:4000"])
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

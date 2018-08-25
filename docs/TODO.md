@@ -19,7 +19,6 @@
 - Integrate with Elixir app
 
   - Start frontend and backend w/ single line
-  - Elixir serves the in-progress index in dev mode
 
 ## Ops
 

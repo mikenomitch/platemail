@@ -1,6 +1,6 @@
 {application,platemail,
              [{applications,[kernel,stdlib,elixir,logger,runtime_tools,
-                             gettext,phoenix_pubsub,cowboy,
+                             gettext,phoenix_pubsub,cowboy,cors_plug,
                              plug_static_index_html,phoenix_html,phoenix,
                              postgrex,phoenix_ecto]},
               {description,"platemail"},

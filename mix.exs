@@ -33,6 +33,7 @@ defmodule Platemail.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:cors_plug, "~> 1.5"},
       {:plug_static_index_html, "~> 1.0.0"},
       {:phoenix, "~> 1.3.4"},
       {:phoenix_pubsub, "~> 1.0"},
