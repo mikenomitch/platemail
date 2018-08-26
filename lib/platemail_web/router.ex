@@ -22,5 +22,6 @@ defmodule PlatemailWeb.Router do
   scope "/api", PlatemailWeb do
     pipe_through(:api)
     resources("/users", UserController, except: [:new, :edit])
+    resources("/widgets", WidgetController, except: [:new, :edit])
   end
 end
