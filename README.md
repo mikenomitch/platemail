@@ -1,19 +1,19 @@
 # Platemail
 
-This is a boilerplate app.
+This is a boilerplate app running the following:
 
-Backend:
+### Backend:
 
 - Elixir (1.7)
 - Erlang/OTP (21)
-- Postgres
 - Phoenix (1.3)
+- Postgres
 
-Frontend:
+### Frontend:
 
-- Typescript
+- Typescript (3)
+- Webpack (4)
 - Preact
-- Webpack
 - Redux
 
 ## Goals
@@ -43,6 +43,7 @@ The frontend should have:
 - a simple fetching lib
 - socket connection to phoenix channel
 - gzipped and minified production build
+- code-splitting
 - cache-busting
 - sane data layer (redux & custom code)
 - memoized re-rendering (reselect)
@@ -77,13 +78,17 @@ Dependencies:
 - webpack
 
 `mix deps.get`
-`cd ./lib/platemail_web && npm install && cd ../..`
+`cd ./priv/app && npm install && cd ../..`
 `mix ecto.create`
 `mix ecto.migrate`
 
 ## Running Locally
 
+Start the backend:
 `iex -S mix phx.server`
+
+Start the frontend:
+`cd priv/app && npm run start`
 
 ## Deploying
 
