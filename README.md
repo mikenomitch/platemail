@@ -55,8 +55,8 @@ The dev experience should entail:
 - frontend reloading for JS & css
 - backend auto reloading
 - prettier/eslint rules
-- auto-formatting elixir
-- css-linting
+- auto-formatting elixir - (done)
+- css-linting - (done)
 - shared vscode rules
 
 The deploy/ops experience:

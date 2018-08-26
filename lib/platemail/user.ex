@@ -2,10 +2,9 @@ defmodule Platemail.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "users" do
-    field :email, :string
-    field :name, :string
+    field(:email, :string)
+    field(:name, :string)
 
     timestamps()
   end

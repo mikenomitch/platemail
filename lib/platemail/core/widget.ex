@@ -2,11 +2,10 @@ defmodule Platemail.Core.Widget do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "widgets" do
-    field :content, :string
-    field :title, :string
-    field :user_id, :id
+    field(:content, :string)
+    field(:title, :string)
+    field(:user_id, :id)
 
     timestamps()
   end

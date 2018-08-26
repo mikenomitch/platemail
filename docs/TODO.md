@@ -6,6 +6,7 @@
 - Routing (w/ auth/creds)
 - Super nice fallback controller
 - Proper env var consumption
+- Pagination lib on resource
 
 ## Frontend
 

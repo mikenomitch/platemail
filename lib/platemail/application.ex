@@ -11,7 +11,7 @@ defmodule Platemail.Application do
       # Start the Ecto repository
       supervisor(Platemail.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(PlatemailWeb.Endpoint, []),
+      supervisor(PlatemailWeb.Endpoint, [])
       # Start your own worker by calling: Platemail.Worker.start_link(arg1, arg2, arg3)
       # worker(Platemail.Worker, [arg1, arg2, arg3]),
     ]
