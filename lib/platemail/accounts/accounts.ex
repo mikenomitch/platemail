@@ -1,12 +1,12 @@
-defmodule Platemail.Account do
+defmodule Platemail.Accounts do
   @moduledoc """
-  The Account context.
+  The Accounts context.
   """
 
   import Ecto.Query, warn: false
   alias Platemail.Repo
 
-  alias Platemail.Account.User
+  alias Platemail.Accounts.User
 
   @doc """
   Returns the list of users.
