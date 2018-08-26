@@ -2,11 +2,9 @@
 
 ## Backend
 
-- Example Resource
-- User
-- Auth
-- Routing
-- Fallback controller
+- User Auth/Credentials
+- Routing (w/ auth/creds)
+- Super nice fallback controller
 - Proper env var consumption
 
 ## Frontend

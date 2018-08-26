@@ -13,15 +13,15 @@ defmodule PlatemailWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  scope "/", PlatemailWeb do
-    # Use the default browser stack
-    pipe_through(:browser)
-  end
-
   # Other scopes may use custom stacks.
-  scope "/api", PlatemailWeb do
+  scope "/api/v1", PlatemailWeb.Api.V1 do
     pipe_through(:api)
     resources("/users", UserController, except: [:new, :edit])
     resources("/widgets", WidgetController, except: [:new, :edit])
+  end
+
+  scope "/", PlatemailWeb do
+    # Use the default browser stack
+    pipe_through(:browser)
   end
 end

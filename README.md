@@ -22,7 +22,7 @@ The goal of the app/repo is to lay a foundation for quick iteration on future pr
 
 The backend should have:
 
-- An example resource with schema/model/controller/view/routing
+- An example resource with schema/model/controller/view/routing - (done)
 - API routes and Browser Routes
 - A barebones user model with sign up/in/out
   - Including tokens for password reset
@@ -35,16 +35,16 @@ The backend should have:
 
 The frontend should have:
 
-- small split-out bundles with common chunks
-- postcss compilation
-- sane css variables and minimal "framework"
-- a nice font
-- a simple frontend router
+- small split-out bundles with common chunks - (done)
+- postcss compilation - (done)
+- sane css variables and minimal "framework" - (done)
+- a nice font - (done)
+- a simple frontend router - (done)
 - a simple fetching lib
 - socket connection to phoenix channel
-- gzipped and minified production build
-- code-splitting
-- cache-busting
+- gzipped and minified production build - (done)
+- code-splitting - (done)
+- cache-busting - (done)
 - sane data layer (redux & custom code)
 - memoized re-rendering (reselect)
 - A few simple example tests
