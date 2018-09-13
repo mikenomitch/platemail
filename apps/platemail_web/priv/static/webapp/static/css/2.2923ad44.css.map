@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/hello/Hello.scss"],"names":[],"mappings":"AAAA,OACE,kBACA,cAAgB,C","file":"static/css/2.2923ad44.css","sourcesContent":[".hello {\n  text-align: center;\n  font-size: 1rem; }\n"],"sourceRoot":""}

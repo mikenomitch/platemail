@@ -1,8 +1,6 @@
 defmodule PlatemailWeb.Router do
   use PlatemailWeb, :router
 
-  alias Platemail.Accounts.Authentication
-
   # =============
   #   PIPELINES
   # =============

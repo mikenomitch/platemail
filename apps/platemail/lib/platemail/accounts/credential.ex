@@ -1,7 +1,11 @@
 defmodule Platemail.Accounts.Credential do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Platemail.Accounts.User
+
+  alias Platemail.{
+    Accounts.User,
+    Repo
+  }
 
   # ===========================
   # ECTO CONFIG

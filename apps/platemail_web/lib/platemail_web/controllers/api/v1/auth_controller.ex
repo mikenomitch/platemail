@@ -2,7 +2,6 @@ defmodule PlatemailWeb.AuthController do
   use PlatemailWeb, :controller
 
   alias Platemail.{
-    Accounts,
     Accounts.User,
     Accounts.Authentication,
     Repo

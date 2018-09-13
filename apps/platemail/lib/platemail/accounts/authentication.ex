@@ -38,12 +38,12 @@ defmodule Platemail.Accounts.Authentication do
       {:error, reason} ->
         {:error, reason}
 
-      authorization ->
-        if authorization.expires_at &&
-             authorization.expires_at < Platemail.Accounts.Authentication.Utils.timestamp() do
-          replace_authorization(authorization, auth, current_user, repo)
+      credential ->
+        if credential.expires_at &&
+             credential.expires_at < Platemail.Accounts.Authentication.Utils.timestamp() do
+          replace_credential(credential, auth, current_user, repo)
         else
-          user_from_authorization(authorization, current_user, repo)
+          user_from_credential(credential, current_user, repo)
         end
     end
   end
@@ -54,11 +54,11 @@ defmodule Platemail.Accounts.Authentication do
         nil ->
           {:error, :not_found}
 
-        authorization ->
+        credential ->
           case auth.credentials.other.password do
             pass when is_binary(pass) ->
-              if Comeonin.Bcrypt.checkpw(auth.credentials.other.password, authorization.token) do
-                authorization
+              if Comeonin.Pbkdf2.checkpw(auth.credentials.other.password, credential.token) do
+                credential
               else
                 {:error, :password_does_not_match}
               end
@@ -74,13 +74,13 @@ defmodule Platemail.Accounts.Authentication do
 
   defp auth_and_validate(%{provider: service} = auth, repo)
        when service in [:google, :facebook, :github] do
-    case repo.get_by(Authorization, uid: uid_from_auth(auth), provider: to_string(auth.provider)) do
+    case repo.get_by(Credential, uid: uid_from_auth(auth), provider: to_string(auth.provider)) do
       nil ->
         {:error, :not_found}
 
-      authorization ->
-        if authorization.uid == uid_from_auth(auth) do
-          authorization
+      credential ->
+        if credential.uid == uid_from_auth(auth) do
+          credential
         else
           {:error, :uid_mismatch}
         end
@@ -88,13 +88,13 @@ defmodule Platemail.Accounts.Authentication do
   end
 
   defp auth_and_validate(auth, repo) do
-    case repo.get_by(Authorization, uid: uid_from_auth(auth), provider: to_string(auth.provider)) do
+    case repo.get_by(Credential, uid: uid_from_auth(auth), provider: to_string(auth.provider)) do
       nil ->
         {:error, :not_found}
 
-      authorization ->
-        if authorization.token == auth.credentials.token do
-          authorization
+      credential ->
+        if credential.token == auth.credentials.token do
+          credential
         else
           {:error, :token_mismatch}
         end
@@ -117,7 +117,7 @@ defmodule Platemail.Accounts.Authentication do
   defp create_user_from_auth(auth, current_user, repo) do
     user = current_user || repo.get_by(User, email: auth.info.email) || create_user(auth, repo)
 
-    authorization_from_auth(user, auth, repo)
+    credential_from_auth(user, auth, repo)
     {:ok, user}
   end
 
@@ -158,14 +158,14 @@ defmodule Platemail.Accounts.Authentication do
   # All the other providers are oauth so should be good
   defp validate_auth_for_registration(_auth), do: :ok
 
-  defp replace_authorization(authorization, auth, current_user, repo) do
+  defp replace_credential(credential, auth, current_user, repo) do
     case validate_auth_for_registration(auth) do
       :ok ->
-        case user_from_authorization(authorization, current_user, repo) do
+        case user_from_credential(credential, current_user, repo) do
           {:ok, user} ->
             case repo.transaction(fn ->
-                   repo.delete(authorization)
-                   authorization_from_auth(user, auth, repo)
+                   repo.delete(credential)
+                   credential_from_auth(user, auth, repo)
                    user
                  end) do
               {:ok, user} -> {:ok, user}
@@ -181,8 +181,8 @@ defmodule Platemail.Accounts.Authentication do
     end
   end
 
-  defp user_from_authorization(authorization, current_user, repo) do
-    case repo.one(Ecto.assoc(authorization, :user)) do
+  defp user_from_credential(credential, current_user, repo) do
+    case repo.one(Ecto.assoc(credential, :user)) do
       nil ->
         {:error, :user_not_found}
 
@@ -195,12 +195,12 @@ defmodule Platemail.Accounts.Authentication do
     end
   end
 
-  defp authorization_from_auth(user, auth, repo) do
-    authorization = Ecto.build_assoc(user, :authorizations)
+  defp credential_from_auth(user, auth, repo) do
+    credential = Ecto.build_assoc(user, :credentials)
 
     result =
-      Authorization.changeset(
-        authorization,
+      Credential.changeset(
+        credential,
         scrub(%{
           provider: to_string(auth.provider),
           uid: uid_from_auth(auth),
@@ -244,7 +244,7 @@ defmodule Platemail.Accounts.Authentication do
   defp token_from_auth(%{provider: :identity} = auth) do
     case auth do
       %{credentials: %{other: %{password: pass}}} when not is_nil(pass) ->
-        Comeonin.Bcrypt.hashpwsalt(pass)
+        Comeonin.Pbkdf2.hashpwsalt(pass)
 
       _ ->
         nil

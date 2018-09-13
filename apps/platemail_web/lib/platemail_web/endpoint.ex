@@ -1,43 +1,52 @@
 defmodule PlatemailWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :platemail_web
 
-  socket "/socket", PlatemailWeb.UserSocket
+  socket("/socket", PlatemailWeb.UserSocket)
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
-  plug Plug.Static,
-    at: "/", from: :platemail_web, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+  plug(Plug.Static.IndexHtml,
+    at: "/"
+  )
+
+  plug(Plug.Static,
+    at: "/",
+    from: "priv/static/webapp"
+  )
+
+  plug(CORSPlug, origin: ["http://localhost:3000", "http://localhost:4000"])
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
-    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
-    plug Phoenix.LiveReloader
-    plug Phoenix.CodeReloader
+    socket("/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket)
+    plug(Phoenix.LiveReloader)
+    plug(Phoenix.CodeReloader)
   end
 
-  plug Plug.Logger
+  plug(Plug.Logger)
 
-  plug Plug.Parsers,
+  plug(Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
     json_decoder: Poison
+  )
 
-  plug Plug.MethodOverride
-  plug Plug.Head
+  plug(Plug.MethodOverride)
+  plug(Plug.Head)
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session,
+  plug(Plug.Session,
     store: :cookie,
     key: "_platemail_web_key",
     signing_salt: "3WUjYXyQ"
+  )
 
-  plug PlatemailWeb.Router
+  plug(PlatemailWeb.Router)
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.

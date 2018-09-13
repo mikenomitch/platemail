@@ -1,10 +1,13 @@
 defmodule Platemail.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Platemail.Accounts.Credential
 
   schema "users" do
     field(:email, :string)
     field(:name, :string)
+
+    has_many(:credentials, Credential)
 
     timestamps()
   end

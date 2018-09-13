@@ -27,7 +27,7 @@ The backend should have:
 - A barebones user model with sign up/in/out
   - Including tokens for password reset
 - Basic auth on both API and browser with JWTS
-- Swagger docs routes
+- Swagger docs
 - Event broadcasting via Channels
 - Optional replica DB support
 - TSL/HTTPS support
@@ -45,6 +45,8 @@ The frontend should have:
 - gzipped and minified production build - (done)
 - code-splitting - (done)
 - cache-busting - (done)
+- editor debugging (done)
+- normalized css - (some plugin)
 - sane data layer (redux & custom code)
 - memoized re-rendering (reselect)
 - A few simple example tests
@@ -78,9 +80,9 @@ Dependencies:
 - webpack
 
 `mix deps.get`
-`cd ./priv/app && npm install && cd ../..`
 `mix ecto.create`
 `mix ecto.migrate`
+`cd apps/platemail_web/lib/platemail_web/app && npm install`
 
 ## Running Locally
 
