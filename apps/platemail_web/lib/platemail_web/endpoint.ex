@@ -8,7 +8,7 @@ defmodule PlatemailWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug(Plug.Static.IndexHtml,
-    at: "/"
+    at: "/*"
   )
 
   plug(Plug.Static,
