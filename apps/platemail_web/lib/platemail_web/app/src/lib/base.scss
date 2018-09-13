@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css?family=Arimo");
+
+/* ======== */
+/*   HTML   */
+/* ========= */
+
+html {
+  font-size: $font-size-body-base;
+}
+
+/* ======== */
+/*   BODY   */
+/* ========= */
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: $base-font-type;
+  color: $base-font-color;
+}
+
+/* =========== */
+/*   HEADERS   */
+/* =========== */
+
+h1 {
+  font-size: $font-size-xxl;
+}
+
+h1.hero {
+  font-size: $font-size-jumbo;
+}
+
+h2 {
+  font-size: $font-size-xl;
+}
+
+h2.hero {
+  font-size: $font-size-jumbo;
+}
+
+h3 {
+  font-size: $font-size-lg;
+}
+
+h4 {
+  font-size: $font-size-md;
+}
+
+h5 {
+  font-size: $font-size-sm;
+}
+
+/* ================== */
+/*   HELPER CLASSES   */
+/* ================== */
+
+/* ================== */
+/*   MIXINS   */
+/* ================== */

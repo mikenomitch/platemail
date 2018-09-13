@@ -1,0 +1,13 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.wordBasedSuggestions": true,
+  "editor.trimAutoWhitespace": true,
+
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  "eslint.autoFixOnSave": true
+}
