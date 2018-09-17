@@ -5,7 +5,7 @@ import { IWidget } from "../../reducers/widgets";
 import "./Widgets.scss";
 
 interface IWidgetsProps {
-  getItems: () => void;
+  getWidgets: () => void;
   items: IWidget[];
 }
 
@@ -15,7 +15,7 @@ interface IWidgetsState {
 
 class Widgets extends Component<IWidgetsProps, IWidgetsState> {
   public componentDidMount() {
-    this.props.getItems();
+    this.props.getWidgets();
   }
 
   public render() {
