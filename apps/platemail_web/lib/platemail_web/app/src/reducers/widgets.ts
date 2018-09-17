@@ -1,17 +1,3 @@
-// =============
-//   CONSTANTS
-// =============
-
-const defaultState = {
-  items: []
-};
-
-export const UPSERT_ITEM = "UPSERT_ITEM";
-export const UPSERT_ITEMS = "UPSERT_ITEMS";
-export const REMOVE_ITEM = "REMOVE_ITEM";
-export const REMOVE_ITEMS = "REMOVE_ITEMS";
-export const GET_ITEMS = "GET_ITEMS";
-
 // =========
 //   TYPES
 // =========
@@ -25,32 +11,28 @@ export interface IWidget {
 export interface IWidgetReducerState {
   items: IWidget[];
 }
-
-export type UPSERT_ITEM = typeof UPSERT_ITEM;
-export type UPSERT_ITEMS = typeof UPSERT_ITEMS;
-export type REMOVE_ITEM = typeof REMOVE_ITEM;
-export type REMOVE_ITEMS = typeof REMOVE_ITEMS;
-export type GET_ITEMS = typeof GET_ITEMS;
-
 export interface IUpsertItem {
-  type: UPSERT_ITEM;
+  payload: IWidget;
+  type: "UPSERT_ITEM";
 }
 
 export interface IUpsertItems {
-  payload: any;
-  type: UPSERT_ITEMS;
+  payload: IWidget[];
+  type: "UPSERT_ITEMS";
 }
 
 export interface IRemoveItem {
-  type: REMOVE_ITEM;
+  payload: number;
+  type: "REMOVE_ITEM";
 }
 
 export interface IRemoveItems {
-  type: REMOVE_ITEMS;
+  payload: number[];
+  type: "REMOVE_ITEMS";
 }
 
 export interface IGetItems {
-  type: GET_ITEMS;
+  type: "GET_ITEMS";
 }
 
 export type HashActions =
@@ -64,34 +46,37 @@ export type HashActions =
 //   ACTIONS
 // ===========
 
-export function upsertItem(): IUpsertItem {
+export function upsertItem(item: IWidget): IUpsertItem {
   return {
-    type: UPSERT_ITEM
+    payload: item,
+    type: "UPSERT_ITEM"
   };
 }
 
-export function upsertItems(items): IUpsertItems {
+export function upsertItems(items: IWidget[]): IUpsertItems {
   return {
     payload: items,
-    type: UPSERT_ITEMS
+    type: "UPSERT_ITEMS"
   };
 }
 
-export function removeItem(): IRemoveItem {
+export function removeItem(id: number): IRemoveItem {
   return {
-    type: REMOVE_ITEM
+    payload: id,
+    type: "REMOVE_ITEM"
   };
 }
 
-export function removeItems(): IRemoveItems {
+export function removeItems(ids: number[]): IRemoveItems {
   return {
-    type: REMOVE_ITEMS
+    payload: ids,
+    type: "REMOVE_ITEMS"
   };
 }
 
 export function getItems(): IGetItems {
   return {
-    type: GET_ITEMS
+    type: "GET_ITEMS"
   };
 }
 
@@ -99,38 +84,34 @@ export function getItems(): IGetItems {
 //   REDUCER
 // ===========
 
+const defaultState = {
+  items: []
+};
+
 export function widgets(
   state: IWidgetReducerState = defaultState,
   action: HashActions
 ): IWidgetReducerState {
-  console.log("state", state);
-
   switch (action.type) {
-    case UPSERT_ITEM:
+    case "UPSERT_ITEM":
       return {
         ...state,
         items: []
       };
 
-    case UPSERT_ITEMS:
+    case "UPSERT_ITEMS":
       return {
         ...state,
         items: action.payload || []
       };
 
-    case REMOVE_ITEM:
+    case "REMOVE_ITEM":
       return {
         ...state,
         items: []
       };
 
-    case REMOVE_ITEMS:
-      return {
-        ...state,
-        items: []
-      };
-
-    case GET_ITEMS:
+    case "REMOVE_ITEMS":
       return {
         ...state,
         items: []

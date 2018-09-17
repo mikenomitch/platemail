@@ -4,7 +4,7 @@ import createSagaMiddleware from "redux-saga";
 import { enthusiasm } from "../reducers/enthusiasm";
 import { widgets } from "../reducers/widgets";
 
-import { widgetsSaga } from "../sagas/sagas";
+import { widgetsSaga } from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 

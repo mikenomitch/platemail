@@ -4,11 +4,10 @@ import Hello from "./Hello";
 
 import {
   decrementEnthusiasm,
-  IExampleStoreState,
   incrementEnthusiasm
 } from "../../reducers/enthusiasm";
 
-export function mapStateToProps({ enthusiasmLevel, name }: IExampleStoreState) {
+export function mapStateToProps({ enthusiasm: { enthusiasmLevel, name } }) {
   return {
     enthusiasmLevel,
     name
