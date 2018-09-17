@@ -2,9 +2,9 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import Widgets from "./Widgets";
 
-import { getItems, IWidgetReducerState } from "../../reducers/widgets";
+import { getItems } from "../../reducers/widgets";
 
-export function mapStateToProps({ items }: IWidgetReducerState) {
+export function mapStateToProps({ widgets: { items } }) {
   return { items };
 }
 

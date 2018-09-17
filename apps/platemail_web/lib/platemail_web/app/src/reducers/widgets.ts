@@ -17,7 +17,7 @@ export const GET_ITEMS = "GET_ITEMS";
 // =========
 
 export interface IWidget {
-  name: string | null;
+  title: string | null;
   content: string | null;
   user_id: number | null;
 }
@@ -37,6 +37,7 @@ export interface IUpsertItem {
 }
 
 export interface IUpsertItems {
+  payload: any;
   type: UPSERT_ITEMS;
 }
 
@@ -69,8 +70,9 @@ export function upsertItem(): IUpsertItem {
   };
 }
 
-export function upsertItems(): IUpsertItems {
+export function upsertItems(items): IUpsertItems {
   return {
+    payload: items,
     type: UPSERT_ITEMS
   };
 }
@@ -101,6 +103,8 @@ export function widgets(
   state: IWidgetReducerState = defaultState,
   action: HashActions
 ): IWidgetReducerState {
+  console.log("state", state);
+
   switch (action.type) {
     case UPSERT_ITEM:
       return {
@@ -111,7 +115,7 @@ export function widgets(
     case UPSERT_ITEMS:
       return {
         ...state,
-        items: []
+        items: action.payload || []
       };
 
     case REMOVE_ITEM:
