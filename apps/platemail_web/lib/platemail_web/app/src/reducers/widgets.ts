@@ -1,3 +1,10 @@
+import makeCrudReducer, {
+  IRemoveItem,
+  IRemoveItems,
+  IUpsertItem,
+  IUpsertItems
+} from "./crud";
+
 // =========
 //   TYPES
 // =========
@@ -8,52 +15,49 @@ export interface IWidget {
   user_id: number | null;
 }
 
-export interface IWidgetReducerState {
-  items: IWidget[];
-}
-export interface IUpsertItem {
-  payload: IWidget;
-  type: "UPSERT_ITEM";
-}
+// export interface IUpsertItem {
+//   payload: IWidget;
+//   type: "UPSERT_ITEM";
+// }
 
-export interface IUpsertItems {
-  payload: IWidget[];
-  type: "UPSERT_ITEMS";
-}
+// export interface IUpsertItems {
+//   payload: IWidget[];
+//   type: "UPSERT_ITEMS";
+// }
 
-export interface IRemoveItem {
-  payload: number;
-  type: "REMOVE_ITEM";
-}
+// export interface IRemoveItem {
+//   payload: number;
+//   type: "REMOVE_ITEM";
+// }
 
-export interface IRemoveItems {
-  payload: number[];
-  type: "REMOVE_ITEMS";
-}
+// export interface IRemoveItems {
+//   payload: number[];
+//   type: "REMOVE_ITEMS";
+// }
 
-export interface IGetItems {
-  type: "GET_ITEMS";
-}
+// export interface IGetItems {
+//   type: "GET_ITEMS";
+// }
 
-export type HashActions =
-  | IUpsertItem
-  | IUpsertItems
-  | IRemoveItem
-  | IRemoveItems
-  | IGetItems;
+// export type HashActions =
+//   | IUpsertItem
+//   | IUpsertItems
+//   | IRemoveItem
+//   | IRemoveItems
+//   | IGetItems;
 
 // ===========
 //   ACTIONS
 // ===========
 
-export function upsertItem(item: IWidget): IUpsertItem {
+export function upsertItem(item: IWidget): IUpsertItem<IWidget> {
   return {
     payload: item,
     type: "UPSERT_ITEM"
   };
 }
 
-export function upsertItems(items: IWidget[]): IUpsertItems {
+export function upsertItems(items: IWidget[]): IUpsertItems<IWidget> {
   return {
     payload: items,
     type: "UPSERT_ITEMS"
@@ -84,38 +88,4 @@ export function getItems(): IGetItems {
 //   REDUCER
 // ===========
 
-const defaultState = {
-  items: []
-};
-
-export function widgets(
-  state: IWidgetReducerState = defaultState,
-  action: HashActions
-): IWidgetReducerState {
-  switch (action.type) {
-    case "UPSERT_ITEM":
-      return {
-        ...state,
-        items: []
-      };
-
-    case "UPSERT_ITEMS":
-      return {
-        ...state,
-        items: action.payload || []
-      };
-
-    case "REMOVE_ITEM":
-      return {
-        ...state,
-        items: []
-      };
-
-    case "REMOVE_ITEMS":
-      return {
-        ...state,
-        items: []
-      };
-  }
-  return state;
-}
+export const widgets = makeCrudReducer("WIDGET");
