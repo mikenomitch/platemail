@@ -1,12 +1,7 @@
 # TODOs
 
-## Immediate
-
-- Paginated widget endpoint
-
 ## Backend
 
-- Pagination lib on the resource
 - User Auth/Credentials
 - Routing (w/ auth/creds)
 - Super nice fallback controller
