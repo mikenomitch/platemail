@@ -53,7 +53,7 @@ const handleUpsertItem = (
   action: IUpsertItem<CrudType>
 ): ICrudReducerState<CrudType> => {
   const newItems = state.items
-    .filter(item => action.payload.id === item.id)
+    .filter(item => action.payload.id !== item.id)
     .concat([action.payload]);
 
   return { ...state, items: newItems };
@@ -82,17 +82,6 @@ const handleRemoveItem = (
   return { ...state, items: itemsWithRemoved };
 };
 
-const handleRemoveItems = (
-  state: ICrudReducerState<CrudType>,
-  action: IRemoveItems
-): ICrudReducerState<CrudType> => {
-  const filteredItems = state.items.filter(
-    item => !action.payload.includes(item.id)
-  );
-
-  return { ...state, items: filteredItems };
-};
-
 // Top level reducer
 
 const makeCrudReducer = (name: string) => {
@@ -107,8 +96,6 @@ const makeCrudReducer = (name: string) => {
         return handleUpsertItems(state, action as IUpsertItems<CrudType>);
       case `REMOVE_${name}`:
         return handleRemoveItem(state, action as IRemoveItem);
-      case `REMOVE_${name}S`:
-        return handleRemoveItems(state, action as IRemoveItems);
     }
     return state;
   };

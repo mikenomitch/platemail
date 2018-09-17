@@ -22,6 +22,20 @@ export function getWidgets(): IAction {
   };
 }
 
+export function getWidget(id: number): IAction {
+  return {
+    payload: id,
+    type: "GET_WIDGET"
+  };
+}
+
+export function deleteWidget(id: number): IAction {
+  return {
+    payload: id,
+    type: "DELETE_WIDGET"
+  };
+}
+
 // ===========
 //   REDUCER
 // ===========
