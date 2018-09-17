@@ -5,7 +5,6 @@ defmodule Platemail.Core do
 
   import Ecto.Query, warn: false
   alias Platemail.Repo
-
   alias Platemail.Core.Widget
 
   @doc """
@@ -13,12 +12,12 @@ defmodule Platemail.Core do
 
   ## Examples
 
-      iex> list_widgets()
+      iex> list_widgets(%{"page" => 2})
       [%Widget{}, ...]
 
   """
-  def list_widgets do
-    Repo.all(Widget)
+  def list_widgets(params) do
+    Widget |> Repo.paginate(params)
   end
 
   @doc """

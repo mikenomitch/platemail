@@ -77,8 +77,20 @@ const api = {
     const url = baseURL + path;
     return __baseCall("DELETE", url);
   },
-  get: (path: string): Promise<object> => {
-    const url = baseURL + path;
+  get: (path: string, params = {}): Promise<object> => {
+    const query = new URLSearchParams();
+
+    Object.keys(params).forEach(key => {
+      query.append(key, params[key]);
+    });
+
+    const queryString = query.toString();
+
+    let url = baseURL + path;
+    if (queryString) {
+      url = url + `?${queryString}`;
+    }
+
     return __baseCall("GET", url);
   },
   post: (path: string, params: object, opts = {}): Promise<object> => {

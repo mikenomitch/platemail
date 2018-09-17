@@ -24,7 +24,7 @@ defmodule PlatemailWeb.Mixfile do
   def application do
     [
       mod: {PlatemailWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :scrivener_ecto]
     ]
   end
 
@@ -44,7 +44,8 @@ defmodule PlatemailWeb.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:platemail, in_umbrella: true},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:scrivener_ecto, "~> 1.0"}
     ]
   end
 

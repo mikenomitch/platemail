@@ -6,8 +6,8 @@ defmodule PlatemailWeb.Api.V1.WidgetController do
 
   action_fallback(PlatemailWeb.FallbackController)
 
-  def index(conn, _params) do
-    widgets = Core.list_widgets()
+  def index(conn, params) do
+    widgets = Core.list_widgets(params)
     render(conn, "index.json", widgets: widgets)
   end
 

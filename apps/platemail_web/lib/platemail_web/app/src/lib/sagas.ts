@@ -61,7 +61,7 @@ function __makeItemUpdator(name: string, basePath: string) {
   };
 }
 
-function __makeItemDeleter(name: string, basePath: string) {
+function __makeItemDeletor(name: string, basePath: string) {
   return function*(action) {
     const id = action.payload;
     try {
@@ -79,7 +79,7 @@ function __makeCrudSagas(name: string, basePath: string) {
     takeEvery(`GET_${name}`, __makeItemGetter(name, basePath)),
     takeEvery(`CREATE_${name}`, __makeItemCreator(name, basePath)),
     takeEvery(`UPDATE_${name}`, __makeItemUpdator(name, basePath)),
-    takeEvery(`DELETE_${name}`, __makeItemDeleter(name, basePath))
+    takeEvery(`DELETE_${name}`, __makeItemDeletor(name, basePath))
   ];
 }
 

@@ -28,7 +28,8 @@ defmodule Platemail.Mixfile do
         :runtime_tools,
         :ueberauth,
         :ueberauth_identity,
-        :comeonin
+        :comeonin,
+        :scrivener_ecto
       ]
     ]
   end
@@ -51,7 +52,8 @@ defmodule Platemail.Mixfile do
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
       {:cors_plug, "~> 1.5"},
-      {:faker, "~> 0.10"}
+      {:faker, "~> 0.10"},
+      {:scrivener_ecto, "~> 1.0"}
     ]
   end
 
