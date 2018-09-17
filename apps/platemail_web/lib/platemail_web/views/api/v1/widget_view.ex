@@ -1,13 +1,12 @@
 defmodule PlatemailWeb.Api.V1.WidgetView do
   use PlatemailWeb, :view
-  alias PlatemailWeb.WidgetView
 
   def render("index.json", %{widgets: widgets}) do
-    %{data: render_many(widgets, WidgetView, "widget.json")}
+    %{data: render_many(widgets, __MODULE__, "widget.json")}
   end
 
   def render("show.json", %{widget: widget}) do
-    %{data: render_one(widget, WidgetView, "widget.json")}
+    %{data: render_one(widget, __MODULE__, "widget.json")}
   end
 
   def render("widget.json", %{widget: widget}) do

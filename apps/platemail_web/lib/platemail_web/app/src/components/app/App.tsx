@@ -16,6 +16,11 @@ const LoadableHello = Loadable({
   loading: Loader
 });
 
+const LoadableWidgets = Loadable({
+  loader: () => import("../widgets/WidgetsContainer"),
+  loading: Loader
+});
+
 const App = () => (
   <Router>
     <div>
@@ -26,12 +31,16 @@ const App = () => (
         <li>
           <Link to="/bye">Goodbye</Link>
         </li>
+        <li>
+          <Link to="/widgets">Widgets</Link>
+        </li>
       </ul>
 
       <hr />
 
       <Route exact={true} path="/" component={LoadableHello} />
       <Route path="/bye" component={LoadableGoodbye} />
+      <Route path="/widgets" component={LoadableWidgets} />
     </div>
   </Router>
 );

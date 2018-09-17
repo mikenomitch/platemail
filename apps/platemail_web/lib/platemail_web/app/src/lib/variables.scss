@@ -76,6 +76,16 @@ $spacing-xxl: 8rem;
 //   OTHERS
 // ==========
 
+// == Z INDEX ==
+
+$z-index-lowest: -500;
+$z-index-lower: -300;
+$z-index-low: -100;
+$z-index-mid: 0;
+$z-index-high: 100;
+$z-index-higher: 300;
+$z-index-highest: 500;
+
 // == BORDERS ==
 
 $border-width-base: 1px;

@@ -27,6 +27,7 @@ The backend should have:
 - A barebones user model with sign up/in/out
   - Including tokens for password reset
 - Basic auth on both API and browser with JWTS
+- Auth credential confirmation/password resets/magic login
 - Swagger docs
 - Event broadcasting via Channels
 - Optional replica DB support

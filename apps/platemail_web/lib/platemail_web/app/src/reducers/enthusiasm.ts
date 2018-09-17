@@ -11,6 +11,11 @@ export interface IExampleStoreState {
 //   CONSTANTS
 // =============
 
+const defaultState = {
+  enthusiasmLevel: 1,
+  name: "Mike"
+};
+
 export const INCREMENT_ENTHUSIASM = "INCREMENT_ENTHUSIASM";
 export type INCREMENT_ENTHUSIASM = typeof INCREMENT_ENTHUSIASM;
 
@@ -48,7 +53,7 @@ export function decrementEnthusiasm(): IDecrementEnthusiasm {
 // ===========
 
 export function enthusiasm(
-  state: IExampleStoreState,
+  state: IExampleStoreState = defaultState,
   action: EnthusiasmAction
 ): IExampleStoreState {
   switch (action.type) {

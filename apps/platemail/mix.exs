@@ -50,7 +50,8 @@ defmodule Platemail.Mixfile do
       {:pbkdf2_elixir, "~> 0.12"},
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
-      {:cors_plug, "~> 1.5"}
+      {:cors_plug, "~> 1.5"},
+      {:faker, "~> 0.10"}
     ]
   end
 
