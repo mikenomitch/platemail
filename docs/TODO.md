@@ -14,8 +14,7 @@
 
 ## Frontend
 
-- Add Fetcher
-- Add Simple Reducer
+- Add call tracking to sagas
 - Add Socket code from Phoenix
 - Static public pages (w/ snapshot)
 

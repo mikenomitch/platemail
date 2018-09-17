@@ -5,9 +5,11 @@ import { IWidget } from "../../reducers/widgets";
 import "./Widgets.scss";
 
 interface IWidgetsProps {
+  createWidget: (id: object) => void;
   deleteWidget: (id: number) => void;
   getWidget: (id: number) => void;
   getWidgets: () => void;
+  updateWidget: (id: number, params: object) => void;
   items: IWidget[];
 }
 
@@ -18,9 +20,6 @@ interface IWidgetsState {
 class Widgets extends Component<IWidgetsProps, IWidgetsState> {
   public componentDidMount() {
     this.props.getWidgets();
-    this.props.getWidget(22);
-
-    this.props.deleteWidget(1);
   }
 
   public render() {

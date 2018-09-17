@@ -7,9 +7,9 @@ import makeCrudReducer from "./crud";
 
 export interface IWidget {
   content: string | null;
-  id: number;
+  id: number | undefined;
   title: string | null;
-  user_id: number | null;
+  user_id: number | null | undefined;
 }
 
 // ===========
@@ -29,10 +29,24 @@ export function getWidget(id: number): IAction {
   };
 }
 
+export function createWidget(params: IWidget): IAction {
+  return {
+    payload: { params },
+    type: "CREATE_WIDGET"
+  };
+}
+
 export function deleteWidget(id: number): IAction {
   return {
     payload: id,
     type: "DELETE_WIDGET"
+  };
+}
+
+export function updateWidget(id: number, params: IWidget): IAction {
+  return {
+    payload: { id, params },
+    type: "UPDATE_WIDGET"
   };
 }
 
