@@ -50,12 +50,16 @@ defmodule PlatemailWeb.Router do
   #   BROWSER ROUTES
   # ==================
 
-  scope "/auth", PlatemailWeb do
+  scope "/auth", PlatemailWeb.Api.V1 do
     pipe_through(:browser)
 
     get("/:provider", AuthController, :request)
     get("/:provider/callback", AuthController, :callback)
-    post("/identity/callback", AuthController, :identity_callback)
+  end
+
+  scope "/auth", PlatemailWeb.Api.V1 do
+    pipe_through(:api)
+    post("/identity/callback", AuthController, :callback)
   end
 
   scope "/", PlatemailWeb do

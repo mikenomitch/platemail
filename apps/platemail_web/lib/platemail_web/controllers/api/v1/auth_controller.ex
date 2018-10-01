@@ -1,8 +1,7 @@
-defmodule PlatemailWeb.AuthController do
+defmodule PlatemailWeb.Api.V1.AuthController do
   use PlatemailWeb, :controller
 
   alias Platemail.{
-    Accounts.User,
     Accounts.Authentication,
     Repo
   }
@@ -18,32 +17,33 @@ defmodule PlatemailWeb.AuthController do
       |> put_flash(:info, "Signed in as #{current_user.name}")
       |> redirect(to: "/")
     else
-      render(conn, "login.html", current_user: nil, current_auths: [])
+      conn
+      |> put_status(401)
+      |> json(%{message: "TODO: error"})
     end
   end
 
-  def identity_callback(%Plug.Conn{assigns: %{ueberauth_failure: fails}} = conn, _params) do
-    current_user = Authentication.Plug.current_resource(conn)
-
+  def callback(%Plug.Conn{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
     conn
-    |> put_flash(:error, hd(fails.errors).message)
-    |> render("login.html", current_user: current_user, current_auths: auths(current_user))
+    |> put_status(401)
+    |> json(%{message: "TODO: error"})
   end
 
-  def identity_callback(%Plug.Conn{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+  def callback(%Plug.Conn{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     current_user = Authentication.Plug.current_resource(conn)
 
     case Authentication.get_or_insert_user_from_auth(auth, current_user, Repo) do
       {:ok, user} ->
+        {:ok, token, claims} = Authentication.encode_and_sign(user, %{})
+
         conn
-        |> put_flash(:info, "Signed in as #{user.name}")
-        |> Authentication.Plug.sign_in(user, token_type: :access)
-        |> redirect(to: "/stream")
+        |> put_resp_header("authorization", "Bearer #{token}")
+        |> render("login.json", user: user, token: token)
 
       {:error, error} ->
         conn
-        |> put_flash(:error, "Could not authenticate. Error: #{error}")
-        |> render("login.html", current_user: current_user, current_auths: auths(current_user))
+        |> put_status(401)
+        |> json(%{message: "TODO: error"})
     end
   end
 
@@ -57,20 +57,9 @@ defmodule PlatemailWeb.AuthController do
       # but I prefer to clear out the session. This means that because we
       # use tokens in two locations - :default and :admin - we need to load it (see above)
       |> Authentication.Plug.sign_out()
-      |> put_flash(:info, "Signed out")
-      |> redirect(to: "/")
+      |> json(%{message: "Logged in"})
     else
-      conn
-      |> put_flash(:info, "Not logged in")
-      |> redirect(to: "/")
+      conn |> json(%{message: "TODO: ERROR"})
     end
-  end
-
-  defp auths(nil), do: []
-
-  defp auths(%User{} = user) do
-    Ecto.assoc(user, :authorizations)
-    |> Repo.all()
-    |> Enum.map(& &1.provider)
   end
 end

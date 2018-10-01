@@ -1,5 +1,5 @@
 defmodule Platemail.Accounts.Authentication do
-  use Guardian, otp_app: :my_app
+  use Guardian, otp_app: :platemail
 
   alias Platemail.Accounts.{Credential, User}
 
@@ -25,8 +25,8 @@ defmodule Platemail.Accounts.Authentication do
   Needed for Guardian
   """
   def resource_from_claims(claims) do
-    id = claims["sub"]
-    user = Platemail.Accounts.get_user!(id)
+    subject_id = claims["sub"]
+    user = Platemail.Accounts.get_user!(subject_id)
     {:ok, user}
   end
 
@@ -39,8 +39,7 @@ defmodule Platemail.Accounts.Authentication do
         {:error, reason}
 
       credential ->
-        if credential.expires_at &&
-             credential.expires_at < Platemail.Accounts.Authentication.Utils.timestamp() do
+        if credential.expires_at && Time.compare(credential.expires_at, Time.utc_now()) == :gt do
           replace_credential(credential, auth, current_user, repo)
         else
           user_from_credential(credential, current_user, repo)
@@ -68,7 +67,9 @@ defmodule Platemail.Accounts.Authentication do
           end
       end
     rescue
-      _error -> {:error, :email_not_valid}
+      error ->
+        IO.inspect(error)
+        {:error, :email_not_valid}
     end
   end
 
@@ -252,10 +253,7 @@ defmodule Platemail.Accounts.Authentication do
   end
 
   defp token_from_auth(auth), do: auth.credentials.token
-
-  defp uid_from_auth(%{provider: :slack} = auth), do: auth.credentials.other.user_id
   defp uid_from_auth(auth), do: auth.uid
-
   defp password_from_auth(%{provider: :identity} = auth), do: auth.credentials.other.password
   defp password_from_auth(_), do: nil
 
