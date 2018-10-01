@@ -23,7 +23,7 @@ The goal of the app/repo is to lay a foundation for quick iteration on future pr
 The backend should have:
 
 - An example resource with schema/model/controller/view/routing - (done)
-- API routes and Browser Routes
+- API routes and Browser Routes - (done)
 - A barebones user model with sign up/in/out
   - Including tokens for password reset
 - Basic auth on both API and browser with JWTS
@@ -33,6 +33,7 @@ The backend should have:
 - Optional replica DB support
 - TSL/HTTPS support
 - A few simple example tests
+- Pagination - (done)
 
 The frontend should have:
 
@@ -41,15 +42,15 @@ The frontend should have:
 - sane css variables and minimal "framework" - (done)
 - a nice font - (done)
 - a simple frontend router - (done)
-- a simple fetching lib
-- socket connection to phoenix channel
+- a simple fetching lib - (done)
 - gzipped and minified production build - (done)
 - code-splitting - (done)
 - cache-busting - (done)
-- editor debugging (done)
+- editor debugging - (done)
+- sane data layer (redux & custom code) - (done)
 - normalized css - (some plugin)
-- sane data layer (redux & custom code)
 - memoized re-rendering (reselect)
+- socket connection to phoenix channel
 - A few simple example tests
 
 The dev experience should entail:
@@ -66,6 +67,7 @@ The deploy/ops experience:
 
 - single command
 - multi-server w load-balancer
+- frontend served via CDN
 - error alerting
 - logging
 - k8s deploy (in code)

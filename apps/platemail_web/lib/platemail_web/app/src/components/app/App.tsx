@@ -2,6 +2,7 @@ import * as React from "react";
 import Loadable from "react-loadable";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
+import "sanitize.css";
 import "./App.scss";
 
 import Loader from "../loader/Loader";
