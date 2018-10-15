@@ -1,4 +1,5 @@
-const baseURL = "http://localhost:4000/api/v1";
+const baseNonApiURL = "http://localhost:4000";
+const baseURL = `${baseNonApiURL}/api/v1`;
 
 function __jsonify(res) {
   return res.json();
@@ -53,11 +54,15 @@ function __checkStatus(res) {
   return res;
 }
 
+function __makeURL(path: string, opts: any): string {
+  return opts.useNonApi ? baseNonApiURL + path : baseURL + path;
+}
+
 function __baseCall(
   method: string,
   endpoint: string,
   params: object = {},
-  opts: object = {}
+  opts: object = { useNonApi: false }
 ) {
   const body = __makeBody(method, params);
   const headers = __makeHeaders(method, opts);
@@ -73,11 +78,18 @@ function __baseCall(
 }
 
 const api = {
-  delete: (path: string): Promise<object> => {
-    const url = baseURL + path;
+  delete: (
+    path: string,
+    opts: object = { useNonApi: false }
+  ): Promise<object> => {
+    const url = __makeURL(path, opts);
     return __baseCall("DELETE", url);
   },
-  get: (path: string, params = {}): Promise<object> => {
+  get: (
+    path: string,
+    params = {},
+    opts: object = { useNonApi: false }
+  ): Promise<object> => {
     const query = new URLSearchParams();
 
     Object.keys(params).forEach(key => {
@@ -86,19 +98,27 @@ const api = {
 
     const queryString = query.toString();
 
-    let url = baseURL + path;
+    let url = __makeURL(path, opts);
     if (queryString) {
       url = url + `?${queryString}`;
     }
 
     return __baseCall("GET", url);
   },
-  post: (path: string, params: object, opts = {}): Promise<object> => {
-    const url = baseURL + path;
+  post: (
+    path: string,
+    params: object,
+    opts: object = { useNonApi: false }
+  ): Promise<object> => {
+    const url = __makeURL(path, opts);
     return __baseCall("POST", url, params, opts);
   },
-  put: (path: string, params: object, opts = {}): Promise<object> => {
-    const url = baseURL + path;
+  put: (
+    path: string,
+    params: object,
+    opts: object = { useNonApi: false }
+  ): Promise<object> => {
+    const url = __makeURL(path, opts);
     return __baseCall("PUT", url, params, opts);
   }
 };

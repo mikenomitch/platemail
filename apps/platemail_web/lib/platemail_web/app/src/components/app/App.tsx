@@ -18,7 +18,7 @@ const LoadableWidgets = Loadable({
 });
 
 const LoadableLogin = Loadable({
-  loader: () => import("../accounts/Login"),
+  loader: () => import("../accounts/LoginContainer"),
   loading: Loader
 });
 

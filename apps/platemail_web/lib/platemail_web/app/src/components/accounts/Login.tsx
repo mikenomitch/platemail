@@ -4,17 +4,23 @@ import * as React from "react";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
 
+interface ILoginProps {
+  login: (params: any) => void;
+}
 interface ILoginState {
   email: string;
   password: string;
 }
 
-class Login extends Component<null, ILoginState> {
-  public handleSubmit(evt) {
+class Login extends Component<ILoginProps, ILoginState> {
+  public handleSubmit = evt => {
     evt.preventDefault();
 
-    console.log("make this post with the state here...");
-  }
+    this.props.login({
+      email: this.state.email,
+      password: this.state.password
+    });
+  };
 
   public handleChangeFor = (attr: string) => event => {
     const val: string = event.target.value;

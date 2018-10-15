@@ -1,11 +1,17 @@
 import { all, put, takeEvery } from "redux-saga/effects";
 
+import { IAuthAction } from "../reducers/authentication";
+
 import api from "./api";
 
 function __apiError(err) {
   console.log("err", err);
   // TODO: Implement API Error handling
 }
+
+// ========
+//   CRUD
+// ========
 
 function __makeItemsGetter(name: string, basePath: string) {
   return function*() {
@@ -83,6 +89,34 @@ function __makeCrudSagas(name: string, basePath: string) {
   ];
 }
 
+// ========
+//   AUTH
+// ========
+
+function* postAuth(action: IAuthAction) {
+  const authPath = "/auth/identity/callback";
+  try {
+    const { data } = yield api.post(authPath, action.payload.params, {
+      useNonApi: true
+    });
+
+    console.log("DATA", data);
+
+    yield put({ type: "foo", params: "bar" });
+  } catch (err) {
+    __apiError(err);
+  }
+}
+
+const authSagas = [
+  takeEvery("POST_LOGIN", postAuth),
+  takeEvery("POST_SIGNIN", postAuth)
+];
+
+// ==========
+//   EXPORT
+// ==========
+
 export function* rootSaga() {
-  yield all([...__makeCrudSagas("WIDGET", "/widgets")]);
+  yield all([...__makeCrudSagas("WIDGET", "/widgets"), ...authSagas]);
 }

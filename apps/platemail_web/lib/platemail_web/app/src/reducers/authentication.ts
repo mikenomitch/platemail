@@ -14,6 +14,11 @@ export interface IAuthParams {
   password: string;
 }
 
+export interface IAuthAction {
+  type: string;
+  payload: { params: IAuthParams };
+}
+
 // ===========
 //   ACTIONS
 // ===========
