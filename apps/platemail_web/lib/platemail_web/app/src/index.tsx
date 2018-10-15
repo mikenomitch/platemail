@@ -6,7 +6,6 @@ import "./index.scss";
 
 import App from "./components/app/App";
 import createStore from "./lib/createStore";
-import registerServiceWorker from "./registerServiceWorker";
 
 const store = createStore();
 
@@ -16,5 +15,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root") as HTMLElement
 );
-
-registerServiceWorker();
