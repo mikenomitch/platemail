@@ -15,7 +15,7 @@ function __makeHeaders(method, opts) {
   }
 
   let headers: object = {
-    Authorization: `Bearer ${opts.token}`,
+    Authorization: opts.token ? `Bearer ${opts.token}` : null,
     "Content-Type": "application/json"
   };
 

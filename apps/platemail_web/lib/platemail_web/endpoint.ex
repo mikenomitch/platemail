@@ -16,7 +16,7 @@ defmodule PlatemailWeb.Endpoint do
     from: "priv/static/webapp"
   )
 
-  plug(CORSPlug, origin: ["http://localhost:3000", "http://localhost:4000"])
+  plug(CORSPlug, origin: ["http://localhost:3000", "http://localhost:4000"], max_age: 86400)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

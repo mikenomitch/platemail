@@ -5,8 +5,11 @@
 - Frontend Login hookup
 - Persist token on frontend (and maybe session somehow?)
 - Scope widget or user route based on logged in status
+- Clear various stores on logout (check danton)
 - Set up call tracking on FE
 - Set up error handling on FE API (KISS)
+- Document the frontent well
+
 - Set up fallback controller to work nicely
 - Set up frontend to handle errors nicely
   - Just a spot for a error handle on fetch

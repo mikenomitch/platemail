@@ -65,6 +65,14 @@ export const authentication = (
       return state;
     case `POST_LOGOUT`:
       return state;
+    case `SAVE_CREDENTIALS`:
+      // TODO: Start here and save
+      // the credentials in the store
+
+      // Add session middleware to get this on load
+      // and to save this under certain conditions (a 3rd arg in the action maybe?)
+      console.log("payload:", action.payload);
+      return state;
   }
   return state;
 };

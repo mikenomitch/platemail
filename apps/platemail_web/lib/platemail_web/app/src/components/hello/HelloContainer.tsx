@@ -5,7 +5,7 @@ import Hello from "./Hello";
 import {
   decrementEnthusiasm,
   incrementEnthusiasm
-} from "../../reducers/enthusiasm";
+} from "../../data/enthusiasm";
 
 export function mapStateToProps({ enthusiasm: { enthusiasmLevel, name } }) {
   return {

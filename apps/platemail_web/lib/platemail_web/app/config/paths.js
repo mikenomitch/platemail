@@ -53,7 +53,7 @@ module.exports = {
   appTsConfig: resolveApp("tsconfig.json"),
   appTsProdConfig: resolveApp("tsconfig.prod.json"),
   appTsLint: resolveApp("tslint.json"),
-  scssVars: resolveApp("src/lib/variables.scss"),
+  scssVars: resolveApp("src/lib/Variables.scss"),
   publicUrl: getPublicUrl(resolveApp("package.json")),
   servedPath: getServedPath(resolveApp("package.json"))
 };

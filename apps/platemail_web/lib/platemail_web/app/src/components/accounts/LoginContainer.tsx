@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { login } from "../../reducers/authentication";
+import { login } from "../../data/authentication";
 import Login from "./Login";
 
 // export function mapStateToProps({}) {

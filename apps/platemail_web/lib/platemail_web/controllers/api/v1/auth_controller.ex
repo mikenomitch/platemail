@@ -37,6 +37,7 @@ defmodule PlatemailWeb.Api.V1.AuthController do
         {:ok, token, claims} = Authentication.encode_and_sign(user, %{})
 
         conn
+        |> put_status(200)
         |> put_resp_header("authorization", "Bearer #{token}")
         |> render("login.json", user: user, token: token)
 

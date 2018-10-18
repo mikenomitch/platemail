@@ -8,7 +8,7 @@ import {
   getWidget,
   getWidgets,
   updateWidget
-} from "../../reducers/widgets";
+} from "../../data/widgets";
 
 export function mapStateToProps({ widgets: { items } }) {
   return { items };

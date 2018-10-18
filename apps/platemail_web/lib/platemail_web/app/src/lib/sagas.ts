@@ -1,6 +1,6 @@
 import { all, put, takeEvery } from "redux-saga/effects";
 
-import { IAuthAction } from "../reducers/authentication";
+import { IAuthAction } from "../data/authentication";
 
 import api from "./api";
 
@@ -96,13 +96,13 @@ function __makeCrudSagas(name: string, basePath: string) {
 function* postAuth(action: IAuthAction) {
   const authPath = "/auth/identity/callback";
   try {
-    const { data } = yield api.post(authPath, action.payload.params, {
+    const data = yield api.post(authPath, action.payload.params, {
       useNonApi: true
     });
 
-    console.log("DATA", data);
+    console.log("data", data);
 
-    yield put({ type: "foo", params: "bar" });
+    yield put({ type: "SAVE_CREDENTIALS", payload: data });
   } catch (err) {
     __apiError(err);
   }

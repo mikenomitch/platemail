@@ -11,7 +11,8 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux-saga": "^0.16.0",
-    "sanitize.css": "^7.0.3"
+    "sanitize.css": "^7.0.3",
+    "store": "^2.0.12"
   },
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Component } from "react";
 
-import { IWidget } from "../../reducers/widgets";
+import { IWidget } from "../../data/widgets";
 import "./Widgets.scss";
 
 interface IWidgetsProps {
