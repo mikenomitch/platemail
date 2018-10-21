@@ -2,8 +2,6 @@
 
 ## Next in Order (don't think, do)
 
-- withLocalStorate work better
-  (see the file, clean up extra stuff)
 - Frontend Login hookup
 - Persist token on frontend (and maybe session somehow?)
 - Scope widget or user route based on logged in status

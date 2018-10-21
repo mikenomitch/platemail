@@ -46,3 +46,8 @@ erl_crash.dump
 /apps/platemail_web/lib/platemail_web/app/npm-debug.log*
 /apps/platemail_web/lib/platemail_web/app/yarn-debug.log*
 /apps/platemail_web/lib/platemail_web/app/yarn-error.log*
+
+/apps/platemail_web/priv/static/webapp/static/
+/apps/platemail_web/priv/static/webapp/static/*
+/apps/platemail_web/priv/static/webapp/static/*.js
+/apps/platemail_web/priv/static/webapp/static/*.css
