@@ -2,8 +2,6 @@
 
 ## Next in Order (don't think, do)
 
-- Scope widget or user route based on logged in status
-- Clear various stores on logout (check danton)
 - Set up call tracking on FE
 - Set up error handling on FE API (KISS)
 - Document the frontent well

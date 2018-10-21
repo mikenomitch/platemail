@@ -47,7 +47,7 @@ export function loadInitialData(dispatch): IAction {
 export function logOut(): IAction {
   return {
     localStorageData: { auth: null },
-    type: "LOG_OUT"
+    type: "SIGN_OUT"
   };
 }
 
@@ -73,7 +73,7 @@ export const authentication = (
       return state;
     case `POST_LOGOUT`:
       return state;
-    case `LOG_OUT`:
+    case `SIGN_OUT`:
       return Object.assign({}, state, { token: null, user: null });
     case `SAVE_CREDENTIALS`:
       const authState = {

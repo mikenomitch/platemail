@@ -1,5 +1,6 @@
 import { IAction } from "../lib/types";
 import makeCrudReducer from "./crud";
+import withResetState from "./withResetState";
 
 // =========
 //   TYPES
@@ -54,4 +55,6 @@ export function updateWidget(id: number, params: IWidget): IAction {
 //   REDUCER
 // ===========
 
-export const widgets = makeCrudReducer("WIDGET");
+export const widgets = withResetState({ items: [] }, "SIGN_OUT")(
+  makeCrudReducer("WIDGET")
+);
