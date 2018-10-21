@@ -4,11 +4,15 @@ import App from "./App";
 
 import { loadInitialData } from "../../data/authentication";
 
+export function mapStateToProps({ authentication: { token } }) {
+  return { token };
+}
+
 export function mapDispatchToProps(dispatch: Dispatch) {
   return { loadInitialData: () => dispatch(loadInitialData(dispatch)) };
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);

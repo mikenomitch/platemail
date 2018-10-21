@@ -29,11 +29,12 @@ const LoadableSignUp = Loadable({
 });
 
 const LoadableLogOut = Loadable({
-  loader: () => import("../accounts/LogOut"),
+  loader: () => import("../accounts/LogOutContainer"),
   loading: Loader
 });
 
 interface IAppProps {
+  token: boolean;
   loadInitialData: () => void;
 }
 
@@ -43,7 +44,31 @@ class App extends Component<IAppProps, {}> {
     loadInitialData();
   }
 
+  public renderLoggedOutLinks() {
+    return (
+      <div>
+        <div>
+          <Link to="/login">Login</Link>
+        </div>
+        <div>
+          <Link to="/signup">Sign Up</Link>
+        </div>
+      </div>
+    );
+  }
+
+  public renderLoggedInLinks() {
+    return (
+      <div>
+        <Link to="/logout">Logout</Link>
+      </div>
+    );
+  }
+
   public render() {
+    const { token } = this.props;
+    const isLoggedIn = !!token;
+
     return (
       <Router>
         <div>
@@ -55,15 +80,9 @@ class App extends Component<IAppProps, {}> {
               <div>
                 <Link to="/widgets">Widgets</Link>
               </div>
-              <div>
-                <Link to="/login">Login</Link>
-              </div>
-              <div>
-                <Link to="/signup">Sign Up</Link>
-              </div>
-              <div>
-                <Link to="/logout">Logout</Link>
-              </div>
+              {isLoggedIn
+                ? this.renderLoggedInLinks()
+                : this.renderLoggedOutLinks()}
             </div>
             <hr />
           </div>

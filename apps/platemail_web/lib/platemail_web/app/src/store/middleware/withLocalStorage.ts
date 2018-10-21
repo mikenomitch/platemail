@@ -1,4 +1,3 @@
-import merge from "lodash/merge";
 import store from "store/dist/store.modern";
 
 const withLocalStorage = reduxStore => next => action => {
@@ -18,7 +17,9 @@ const withLocalStorage = reduxStore => next => action => {
     const storedAuth = store.get(action.localStorageKey) || "{}";
     const val = JSON.parse(storedAuth);
 
-    const actionWithReplacedPayload = merge(action, { payload: val });
+    const actionWithReplacedPayload = Object.assign({}, action, {
+      payload: val
+    });
     return next(actionWithReplacedPayload);
   }
 

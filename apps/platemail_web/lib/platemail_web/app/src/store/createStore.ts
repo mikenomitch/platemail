@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 import multi from "redux-multi";
 import createSagaMiddleware from "redux-saga";
 
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
 const storeMaker = () => {
   const store = createStore(
     rootReducer,
-    applyMiddleware(multi, logger, sagaMiddleware, withLocalStorage)
+    applyMiddleware(multi, sagaMiddleware, withLocalStorage)
   );
 
   sagaMiddleware.run(rootSaga);
