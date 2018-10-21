@@ -19,10 +19,7 @@ defmodule PlatemailWeb.Router do
 
   pipeline :authenticated_api do
     plug(:accepts, ["json"])
-    plug(Guardian.Plug.VerifySession, claims: %{"typ" => "access"})
-    plug(Guardian.Plug.VerifyHeader, claims: %{"typ" => "access"})
-    plug(Guardian.Plug.EnsureAuthenticated)
-    plug(Guardian.Plug.LoadResource)
+    plug(PlatemailWeb.Authentication.ApiAuthPipeline)
   end
 
   # ==============
@@ -35,15 +32,14 @@ defmodule PlatemailWeb.Router do
   scope "/api/v1", PlatemailWeb.Api.V1 do
     pipe_through(:api)
     resources("/users", UserController, except: [:new, :edit, :create])
-    resources("/widgets", WidgetController, except: [:new, :edit, :create])
   end
 
   # == WITH AUTH ==
 
   scope "/api/v1", PlatemailWeb.Api.V1 do
-    pipe_through(:api)
+    pipe_through(:authenticated_api)
     resources("/users", UserController, only: [:create])
-    resources("/widgets", WidgetController, only: [:create])
+    resources("/widgets", WidgetController)
   end
 
   # ==================
