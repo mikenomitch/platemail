@@ -1,4 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
+import logger from "redux-logger";
+import multi from "redux-multi";
 import createSagaMiddleware from "redux-saga";
 
 import { authentication } from "../data/authentication";
@@ -19,8 +21,9 @@ const rootReducer = combineReducers({
 const storeMaker = () => {
   const store = createStore(
     rootReducer,
-    applyMiddleware(sagaMiddleware, withLocalStorage)
+    applyMiddleware(multi, logger, sagaMiddleware, withLocalStorage)
   );
+
   sagaMiddleware.run(rootSaga);
 
   return store;

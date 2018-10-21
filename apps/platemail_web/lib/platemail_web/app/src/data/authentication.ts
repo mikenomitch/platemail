@@ -1,3 +1,4 @@
+import merge from "lodash/merge";
 import { IAction } from "../lib/types";
 
 // =========
@@ -43,6 +44,13 @@ export function logOut(): IAction {
   };
 }
 
+export function loadInitialData(dispatch): IAction {
+  return {
+    localStorageKey: "auth",
+    type: "LOAD_CREDENTIALS"
+  };
+}
+
 // ===========
 //   REDUCER
 // ===========
@@ -65,14 +73,18 @@ export const authentication = (
       return state;
     case `POST_LOGOUT`:
       return state;
-    case `SAVE_CREDENTIALS`:
-      // TODO: Start here and save
-      // the credentials in the store
-
-      // Add session middleware to get this on load
-      // and to save this under certain conditions (a 3rd arg in the action maybe?)
-      console.log("payload:", action.payload);
+    case `LOAD_INITIAL_DATA`:
+      console.log("action.payload -- ", action.payload);
       return state;
+    case `LOAD_CREDENTIALS`:
+      const authState = {
+        auth: {
+          token: action.payload.token,
+          user: action.payload.user
+        }
+      };
+
+      return merge(state, authState);
   }
   return state;
 };

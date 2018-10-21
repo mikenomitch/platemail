@@ -1,3 +1,4 @@
+import merge from "lodash/merge";
 import store from "store/dist/store.modern";
 
 const withLocalStorage = reduxStore => next => action => {
@@ -12,13 +13,13 @@ const withLocalStorage = reduxStore => next => action => {
   }
 
   // GETTING
-
   const hasLocalKey = action.localStorageKey;
-  const hasAsyncFunction = typeof action.withLocalStorageData === "function";
+  if (hasLocalKey) {
+    const storedAuth = store.get(action.localStorageKey) || "{}";
+    const val = JSON.parse(storedAuth);
 
-  if (hasLocalKey && hasAsyncFunction) {
-    const getVal = JSON.parse(store.get(action.localStorageKey));
-    action.withLocalStorageData(getVal);
+    const actionWithReplacedPayload = merge(action, { payload: val });
+    return next(actionWithReplacedPayload);
   }
 
   return next(action);

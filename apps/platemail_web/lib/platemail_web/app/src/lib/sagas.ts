@@ -5,7 +5,6 @@ import { IAuthAction } from "../data/authentication";
 import api from "./api";
 
 function __apiError(err) {
-  console.log("err", err);
   // TODO: Implement API Error handling
 }
 
@@ -100,9 +99,18 @@ function* postAuth(action: IAuthAction) {
       useNonApi: true
     });
 
-    console.log("data", data);
+    const saveCredsAction = {
+      localStorageData: {
+        auth: {
+          token: data.token,
+          user: data.user
+        }
+      },
+      payload: data,
+      type: "SAVE_CREDENTIALS"
+    };
 
-    yield put({ type: "SAVE_CREDENTIALS", payload: data });
+    yield put(saveCredsAction);
   } catch (err) {
     __apiError(err);
   }

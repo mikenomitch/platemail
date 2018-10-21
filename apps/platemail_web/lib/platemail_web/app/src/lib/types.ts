@@ -1,4 +1,4 @@
-// Flux Standard Action
+// Flux Standard Action plus extensions
 
 export interface IAction {
   type: string;
@@ -6,6 +6,5 @@ export interface IAction {
   error?: boolean;
   meta?: object;
   localStorageData?: object;
-  withLocalStorageData?: (objectFromStorage: any) => any;
   localStorageKey?: string;
 }

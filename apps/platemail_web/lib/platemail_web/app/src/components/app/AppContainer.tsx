@@ -1,16 +1,14 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import App from "./App";
 
-import { login } from "../../data/authentication";
-import Login from "./Login";
+import { loadInitialData } from "../../data/authentication";
 
 export function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    login: params => dispatch(login(params))
-  };
+  return { loadInitialData: () => dispatch(loadInitialData(dispatch)) };
 }
 
 export default connect(
   null,
   mapDispatchToProps
-)(Login);
+)(App);

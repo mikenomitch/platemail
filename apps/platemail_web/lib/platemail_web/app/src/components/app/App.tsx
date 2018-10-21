@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Component } from "react";
 import Loadable from "react-loadable";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
@@ -32,39 +33,52 @@ const LoadableLogOut = Loadable({
   loading: Loader
 });
 
-const App = () => (
-  <Router>
-    <div>
-      <div className="header">
-        <ul>
-          <li>
-            <Link to="/">Hello</Link>
-          </li>
-          <li>
-            <Link to="/widgets">Widgets</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/signup">Sign Up</Link>
-          </li>
-          <li>
-            <Link to="/logout">Logout</Link>
-          </li>
-        </ul>
-        <hr />
-      </div>
+interface IAppProps {
+  loadInitialData: () => void;
+}
 
-      <div className="content">
-        <Route exact={true} path="/" component={LoadableHello} />
-        <Route path="/widgets" component={LoadableWidgets} />
-        <Route path="/login" component={LoadableLogin} />
-        <Route path="/signup" component={LoadableSignUp} />
-        <Route path="/logout" component={LoadableLogOut} />
-      </div>
-    </div>
-  </Router>
-);
+class App extends Component<IAppProps, {}> {
+  public componentDidMount() {
+    const { loadInitialData } = this.props;
+    loadInitialData();
+  }
+
+  public render() {
+    return (
+      <Router>
+        <div>
+          <div className="header">
+            <div>
+              <div>
+                <Link to="/">Hello</Link>
+              </div>
+              <div>
+                <Link to="/widgets">Widgets</Link>
+              </div>
+              <div>
+                <Link to="/login">Login</Link>
+              </div>
+              <div>
+                <Link to="/signup">Sign Up</Link>
+              </div>
+              <div>
+                <Link to="/logout">Logout</Link>
+              </div>
+            </div>
+            <hr />
+          </div>
+
+          <div className="content">
+            <Route exact={true} path="/" component={LoadableHello} />
+            <Route path="/widgets" component={LoadableWidgets} />
+            <Route path="/login" component={LoadableLogin} />
+            <Route path="/signup" component={LoadableSignUp} />
+            <Route path="/logout" component={LoadableLogOut} />
+          </div>
+        </div>
+      </Router>
+    );
+  }
+}
 
 export default App;
