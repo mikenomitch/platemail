@@ -2,8 +2,6 @@
 
 ## Next in Order (don't think, do)
 
-- Frontend Login hookup
-- Persist token on frontend (and maybe session somehow?)
 - Scope widget or user route based on logged in status
 - Clear various stores on logout (check danton)
 - Set up call tracking on FE

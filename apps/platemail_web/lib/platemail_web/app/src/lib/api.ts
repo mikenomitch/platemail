@@ -19,9 +19,9 @@ function __makeHeaders(method, opts) {
     "Content-Type": "application/json"
   };
 
-  if (method === "DELETE" || method === "GET") {
+  if (method === "DELETE") {
     headers = {
-      Authorization: `Bearer ${opts.token}`
+      Authorization: opts.token ? `Bearer ${opts.token}` : null
     };
   }
 
@@ -83,7 +83,7 @@ const api = {
     opts: object = { useNonApi: false }
   ): Promise<object> => {
     const url = __makeURL(path, opts);
-    return __baseCall("DELETE", url);
+    return __baseCall("DELETE", url, {}, opts);
   },
   get: (
     path: string,
@@ -103,7 +103,7 @@ const api = {
       url = url + `?${queryString}`;
     }
 
-    return __baseCall("GET", url);
+    return __baseCall("GET", url, {}, opts);
   },
   post: (
     path: string,

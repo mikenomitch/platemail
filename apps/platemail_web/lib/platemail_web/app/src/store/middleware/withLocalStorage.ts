@@ -6,8 +6,14 @@ const withLocalStorage = reduxStore => next => action => {
 
   if (hasLocalStorateData) {
     Object.keys(action.localStorageData).forEach(k => {
+      console.log("k", k);
       const v = action.localStorageData[k];
-      store.set(k, JSON.stringify(v));
+
+      if (v) {
+        store.set(k, JSON.stringify(v));
+      } else {
+        store.remove(k);
+      }
     });
   }
 

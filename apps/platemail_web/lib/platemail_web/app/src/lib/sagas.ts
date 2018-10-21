@@ -1,4 +1,5 @@
 import { all, put, takeEvery } from "redux-saga/effects";
+import store from "store/dist/store.modern";
 
 import { IAuthAction } from "../data/authentication";
 
@@ -8,6 +9,13 @@ function __apiError(err) {
   // TODO: Implement API Error handling
 }
 
+function optsWithToken(opts = {}) {
+  const storedAuth = store.get("auth") || "{}";
+  const val = JSON.parse(storedAuth);
+
+  return Object.assign({ token: val.token }, opts);
+}
+
 // ========
 //   CRUD
 // ========
@@ -15,7 +23,7 @@ function __apiError(err) {
 function __makeItemsGetter(name: string, basePath: string) {
   return function*() {
     try {
-      const { data } = yield api.get(basePath);
+      const { data } = yield api.get(basePath, {}, optsWithToken());
       yield put({ type: `UPSERT_${name}S`, payload: data });
     } catch (err) {
       __apiError(err);
@@ -27,7 +35,7 @@ function __makeItemGetter(name: string, basePath: string) {
   return function*(action) {
     const id = action.payload;
     try {
-      const { data } = yield api.get(`${basePath}/${id}`);
+      const { data } = yield api.get(`${basePath}/${id}`, {}, optsWithToken());
       yield put({ type: `UPSERT_${name}`, payload: data });
     } catch (err) {
       __apiError(err);
@@ -41,7 +49,11 @@ function __makeItemCreator(name: string, basePath: string) {
     const downcasedName = name.toLowerCase();
 
     try {
-      const { data } = yield api.post(basePath, { [downcasedName]: params });
+      const { data } = yield api.post(
+        basePath,
+        { [downcasedName]: params },
+        optsWithToken()
+      );
       yield put({ type: `UPSERT_${name}`, payload: data });
     } catch (err) {
       __apiError(err);
@@ -56,9 +68,13 @@ function __makeItemUpdator(name: string, basePath: string) {
     const downcasedName = name.toLowerCase();
 
     try {
-      const { data } = yield api.put(`${basePath}/${id}`, {
-        [downcasedName]: params
-      });
+      const { data } = yield api.put(
+        `${basePath}/${id}`,
+        {
+          [downcasedName]: params
+        },
+        optsWithToken()
+      );
       yield put({ type: `UPSERT_${name}`, payload: data });
     } catch (err) {
       __apiError(err);
@@ -70,7 +86,7 @@ function __makeItemDeletor(name: string, basePath: string) {
   return function*(action) {
     const id = action.payload;
     try {
-      yield api.delete(`${basePath}/${id}`);
+      yield api.delete(`${basePath}/${id}`, optsWithToken());
       yield put({ type: `REMOVE_${name}`, payload: id });
     } catch (err) {
       __apiError(err);

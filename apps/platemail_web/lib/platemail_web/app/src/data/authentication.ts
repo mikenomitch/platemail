@@ -46,7 +46,7 @@ export function loadInitialData(dispatch): IAction {
 
 export function logOut(): IAction {
   return {
-    localStorageData: { token: null, user: null },
+    localStorageData: { auth: null },
     type: "LOG_OUT"
   };
 }
