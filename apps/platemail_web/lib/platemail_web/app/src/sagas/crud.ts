@@ -1,13 +1,7 @@
-import { all, put, takeEvery } from "redux-saga/effects";
+import { put, takeEvery } from "redux-saga/effects";
 import store from "store/dist/store.modern";
 
-import { IAuthAction } from "../data/authentication";
-
-import api from "./api";
-
-function __apiError(err) {
-  // TODO: Implement API Error handling
-}
+import { apiDelete, apiGet, apiPost, apiPut } from "./api";
 
 function optsWithToken(opts = {}) {
   const storedAuth = store.get("auth") || "{}";
@@ -20,13 +14,19 @@ function optsWithToken(opts = {}) {
 //   CRUD
 // ========
 
+function __handleApiError(error) {
+  return null;
+}
+
 function __makeItemsGetter(name: string, basePath: string) {
+  const callKey = `${name}S_GETTER`;
+
   return function*() {
     try {
-      const { data } = yield api.get(basePath, {}, optsWithToken());
+      const { data } = yield apiGet(basePath, {}, optsWithToken(), callKey);
       yield put({ type: `UPSERT_${name}S`, payload: data });
     } catch (err) {
-      __apiError(err);
+      __handleApiError(err);
     }
   };
 }
@@ -35,10 +35,10 @@ function __makeItemGetter(name: string, basePath: string) {
   return function*(action) {
     const id = action.payload;
     try {
-      const { data } = yield api.get(`${basePath}/${id}`, {}, optsWithToken());
+      const { data } = yield apiGet(`${basePath}/${id}`, {}, optsWithToken());
       yield put({ type: `UPSERT_${name}`, payload: data });
     } catch (err) {
-      __apiError(err);
+      __handleApiError(err);
     }
   };
 }
@@ -49,14 +49,15 @@ function __makeItemCreator(name: string, basePath: string) {
     const downcasedName = name.toLowerCase();
 
     try {
-      const { data } = yield api.post(
+      const { data } = yield apiPost(
         basePath,
         { [downcasedName]: params },
         optsWithToken()
       );
+
       yield put({ type: `UPSERT_${name}`, payload: data });
     } catch (err) {
-      __apiError(err);
+      __handleApiError(err);
     }
   };
 }
@@ -68,7 +69,7 @@ function __makeItemUpdator(name: string, basePath: string) {
     const downcasedName = name.toLowerCase();
 
     try {
-      const { data } = yield api.put(
+      const { data } = yield apiPut(
         `${basePath}/${id}`,
         {
           [downcasedName]: params
@@ -77,7 +78,7 @@ function __makeItemUpdator(name: string, basePath: string) {
       );
       yield put({ type: `UPSERT_${name}`, payload: data });
     } catch (err) {
-      __apiError(err);
+      __handleApiError(err);
     }
   };
 }
@@ -86,15 +87,15 @@ function __makeItemDeletor(name: string, basePath: string) {
   return function*(action) {
     const id = action.payload;
     try {
-      yield api.delete(`${basePath}/${id}`, optsWithToken());
+      yield apiDelete(`${basePath}/${id}`, optsWithToken());
       yield put({ type: `REMOVE_${name}`, payload: id });
     } catch (err) {
-      __apiError(err);
+      __handleApiError(err);
     }
   };
 }
 
-function __makeCrudSagas(name: string, basePath: string) {
+function makeCrudSagas(name: string, basePath: string) {
   return [
     takeEvery(`GET_${name}S`, __makeItemsGetter(name, basePath)),
     takeEvery(`GET_${name}`, __makeItemGetter(name, basePath)),
@@ -104,43 +105,4 @@ function __makeCrudSagas(name: string, basePath: string) {
   ];
 }
 
-// ========
-//   AUTH
-// ========
-
-function* postAuth(action: IAuthAction) {
-  const authPath = "/auth/identity/callback";
-  try {
-    const data = yield api.post(authPath, action.payload.params, {
-      useNonApi: true
-    });
-
-    const saveCredsAction = {
-      localStorageData: {
-        auth: {
-          token: data.token,
-          user: data.user
-        }
-      },
-      payload: data,
-      type: "SAVE_CREDENTIALS"
-    };
-
-    yield put(saveCredsAction);
-  } catch (err) {
-    __apiError(err);
-  }
-}
-
-const authSagas = [
-  takeEvery("POST_LOGIN", postAuth),
-  takeEvery("POST_SIGNIN", postAuth)
-];
-
-// ==========
-//   EXPORT
-// ==========
-
-export function* rootSaga() {
-  yield all([...__makeCrudSagas("WIDGET", "/widgets"), ...authSagas]);
-}
+export default makeCrudSagas;

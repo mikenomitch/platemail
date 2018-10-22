@@ -2,9 +2,8 @@
 
 ## Next in Order (don't think, do)
 
-- Set up call tracking on FE
 - Set up error handling on FE API (KISS)
-- Document the frontent well
+- Document the frontent well and clean up
 
 - Set up fallback controller to work nicely
 - Set up frontend to handle errors nicely

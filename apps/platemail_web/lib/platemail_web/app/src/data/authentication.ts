@@ -23,20 +23,6 @@ export interface IAuthAction {
 //   ACTIONS
 // ===========
 
-export function login(params: IAuthParams): IAction {
-  return {
-    payload: { params },
-    type: "POST_LOGIN"
-  };
-}
-
-export function signUp(params: IAuthParams): IAction {
-  return {
-    payload: { params },
-    type: "POST_SIGNUP"
-  };
-}
-
 export function loadInitialData(dispatch): IAction {
   return {
     localStorageKey: "auth",
