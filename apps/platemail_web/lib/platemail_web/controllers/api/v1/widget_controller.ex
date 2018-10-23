@@ -4,7 +4,7 @@ defmodule PlatemailWeb.Api.V1.WidgetController do
   alias Platemail.Core
   alias Platemail.Core.Widget
 
-  action_fallback(PlatemailWeb.FallbackController)
+  action_fallback(PlatemailWeb.Api.V1.FallbackController)
 
   def index(conn, params) do
     widgets = Core.list_widgets(params)
@@ -21,23 +21,30 @@ defmodule PlatemailWeb.Api.V1.WidgetController do
   end
 
   def show(conn, %{"id" => id}) do
-    widget = Core.get_widget!(id)
-    render(conn, "show.json", widget: widget)
+    with %Widget{} = widget <- Core.get_widget(id) do
+      render(conn, "show.json", widget: widget)
+    else
+      _ -> {:error, :not_found}
+    end
   end
 
   def update(conn, %{"id" => id, "widget" => widget_params}) do
-    widget = Core.get_widget!(id)
-
-    with {:ok, %Widget{} = widget} <- Core.update_widget(widget, widget_params) do
+    with {:widget, %Widget{} = widget} <- {:widget, Core.get_widget(id)},
+         {:ok, %Widget{} = widget} <- Core.update_widget(widget, widget_params) do
       render(conn, "show.json", widget: widget)
+    else
+      {:widget, _error} -> {:error, :not_found}
+      error -> error
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    widget = Core.get_widget!(id)
-
-    with {:ok, %Widget{}} <- Core.delete_widget(widget) do
+    with {:widget, %Widget{} = widget} <- {:widget, Core.get_widget(id)},
+         {:ok, %Widget{}} <- Core.delete_widget(widget) do
       send_resp(conn, :no_content, "")
+    else
+      {:widget, _error} -> {:error, :not_found}
+      error -> error
     end
   end
 end

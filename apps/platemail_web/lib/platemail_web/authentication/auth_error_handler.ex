@@ -1,11 +1,13 @@
 defmodule PlatemailWeb.Authentication.ErrorHandler do
   import Plug.Conn
 
-  def auth_error(conn, {type, _reason}, _opts) do
-    body = to_string(type)
-
+  def auth_error(conn, {_type, _reason}, _opts) do
     conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(401, body)
+    |> put_status(:forbidden)
+    |> Phoenix.Controller.render(
+      PlatemailWeb.Api.V1.ErrorView,
+      "error.json",
+      %{message: "You are not authorized to access this resource."}
+    )
   end
 end

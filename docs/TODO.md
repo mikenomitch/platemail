@@ -2,32 +2,33 @@
 
 ## Next in Order (don't think, do)
 
-- Set up error handling on FE API (KISS)
-- Document the frontent well and clean up
-
-- Set up fallback controller to work nicely
-- Set up frontend to handle errors nicely
-  - Just a spot for a error handle on fetch
-- Swagger docs setup
+- Get sign up working
 - Super simple phoenix channel connection
+- Upgrade phoenix, ecto, jest, react, preact, all major deps
 - Landing page setup (with snapshotting!)
+- Swagger docs setup
 - Env var consumption
 - Deployment strategy
+- move frontend app to a nicer spot
+
+- Document the well and clean up
+- after all of this, add login/signup
+  niceness
+  - email confirmation on signup
+  - reset password
+  - single click login
 
 ## Backend
 
-- User Auth/Credentials
-- Routing (w/ auth/creds)
-- Super nice fallback controller
 - Proper env var consumption
 - Swagger docs setup
+- Simple tests
 
 ## Frontend
 
-- Identity login & token persisting
-- Add call tracking to sagas
 - Add Socket code from Phoenix
 - Static public pages (w/ snapshot)
+- Simple tests
 
 ## Ops
 

@@ -23,18 +23,18 @@ defmodule Platemail.Core do
   @doc """
   Gets a single widget.
 
-  Raises `Ecto.NoResultsError` if the Widget does not exist.
+  Returns nil if the Widget does not exist.
 
   ## Examples
 
-      iex> get_widget!(123)
+      iex> get_widget(123)
       %Widget{}
 
-      iex> get_widget!(456)
-      ** (Ecto.NoResultsError)
+      iex> get_widget(456)
+      ** nil
 
   """
-  def get_widget!(id), do: Repo.get!(Widget, id)
+  def get_widget(id), do: Repo.get(Widget, id)
 
   @doc """
   Creates a widget.
