@@ -1,4 +1,6 @@
 import * as React from "react";
+
+import danton from "../assets/danton.jpg";
 import "./Hello.scss";
 
 export interface IProps {
@@ -23,6 +25,7 @@ function Hello({
       <h2 className="greeting hero">
         Hey {name + getExclamationMarks(enthusiasmLevel)}
       </h2>
+      <img src={danton} />
       <div>
         <button onClick={onDecrement}>-</button>
         <button onClick={onIncrement}>+</button>
