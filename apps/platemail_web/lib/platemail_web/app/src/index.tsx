@@ -5,7 +5,10 @@ import { Provider } from "react-redux";
 import "./index.scss";
 
 import App from "./components/app/AppContainer";
+import connectToSocket from "./lib/connectToSocket";
 import createStore from "./store/createStore";
+
+connectToSocket();
 
 const store = createStore();
 

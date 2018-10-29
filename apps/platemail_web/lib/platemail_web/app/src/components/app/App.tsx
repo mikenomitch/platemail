@@ -24,7 +24,7 @@ const LoadableLogin = Loadable({
 });
 
 const LoadableSignUp = Loadable({
-  loader: () => import("../accounts/SignUp"),
+  loader: () => import("../accounts/SignUpContainer"),
   loading: Loader
 });
 

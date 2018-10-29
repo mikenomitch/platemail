@@ -12,7 +12,7 @@ config :platemail_web,
 
 # Configures the endpoint
 config :platemail_web, PlatemailWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: {:system, "HOST"}],
   # TODO: use `mix guardian.gen.secret` to make new one and set to env vars
   secret_key_base: "rjJkwUP1ADt7sWEivlVkk+y3P3dWXuS0cC5J6MP/wAvHuEvSuJyOHA9yGyGypQ9q",
   render_errors: [view: PlatemailWeb.ErrorView, accepts: ~w(html json)],

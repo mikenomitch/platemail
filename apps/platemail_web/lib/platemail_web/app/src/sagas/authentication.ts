@@ -28,6 +28,8 @@ export function signUp(params: IAuthParams): IAction {
 
 function* postAuth(action: IAuthAction) {
   const authPath = "/auth/identity/callback";
+  console.log("POSTING IT");
+
   const data = yield apiPost(
     authPath,
     action.payload.params,

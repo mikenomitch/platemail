@@ -5,6 +5,7 @@
 /deps
 erl_crash.dump
 *.ez
+.envrc
 
 /apps/platemail_web/lib/platemail_web/app/priv/app/node_modules
 /apps/platemail_web/lib/platemail_web/app/priv/app/npm-debug.log*

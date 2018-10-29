@@ -1,7 +1,7 @@
 defmodule PlatemailWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :platemail_web
 
-  socket("/socket", PlatemailWeb.UserSocket)
+  socket("/socket", PlatemailWeb.UserSocket, websocket: true)
 
   # Serve at "/" the static files from "priv/static" directory.
   #

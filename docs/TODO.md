@@ -2,10 +2,8 @@
 
 ## Next in Order (don't think, do)
 
-- Get sign up working
 - Super simple phoenix channel connection
-- Upgrade phoenix, ecto, jest, react, preact, all major deps
-- Landing page setup (with snapshotting!)
+- Landing page setup (with static-site-generator-webpack-plugin!)
 - Swagger docs setup
 - Env var consumption
 - Deployment strategy
