@@ -1,6 +1,8 @@
 # Dockerfile
 FROM elixir:1.7.3-alpine as build
 
+USER root
+
 # install build dependencies
 RUN apk add --update git
 
@@ -31,7 +33,6 @@ RUN apk add --update bash openssl
 
 RUN mkdir /app && chown -R nobody: /app
 WORKDIR /app
-USER nobody
 
 COPY --from=build /app/_build/prod/rel/platemail ./
 
