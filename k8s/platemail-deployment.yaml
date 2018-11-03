@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: platemail
-          image: platemail:release_three
+          image: platemail:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 4000

@@ -61,5 +61,6 @@ defmodule PlatemailWeb.Router do
   scope "/", PlatemailWeb do
     # Use the default browser stack
     pipe_through(:browser)
+    get("/*anything", PageController, :index)
   end
 end

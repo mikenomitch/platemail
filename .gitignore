@@ -7,10 +7,11 @@ erl_crash.dump
 *.ez
 .envrc
 
-/apps/platemail_frontend/node_modules
-/apps/platemail_frontend/npm-debug.log*
-/apps/platemail_frontend/yarn-debug.log*
-/apps/platemail_frontend/yarn-error.log*
+/frontend/node_modules
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/build
 
 /apps/platemail_web/priv/static/webapp
 /apps/platemail_web/priv/static/css
@@ -47,15 +48,15 @@ erl_crash.dump
 /apps/platemail/priv/app/.env.test.local
 /apps/platemail/priv/app/.env.production.local
 
-/apps/platemail_frontend/node_modules
-/apps/platemail_frontend/npm-debug.log*
-/apps/platemail_frontend/yarn-debug.log*
-/apps/platemail_frontend/yarn-error.log*
+/frontend/node_modules
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
 
-/apps/platemail_web/priv/static/webapp/static/
-/apps/platemail_web/priv/static/webapp/static/*
-/apps/platemail_web/priv/static/webapp/static/*.js
-/apps/platemail_web/priv/static/webapp/static/*.css
+/apps/platemail_web/priv/static/static
+/apps/platemail_web/priv/static/static/*
+/apps/platemail_web/priv/static/static/*.js
+/apps/platemail_web/priv/static/static/*.css
 
 # Secrets
 /k8s/platemail-secrets.yaml

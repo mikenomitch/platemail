@@ -3,16 +3,7 @@ defmodule PlatemailWeb.Endpoint do
 
   socket("/socket", PlatemailWeb.UserSocket, websocket: true)
 
-  # Serve at "/" the static files from "priv/static" directory.
-  #
-  # You should set gzip to true if you are running phoenix.digest
-  # when deploying your static files in production.
-  plug(Plug.Static.IndexHtml,
-    at: "/"
-  )
-
   plug(Plug.Static, at: "/", from: :platemail_web)
-
   plug(CORSPlug, origin: ["http://localhost:3000", "http://localhost:4000"], max_age: 86400)
 
   # Code reloading can be explicitly enabled under the

@@ -4,15 +4,15 @@
 
 - Deployment strategy
 
+  - Login working on all envs (until k8s)
   - Get psql working locally on k8s
-  - Get frontend working on Docker
-  - Get frontend working on k8s
+  - Get frontend working on k8s (I think just make and apply new release)
   - Deploy top AWS or GCP
 
 - Super simple phoenix channel connection
+  - Working with multiple servers (on k8s)
 - Landing page setup (with static-site-generator-webpack-plugin!)
 - Swagger docs setup
-- move frontend app to a nicer spot
 
 - Document the well and clean up
 - after all of this, add login/signup
@@ -30,7 +30,7 @@
 ## Frontend
 
 - Add Socket code from Phoenix
-- Static public pages (w/ snapshot)
+- Static public page (w/ snapshot)
 - Simple tests
 
 ## Ops

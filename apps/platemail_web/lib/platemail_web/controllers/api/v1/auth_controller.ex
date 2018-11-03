@@ -34,14 +34,14 @@ defmodule PlatemailWeb.Api.V1.AuthController do
 
     case Authentication.get_or_insert_user_from_auth(auth, current_user, Repo) do
       {:ok, user} ->
-        {:ok, token, claims} = Authentication.encode_and_sign(user, %{})
+        {:ok, token, _claims} = Authentication.encode_and_sign(user, %{})
 
         conn
         |> put_status(200)
         |> put_resp_header("authorization", "Bearer #{token}")
         |> render("login.json", user: user, token: token)
 
-      {:error, error} ->
+      {:error, _error} ->
         conn
         |> put_status(401)
         |> json(%{message: "TODO: error"})

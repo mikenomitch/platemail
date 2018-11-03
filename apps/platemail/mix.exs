@@ -47,7 +47,6 @@ defmodule Platemail.Mixfile do
       {:ecto, "~> 2.1"},
       {:ueberauth_identity, "~> 0.2"},
       {:ueberauth, "~> 0.4"},
-      {:plug_static_index_html, "~> 1.0.0"},
       {:pbkdf2_elixir, "~> 0.12"},
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
