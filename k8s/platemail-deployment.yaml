@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: platemail-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: platemail
+    spec:
+      containers:
+        - name: platemail
+          image: platemail:release
+          ports:
+            - containerPort: 4000
+          args: ["foreground"]
+          env:
+            - name: HOST
+              value: "platemail.com"
+            - name: SECRET_KEY_BASE
+              value: "highlysecretkey"
+            - name: DB_USERNAME
+              value: "postgres"
+            - name: DB_PASSWORD
+              value: "postgres"
+            - name: DB_NAME
+              value: "platemail_dev"
+            - name: DB_HOSTNAME
+              value: "10.0.2.2"

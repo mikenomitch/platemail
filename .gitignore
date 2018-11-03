@@ -52,3 +52,6 @@ erl_crash.dump
 /apps/platemail_web/priv/static/webapp/static/*
 /apps/platemail_web/priv/static/webapp/static/*.js
 /apps/platemail_web/priv/static/webapp/static/*.css
+
+# Secrets
+/k8s/platemail-secrets.yaml
