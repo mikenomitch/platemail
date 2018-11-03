@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/ui/Button.scss"],"names":[],"mappings":"AAAA,QACE,cACA,gBACA,yBACA,WACA,YACA,oBAAuB,C","file":"static/css/5.5de5445a.css","sourcesContent":[".button {\n  padding: 0.5rem;\n  background: none;\n  background-color: #487ed6;\n  color: #fff;\n  border: none;\n  border-radius: 0.25rem; }\n"],"sourceRoot":""}

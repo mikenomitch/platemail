@@ -8,13 +8,10 @@ defmodule PlatemailWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug(Plug.Static.IndexHtml,
-    at: "/*"
+    at: "/"
   )
 
-  plug(Plug.Static,
-    at: "/",
-    from: "priv/static/webapp"
-  )
+  plug(Plug.Static, at: "/", from: :platemail_web)
 
   plug(CORSPlug, origin: ["http://localhost:3000", "http://localhost:4000"], max_age: 86400)
 

@@ -2,11 +2,16 @@
 
 ## Next in Order (don't think, do)
 
+- Deployment strategy
+
+  - Get psql working locally on k8s
+  - Get frontend working on Docker
+  - Get frontend working on k8s
+  - Deploy top AWS or GCP
+
 - Super simple phoenix channel connection
 - Landing page setup (with static-site-generator-webpack-plugin!)
 - Swagger docs setup
-- Env var consumption
-- Deployment strategy
 - move frontend app to a nicer spot
 
 - Document the well and clean up
