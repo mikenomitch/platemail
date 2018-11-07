@@ -4,9 +4,9 @@
 
 - Deployment strategy
 
-  - Login working on all envs (until k8s)
+  - Run through a minikube/k8s tutorial
   - Get psql working locally on k8s
-  - Get frontend working on k8s (I think just make and apply new release)
+  - Get frontend working on k8s
   - Deploy top AWS or GCP
 
 - Super simple phoenix channel connection

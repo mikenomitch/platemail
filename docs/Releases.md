@@ -17,7 +17,7 @@ Build if necessary:
 `minikube start --cpus 4 --memory 8192`
 `eval $(minikube docker-env)`
 docker run (...etc...)
-`minikibe service platemail-service`
+`minikube service platemail-service`
 
 # Command to deploy to gcp
 
