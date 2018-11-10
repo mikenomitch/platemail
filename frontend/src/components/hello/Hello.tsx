@@ -23,7 +23,7 @@ function Hello({
   return (
     <div className="hello">
       <h2 className="greeting hero">
-        Hello {name + getExclamationMarks(enthusiasmLevel)}
+        Hey {name + getExclamationMarks(enthusiasmLevel)}
       </h2>
       <img src={danton} />
       <div>

@@ -95,7 +95,12 @@ Start the frontend:
 
 ## Deploying
 
-Information Coming Soon
+Deployment Dependencies:
+
+- docker
+- kubectl
+- gcloud cli
+- google cloud account
 
 ## Testing
 
