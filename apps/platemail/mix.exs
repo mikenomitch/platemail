@@ -44,7 +44,7 @@ defmodule Platemail.Mixfile do
   defp deps do
     [
       {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.1"},
+      {:ecto, "~> 3.0.1"},
       {:ueberauth_identity, "~> 0.2"},
       {:ueberauth, "~> 0.4"},
       {:pbkdf2_elixir, "~> 0.12"},
@@ -52,7 +52,7 @@ defmodule Platemail.Mixfile do
       {:comeonin, "~> 4.0"},
       {:cors_plug, "~> 1.5"},
       {:faker, "~> 0.10"},
-      {:scrivener_ecto, "~> 1.0"}
+      {:scrivener_ecto, "~> 2.0"}
     ]
   end
 

@@ -6,7 +6,7 @@ defmodule Platemail.Accounts do
   import Ecto.Query, warn: false
   alias Platemail.Repo
 
-  alias Platemail.Accounts.{Credential, User}
+  alias Platemail.Accounts.User
 
   @doc """
   Returns the list of users.

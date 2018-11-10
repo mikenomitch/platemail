@@ -3,6 +3,9 @@ defmodule PlatemailWeb.PageController do
 
   def index(conn, _params) do
     path = Application.app_dir(:platemail_web, "priv/static/index.html")
-    Plug.Conn.send_file(conn, 200, path)
+
+    conn
+    |> put_resp_header("content-type", "text/html; charset=utf-8")
+    |> Plug.Conn.send_file(200, path)
   end
 end

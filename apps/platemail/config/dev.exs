@@ -2,9 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :platemail, Platemail.Repo,
-  adapter: Ecto.Adapters.Postgres,
+  database: "platemail_dev",
   username: "postgres",
   password: "postgres",
-  database: "platemail_dev",
   hostname: "localhost",
   pool_size: 10
