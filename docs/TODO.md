@@ -5,9 +5,6 @@
 - Deployment strategy
 
   - Run through a minikube/k8s tutorial
-  - Get psql working locally on k8s
-  - Get frontend working on k8s
-  - Deploy top AWS or GCP
 
 - Super simple phoenix channel connection
   - Working with multiple servers (on k8s)
