@@ -21,8 +21,6 @@ use Mix.Releases.Config,
 # when building in that environment, this combination of release
 # and environment configuration is called a profile
 
-config :phoenix, :json_library, Jason
-
 environment :dev do
   # If you are running Phoenix, you should make sure that
   # server: true is set and the code reloader is disabled,

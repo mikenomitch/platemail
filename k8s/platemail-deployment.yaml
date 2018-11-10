@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: platemail
-          image: gcr.io/diesel-rain-214205/platemail:release_five
+          image: gcr.io/diesel-rain-214205/platemail:release_seven
           ports:
             - containerPort: 4000
           args: ["foreground"]
