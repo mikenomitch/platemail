@@ -2,11 +2,7 @@
 
 ## Next in Order (don't think, do)
 
-- Pass variables into frontend
-  - Specifically API endpoint
-- Swagger docs setup
 - Add some behaviour mixins in Sass
-
 - Deployment strategy
   - Add migration script
 - Super simple phoenix channel connection
@@ -23,7 +19,6 @@
 ## Backend
 
 - Proper env var consumption
-- Swagger docs setup
 - Simple tests
 
 ## Frontend

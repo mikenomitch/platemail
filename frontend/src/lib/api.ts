@@ -1,4 +1,6 @@
-const baseNonApiURL = "http://localhost:4000";
+console.log(process.env);
+const portString = process.env.API_PORT ? `:${process.env.API_PORT}` : "";
+const baseNonApiURL = `http://${process.env.API_HOST}${portString}`;
 const baseURL = `${baseNonApiURL}/api/v1`;
 
 function __jsonify(res) {

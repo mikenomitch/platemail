@@ -31,8 +31,8 @@ Backend features:
 - A barebones user model with sign up/in/out
   - Including tokens for password reset
 - Basic auth via JWTs
+- Swagger API docs
 - Auth credential confirmation/password resets/magic login (TODO)
-- Swagger API docs (TODO)
 - Event broadcasting via Channels (TODO)
 - TSL/HTTPS support (TODO)
 - A few simple example tests (TODO)
