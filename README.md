@@ -54,7 +54,7 @@ Frontend features:
 
 Development features:
 
-- Single command to launch app locally (TODO)
+- Single command to launch app locally
 - Hot loading & reloading of JS and CSS
 - Backend auto-reloading
 - Prettier/ESLint auto-formatting

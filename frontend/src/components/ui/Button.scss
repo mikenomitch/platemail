@@ -5,4 +5,6 @@
   color: $white;
   border: none;
   border-radius: $border-radius-base;
+
+  @include clickable($color-primary-dark);
 }

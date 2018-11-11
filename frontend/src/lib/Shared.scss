@@ -1,0 +1,49 @@
+/* ================== */
+/*   HELPER CLASSES   */
+/* ================== */
+
+/* ================== */
+/*   MIXINS   */
+/* ================== */
+
+@mixin fade-in {
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  animation: fadein $transition-time-medium;
+}
+
+@mixin bordered {
+  border: solid $border-width-base $border-color-base;
+  border-radius: $border-radius-base;
+}
+
+@mixin floating {
+  box-shadow: $box-shadow-base;
+}
+
+@mixin clickable($hover-color) {
+  cursor: pointer;
+
+  transition: background-color $transition-time-short;
+
+  &:hover,
+  &:focus {
+    background-color: $hover-color;
+  }
+}
+
+@mixin focus-margin($orig-margin) {
+  transition: margin $transition-time-short;
+
+  &:hover,
+  &:focus {
+    margin: $orig-margin - $spacing-xs;
+  }
+}

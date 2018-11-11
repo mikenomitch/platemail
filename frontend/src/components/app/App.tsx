@@ -33,6 +33,11 @@ const LoadableLogOut = Loadable({
   loading: Loader
 });
 
+const LoadableLanding = Loadable({
+  loader: () => import("../landing/Landing"),
+  loading: Loader
+});
+
 interface IAppProps {
   token: boolean;
   loadInitialData: () => void;
@@ -75,7 +80,10 @@ class App extends Component<IAppProps, {}> {
           <div className="header">
             <div>
               <div>
-                <Link to="/">Hello</Link>
+                <Link to="/">Landing</Link>
+              </div>
+              <div>
+                <Link to="/hello">Hello</Link>
               </div>
               <div>
                 <Link to="/widgets">Widgets</Link>
@@ -88,7 +96,8 @@ class App extends Component<IAppProps, {}> {
           </div>
 
           <div className="content">
-            <Route exact={true} path="/" component={LoadableHello} />
+            <Route exact={true} path="/" component={LoadableLanding} />
+            <Route path="/hello" component={LoadableHello} />
             <Route path="/widgets" component={LoadableWidgets} />
             <Route path="/login" component={LoadableLogin} />
             <Route path="/signup" component={LoadableSignUp} />

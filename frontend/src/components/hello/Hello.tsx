@@ -3,6 +3,8 @@ import * as React from "react";
 import danton from "../assets/danton.jpg";
 import "./Hello.scss";
 
+import Button from "../ui/Button";
+
 export interface IProps {
   name: string;
   enthusiasmLevel?: number;
@@ -23,12 +25,18 @@ function Hello({
   return (
     <div className="hello">
       <h2 className="greeting hero">
-        Hey {name + getExclamationMarks(enthusiasmLevel)}
+        Hello {name + getExclamationMarks(enthusiasmLevel)}
       </h2>
+      <p>
+        This page demonstrates actions (click the buttons) and image embeds.
+      </p>
       <img src={danton} />
+      <br />
+      <br />
       <div>
-        <button onClick={onDecrement}>-</button>
-        <button onClick={onIncrement}>+</button>
+        <Button onClick={onDecrement}>-</Button>
+        &nbsp;&nbsp;&nbsp;
+        <Button onClick={onIncrement}>+</Button>
       </div>
     </div>
   );

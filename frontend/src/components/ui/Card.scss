@@ -1,0 +1,18 @@
+.card {
+  @include bordered;
+  @include floating;
+  @include fade-in;
+
+  margin: $spacing-md;
+  padding: $spacing-md;
+
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card.clickable {
+  @include clickable($almost-white);
+  @include focus-margin($spacing-md);
+}

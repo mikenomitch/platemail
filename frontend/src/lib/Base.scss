@@ -33,7 +33,9 @@ h5 {
 /* =========== */
 
 h1 {
-  font-size: $font-size-xxl;
+  // sanitize is overriding this
+  // without important
+  font-size: $font-size-xxl !important;
 }
 
 h1.hero {
@@ -59,11 +61,3 @@ h4 {
 h5 {
   font-size: $font-size-sm;
 }
-
-/* ================== */
-/*   HELPER CLASSES   */
-/* ================== */
-
-/* ================== */
-/*   MIXINS   */
-/* ================== */
