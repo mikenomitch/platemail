@@ -1,4 +1,4 @@
-defmodule PlatemailWeb.Api.V1.Docs do
+defmodule PlatemailWeb.Api.V1.Definitions do
   use PhoenixSwagger
 
   def setup do

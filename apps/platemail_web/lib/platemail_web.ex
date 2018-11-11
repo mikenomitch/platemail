@@ -24,7 +24,7 @@ defmodule PlatemailWeb do
       import PlatemailWeb.Router.Helpers
       import PlatemailWeb.Gettext
 
-      use PlatemailWeb.Api.V1.Docs, :setup
+      use PlatemailWeb.Api.V1.Definitions, :setup
     end
   end
 
