@@ -42,6 +42,28 @@ defmodule PlatemailWeb.Router do
     resources("/widgets", WidgetController)
   end
 
+  # ================
+  #   SWAGGER DOCS
+  # ================
+
+  scope "/docs" do
+    forward(
+      "/",
+      PhoenixSwagger.Plug.SwaggerUI,
+      otp_app: :platemail_web,
+      swagger_file: "swagger.json"
+    )
+  end
+
+  def swagger_info do
+    %{
+      info: %{
+        version: "1.0",
+        title: "Platemail"
+      }
+    }
+  end
+
   # ==================
   #   BROWSER ROUTES
   # ==================

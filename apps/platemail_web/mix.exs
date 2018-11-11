@@ -11,7 +11,7 @@ defmodule PlatemailWeb.Mixfile do
       lockfile: "../../mix.lock",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: [:phoenix, :gettext, :phoenix_swagger] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -48,7 +48,9 @@ defmodule PlatemailWeb.Mixfile do
       {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.7"},
       {:jason, "~> 1.0"},
-      {:scrivener_ecto, "~> 2.0"}
+      {:scrivener_ecto, "~> 2.0"},
+      {:phoenix_swagger, "~> 0.8"},
+      {:ex_json_schema, "~> 0.5"}
     ]
   end
 

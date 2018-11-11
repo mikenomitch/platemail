@@ -23,6 +23,8 @@ defmodule PlatemailWeb do
       import Plug.Conn
       import PlatemailWeb.Router.Helpers
       import PlatemailWeb.Gettext
+
+      use PlatemailWeb.Api.V1.Docs, :setup
     end
   end
 

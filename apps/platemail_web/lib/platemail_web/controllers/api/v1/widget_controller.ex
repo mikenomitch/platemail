@@ -1,5 +1,6 @@
 defmodule PlatemailWeb.Api.V1.WidgetController do
   use PlatemailWeb, :controller
+  use PlatemailWeb.Api.V1.WidgetDocs
 
   alias Platemail.Core
   alias Platemail.Core.Widget

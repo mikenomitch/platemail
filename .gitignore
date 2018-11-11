@@ -57,6 +57,7 @@ erl_crash.dump
 /apps/platemail_web/priv/static/static/*
 /apps/platemail_web/priv/static/static/*.js
 /apps/platemail_web/priv/static/static/*.css
+/apps/platemail_web/priv/static/swagger.json
 
 # Secrets
 /k8s/platemail-secrets.yaml
