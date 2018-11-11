@@ -2,14 +2,16 @@
 
 ## Next in Order (don't think, do)
 
+- Pass variables into frontend
+  - Specifically API endpoint
+- Swagger docs setup
+- Add some behaviour mixins in Sass
+
 - Deployment strategy
-
-  - Run through a minikube/k8s tutorial
-
+  - Add migration script
 - Super simple phoenix channel connection
   - Working with multiple servers (on k8s)
 - Landing page setup (with static-site-generator-webpack-plugin!)
-- Swagger docs setup
 
 - Document the well and clean up
 - after all of this, add login/signup

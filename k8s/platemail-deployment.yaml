@@ -26,28 +26,28 @@ spec:
                   name: secrets
                   key: secret_key_base
             - name: DB_USER
-              value: "postgres"
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-db-credentials
+                  key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: secrets
-                  key: db_password
+                  name: cloudsql-db-credentials
+                  key: password
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   name: secrets
                   key: db_name
             - name: DB_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: secrets
-                  key: db_host
+              value: "127.0.0.1"
         - name: cloudsql-proxy
           image: gcr.io/cloudsql-docker/gce-proxy:1.11
           command:
             [
               "/cloud_sql_proxy",
-              "-instances=<diesel-rain-214205:us-central1:platemail-test>=tcp:5432",
+              "-instances=diesel-rain-214205:us-central1:platemail-test=tcp:5432",
               "-credential_file=/secrets/cloudsql/credentials.json",
             ]
           securityContext:

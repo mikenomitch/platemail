@@ -36,6 +36,16 @@ end
 environment :prod do
   set(include_erts: true)
   set(include_src: false)
+
+  set(
+    commands: [
+      echo: "rel/commands/migrate.sh"
+    ]
+  )
+
+  set(pre_start_hook: "rel/hooks/pre_start.sh")
+  set(post_start_hook: "rel/hooks/post_start.sh")
+
   set(cookie: :"LJkltANQ[p}aBq;|ehHMwOpr:OB=;dSK@L;Tad`cu@TrI2Ef5BymZT80x{RQ*s$b")
 end
 
