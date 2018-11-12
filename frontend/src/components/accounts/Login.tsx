@@ -2,7 +2,7 @@ import { Component } from "react";
 import * as React from "react";
 
 import Button from "../ui/Button";
-import Input from "../ui/Input";
+import Input from "../ui/TextInput";
 
 interface ILoginProps {
   login: (params: any) => void;

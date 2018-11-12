@@ -6,5 +6,5 @@
   border: none;
   border-radius: $border-radius-base;
 
-  @include clickable($color-primary-dark);
+  @include clickable($color-primary-light);
 }

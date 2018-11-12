@@ -1,9 +1,11 @@
 import * as React from "react";
 
-import danton from "../assets/danton.jpg";
+// import danton from "../assets/danton.jpg";
 import "./Hello.scss";
 
-import Button from "../ui/Button";
+// import Button from "../ui/Button";
+import TextArea from "../ui/TextArea";
+import TextInput from "../ui/TextInput";
 
 export interface IProps {
   name: string;
@@ -24,19 +26,33 @@ function Hello({
 
   return (
     <div className="hello">
-      <h2 className="greeting hero">
+      {/* <h2 className="greeting hero">
         Hello {name + getExclamationMarks(enthusiasmLevel)}
       </h2>
       <p>
-        This page demonstrates actions (click the buttons) and image embeds.
+        This page demonstrates actions (click the buttons), image embeds, and
+        components.
       </p>
       <img src={danton} />
       <br />
       <br />
       <div>
-        <Button onClick={onDecrement}>-</Button>
+        <Button onClick={onDecrement}>Remove Exclamation</Button>
         &nbsp;&nbsp;&nbsp;
-        <Button onClick={onIncrement}>+</Button>
+        <Button onClick={onIncrement}>Add Exclamation</Button>
+      </div>
+      <br />
+      <br /> */}
+
+      <div>
+        <TextInput label="Email" onChange={console.log.bind(console)} />
+      </div>
+
+      <br />
+      <br />
+
+      <div>
+        <TextArea onChange={console.log.bind(console)} />
       </div>
     </div>
   );
@@ -44,6 +60,6 @@ function Hello({
 
 export default Hello;
 
-function getExclamationMarks(numChars: number) {
-  return Array(numChars + 1).join("!");
-}
+// function getExclamationMarks(numChars: number) {
+//   return Array(numChars + 1).join("!");
+// }

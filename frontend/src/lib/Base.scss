@@ -4,6 +4,10 @@
 /*   HTML   */
 /* ========= */
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: $font-size-body-base;
 }

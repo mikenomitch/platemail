@@ -21,15 +21,15 @@ $almost-black: #111;
 $black: #000;
 
 $color-primary: #a80000;
-$color-primary-light: lighten($color-primary, 30%);
+$color-primary-light: lighten($color-primary, 10%);
 $color-primary-dark: darken($color-primary, 10%);
 
 $color-secondary: #28536b;
-$color-secondary-light: lighten($color-secondary, 30%);
+$color-secondary-light: lighten($color-secondary, 10%);
 $color-secondary-dark: darken($color-secondary, 10%);
 
 $color-tertiary: #ed746d;
-$color-tertiary-light: lighten($color-tertiary, 30%);
+$color-tertiary-light: lighten($color-tertiary, 10%);
 $color-tertiary-dark: darken($color-tertiary, 10%);
 
 $color-success: $color-tertiary;
@@ -89,8 +89,12 @@ $z-index-highest: 500;
 // == BORDERS ==
 
 $border-width-base: 1px;
+$border-width-thick: 2px;
+
 $border-radius-base: 0.25rem;
+
 $border-color-base: $gray-light;
+$border-color-focused: $color-primary;
 
 $border-radius-slight: 0.125rem;
 

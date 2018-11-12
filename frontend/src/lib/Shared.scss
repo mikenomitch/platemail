@@ -6,6 +6,24 @@
 /*   MIXINS   */
 /* ================== */
 
+@mixin input {
+  padding: $spacing-sm;
+  background: none;
+  // border: none;
+
+  border: solid $border-width-base $border-color-base;
+  border-radius: $border-radius-base;
+
+  transition: border $transition-time-short;
+
+  &:hover,
+  &:focus {
+    outline-width: 3px;
+    outline-color: $border-color-focused;
+    // border: 0px;
+  }
+}
+
 @mixin fade-in {
   @keyframes fadein {
     from {
