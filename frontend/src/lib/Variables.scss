@@ -35,7 +35,7 @@ $color-tertiary-dark: darken($color-tertiary, 10%);
 $color-success: $color-tertiary;
 $color-info: $color-primary;
 $color-warn: #f9dbbd;
-$color-error: #a4243b;
+$color-error: #e74817;
 
 // ========
 //   FONT
@@ -91,6 +91,7 @@ $z-index-highest: 500;
 $border-width-base: 1px;
 $border-width-thick: 2px;
 
+$border-radius-sm: 0.1rem;
 $border-radius-base: 0.25rem;
 
 $border-color-base: $gray-light;

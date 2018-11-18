@@ -1,11 +1,3 @@
 .text-input {
-  &__label {
-    display: block;
-    text-align: left;
-    padding: $spacing-xs;
-  }
-
-  &__input {
-    @include input;
-  }
+  @include input;
 }

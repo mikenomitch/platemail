@@ -1,18 +1,19 @@
 import * as React from "react";
 import "./TextInput.scss";
 
+import InputWrapper from "./InputWrapper";
+
 function TextInput(props) {
-  const { label } = props;
+  const { error, label } = props;
 
   return (
-    <div className="text-input__wrapper">
-      {label && <label className="text-input__label">{label}</label>}
+    <InputWrapper error={error} label={label}>
       <input
-        className="text-input__input"
+        className="text-input"
         placeholder={props.placeholder || props.label}
         {...props}
       />
-    </div>
+    </InputWrapper>
   );
 }
 

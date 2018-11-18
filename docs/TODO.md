@@ -2,6 +2,8 @@
 
 ## Next in Order (don't think, do)
 
+- Add a toast and hook it up
+
 - Deployment strategy
   - Add migration script
 - Super simple phoenix channel connection

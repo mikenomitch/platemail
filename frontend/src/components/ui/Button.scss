@@ -4,7 +4,7 @@
   background-color: $color-primary;
   color: $white;
   border: none;
-  border-radius: $border-radius-base;
+  border-radius: $border-radius-sm;
 
   @include clickable($color-primary-light);
 }

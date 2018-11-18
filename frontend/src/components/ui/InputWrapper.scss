@@ -1,0 +1,26 @@
+.input-wrapper {
+  &__label {
+    display: block;
+    text-align: left;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__child {
+    display: block;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__child__error {
+    input,
+    textarea {
+      @include input-error;
+    }
+  }
+
+  &__error {
+    @include error-coloring;
+    font-size: $font-size-sm;
+    text-align: left;
+    margin-bottom: $spacing-sm;
+  }
+}

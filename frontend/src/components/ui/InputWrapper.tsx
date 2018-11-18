@@ -1,15 +1,22 @@
 import * as React from "react";
-import "./TextInput.scss";
+import "./InputWrapper.scss";
 
-function TextInput(props) {
-  const { label } = props;
+import cx from "classnames";
+
+function InputWrapper(props) {
+  const { error, label } = props;
+
+  const childClasses = cx("input-wrapper__child", {
+    "input-wrapper__child__error": !!error
+  });
 
   return (
-    <div className="text-input__wrapper">
-      {label && <label className="text-input__label">{label}</label>}
-      {this.props.children}
+    <div className="input-wrapper">
+      {label && <label className="input-wrapper__label">{label}</label>}
+      <div className={childClasses}>{props.children}</div>
+      {error && <div className="input-wrapper__error">{error}</div>}
     </div>
   );
 }
 
-export default TextInput;
+export default InputWrapper;

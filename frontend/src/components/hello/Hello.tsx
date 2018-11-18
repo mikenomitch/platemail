@@ -52,7 +52,11 @@ function Hello({
       <br />
 
       <div>
-        <TextArea onChange={console.log.bind(console)} />
+        <TextArea
+          error="There is an issue"
+          label="Description"
+          onChange={console.log.bind(console)}
+        />
       </div>
     </div>
   );
