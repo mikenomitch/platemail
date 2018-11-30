@@ -1,4 +1,3 @@
-console.log(process.env);
 const portString = process.env.API_PORT ? `:${process.env.API_PORT}` : "";
 const baseNonApiURL = `http://${process.env.API_HOST}${portString}`;
 const baseURL = `${baseNonApiURL}/api/v1`;

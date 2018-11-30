@@ -50,6 +50,34 @@
   animation: fadein $transition-time-medium;
 }
 
+@mixin pop-in {
+  @keyframes popin {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  animation: popin $transition-time-short;
+}
+
+@mixin pop-out {
+  @keyframes popout {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+  animation: popout $transition-time-short;
+}
+
 @mixin bordered {
   border: solid $border-width-base $border-color-base;
   border-radius: $border-radius-base;

@@ -3,6 +3,7 @@ import { IAuthAction, IAuthParams } from "../data/authentication";
 import { IAction } from "../lib/types";
 
 import { apiPost } from "./api";
+import { showToast } from "./ui";
 
 // ===================
 //   ACTION CREATORS
@@ -28,7 +29,6 @@ export function signUp(params: IAuthParams): IAction {
 
 function* postAuth(action: IAuthAction) {
   const authPath = "/auth/identity/callback";
-  console.log("POSTING IT");
 
   const data = yield apiPost(
     authPath,
@@ -50,6 +50,7 @@ function* postAuth(action: IAuthAction) {
     type: "SAVE_CREDENTIALS"
   };
 
+  yield put(showToast({ type: "success", message: "Logged In" }));
   yield put(saveCredsAction);
 }
 

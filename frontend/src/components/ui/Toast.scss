@@ -1,0 +1,32 @@
+.toast {
+  z-index: $z-index-higher;
+  position: fixed;
+  top: 0rem;
+  right: 1rem;
+  color: white;
+  border-radius: $border-radius-base;
+
+  min-height: 2rem;
+  min-width: 5rem;
+
+  padding: $spacing-md;
+  margin: $spacing-sm;
+
+  @include pop-in;
+}
+
+.toast.hidden {
+  @include pop-out;
+}
+
+.toast.error {
+  background-color: $color-error;
+}
+
+.toast.info {
+  background-color: $color-info;
+}
+
+.toast.success {
+  background-color: $color-success;
+}

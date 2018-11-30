@@ -66,7 +66,6 @@ Devops featues:
 
 - Infrastructure in Code
 - Single command deploys (TODO)
-- Frontend served via CDN (TODO)
 - Error Alerting (TODO)
 - Logging (TODO)
 

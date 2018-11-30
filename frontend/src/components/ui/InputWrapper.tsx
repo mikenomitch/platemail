@@ -1,9 +1,16 @@
+import cx from "classnames";
 import * as React from "react";
+import { ReactChild } from "react";
+
 import "./InputWrapper.scss";
 
-import cx from "classnames";
+export interface IProps {
+  error?: string;
+  label?: string;
+  children: ReactChild;
+}
 
-function InputWrapper(props) {
+function InputWrapper(props: IProps) {
   const { error, label } = props;
 
   const childClasses = cx("input-wrapper__child", {

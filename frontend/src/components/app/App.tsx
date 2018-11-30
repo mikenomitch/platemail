@@ -3,6 +3,8 @@ import { Component } from "react";
 import Loadable from "react-loadable";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
+import ToastsContainer from "./ToastsContainer";
+
 import "sanitize.css";
 import "./App.scss";
 
@@ -77,6 +79,9 @@ class App extends Component<IAppProps, {}> {
     return (
       <Router>
         <div>
+          <div>
+            <ToastsContainer />
+          </div>
           <div className="header">
             <div>
               <div>

@@ -6,6 +6,7 @@ import createSagaMiddleware from "redux-saga";
 import { authentication } from "../data/authentication";
 import { calls } from "../data/calls";
 import { enthusiasm } from "../data/enthusiasm";
+import { ui } from "../data/ui";
 import { widgets } from "../data/widgets";
 import withLocalStorage from "./middleware/withLocalStorage";
 
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   authentication,
   calls,
   enthusiasm,
+  ui,
   widgets
 });
 

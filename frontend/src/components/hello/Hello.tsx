@@ -1,11 +1,15 @@
 import * as React from "react";
 
-// import danton from "../assets/danton.jpg";
+import danton from "../assets/danton.jpg";
 import "./Hello.scss";
 
-// import Button from "../ui/Button";
+import Button from "../ui/Button";
 import TextArea from "../ui/TextArea";
 import TextInput from "../ui/TextInput";
+
+function getExclamationMarks(numChars: number) {
+  return Array(numChars + 1).join("!");
+}
 
 export interface IProps {
   name: string;
@@ -26,7 +30,7 @@ function Hello({
 
   return (
     <div className="hello">
-      {/* <h2 className="greeting hero">
+      <h2 className="greeting hero">
         Hello {name + getExclamationMarks(enthusiasmLevel)}
       </h2>
       <p>
@@ -42,7 +46,7 @@ function Hello({
         <Button onClick={onIncrement}>Add Exclamation</Button>
       </div>
       <br />
-      <br /> */}
+      <br />
 
       <div>
         <TextInput label="Email" onChange={console.log.bind(console)} />
@@ -63,7 +67,3 @@ function Hello({
 }
 
 export default Hello;
-
-// function getExclamationMarks(numChars: number) {
-//   return Array(numChars + 1).join("!");
-// }

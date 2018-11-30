@@ -32,8 +32,8 @@ $color-tertiary: #ed746d;
 $color-tertiary-light: lighten($color-tertiary, 10%);
 $color-tertiary-dark: darken($color-tertiary, 10%);
 
-$color-success: $color-tertiary;
-$color-info: $color-primary;
+$color-success: #4bb543;
+$color-info: #28536b;
 $color-warn: #f9dbbd;
 $color-error: #e74817;
 
@@ -104,6 +104,7 @@ $border-radius-slight: 0.125rem;
 $transition-time-short: 0.2s;
 $transition-time-medium: 0.5s;
 $transition-time-long: 1s;
+$transition-time-very-long: 5s;
 
 // == BUTTONS ==
 
