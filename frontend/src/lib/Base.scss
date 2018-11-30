@@ -22,6 +22,11 @@ body {
 
   font-family: $base-font-type;
   color: $base-font-color;
+
+  // give mobile scrolling the feel
+  // of a native app (roughly)
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 h1,

@@ -13,7 +13,7 @@ class Toasts extends Component<IToastsProps, {}> {
     return (
       <div>
         {this.props.toasts.map((t: IToast, i) => (
-          <Toast key={i} type={t.type}>
+          <Toast key={i} hidden={t.hidden} type={t.type}>
             {t.message}
           </Toast>
         ))}

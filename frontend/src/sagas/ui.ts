@@ -21,6 +21,13 @@ function addToast(toast: IToast): IAction {
   };
 }
 
+function hideToast(toast: IToast): IAction {
+  return {
+    payload: toast.id,
+    type: "HIDE_TOAST"
+  };
+}
+
 function removeToast(toast: IToast): IAction {
   return {
     payload: toast.id,
@@ -30,6 +37,8 @@ function removeToast(toast: IToast): IAction {
 
 function* addAndRemoveToast(action: IAction) {
   yield put(addToast(action.payload));
+  yield call(delay, 1000);
+  yield put(hideToast(action.payload));
   yield call(delay, 1000);
   yield put(removeToast(action.payload));
 }

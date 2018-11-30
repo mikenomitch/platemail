@@ -65,6 +65,8 @@
 }
 
 @mixin pop-out {
+  opacity: 0;
+
   @keyframes popout {
     0% {
       opacity: 1;

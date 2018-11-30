@@ -6,6 +6,7 @@ export interface IToast {
   id?: number;
   type: string;
   message: string;
+  hidden?: boolean;
 }
 
 const defaultState = {
@@ -21,6 +22,16 @@ export function ui(state = defaultState, action) {
     case "ADD_TOAST":
       return Object.assign({}, state, {
         toasts: [action.payload]
+      });
+    case "HIDE_TOAST":
+      const toast = state.toasts.find((t: IToast) => t.id === action.payload);
+      if (!toast) {
+        return state;
+      }
+
+      const withHidden = Object.assign({}, toast, { hidden: true });
+      return Object.assign({}, state, {
+        toasts: [withHidden]
       });
     case "REMOVE_TOAST":
       return Object.assign({}, state, {

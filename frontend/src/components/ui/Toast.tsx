@@ -6,12 +6,14 @@ import "./Toast.scss";
 
 export interface IProps {
   type?: string;
+  hidden?: boolean;
   children: ReactChild;
 }
 
-const Toast: React.SFC<IProps> = ({ children, type }) => {
+const Toast: React.SFC<IProps> = ({ children, hidden, type }) => {
   const toastClasses = cx("toast", {
     error: type === "error",
+    hidden,
     info: type === "info",
     success: type === "success"
   });
@@ -20,6 +22,7 @@ const Toast: React.SFC<IProps> = ({ children, type }) => {
 };
 
 Toast.defaultProps = {
+  hidden: false,
   type: "success"
 };
 
