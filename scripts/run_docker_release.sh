@@ -1,7 +1,7 @@
 echo === BUILD LOCALLY ===
 docker build -t platemail .
 
-echo === BUILD LOCALLY ===
+echo === RUN LOCALLY ===
 docker run --env HOST=localhost \
   --env PORT=4000 \
   --env DB_USER=postgres \

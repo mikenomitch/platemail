@@ -39,12 +39,14 @@ environment :prod do
 
   set(
     commands: [
-      echo: "rel/commands/migrate.sh"
+      migrate: "rel/commands/migrate.sh",
+      seed: "rel/commands/seed.sh"
     ]
   )
 
-  set(pre_start_hook: "rel/hooks/pre_start.sh")
-  set(post_start_hook: "rel/hooks/post_start.sh")
+  # TODO: if you want to always run pending
+  # migrations, add a pre start hook to releases
+  # set(pre_start_hooks: "rel/hooks/pre_start.sh")
 
   set(cookie: :"LJkltANQ[p}aBq;|ehHMwOpr:OB=;dSK@L;Tad`cu@TrI2Ef5BymZT80x{RQ*s$b")
 end

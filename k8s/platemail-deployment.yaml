@@ -17,7 +17,7 @@ spec:
           args: ["foreground"]
           env:
             - name: HOST
-              value: "platemail.io"
+              value: "platemail.co"
             - name: PORT
               value: "4000"
             - name: SECRET_KEY_BASE

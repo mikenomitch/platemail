@@ -1,4 +1,3 @@
 #!/bin/sh
 
-echo "=== RUNNING MIGRATIONS ==="
-# TODO: run a migration command here
+release_ctl eval --mfa "Platemail.ReleaseTasks.migrate/1" --argv -- "$@"
