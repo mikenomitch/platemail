@@ -1,9 +1,8 @@
 import * as React from "react";
 import { Component } from "react";
 import Loadable from "react-loadable";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-
-import ToastsContainer from "./ToastsContainer";
+import { Link, Route } from "react-router-dom";
+import Toasts from "./ToastsContainer";
 
 import "sanitize.css";
 import "./App.scss";
@@ -77,39 +76,37 @@ class App extends Component<IAppProps, {}> {
     const isLoggedIn = !!token;
 
     return (
-      <Router>
+      <div>
         <div>
-          <div>
-            <ToastsContainer />
-          </div>
-          <div className="header">
-            <div>
-              <div>
-                <Link to="/">Landing</Link>
-              </div>
-              <div>
-                <Link to="/hello">Hello</Link>
-              </div>
-              <div>
-                <Link to="/widgets">Widgets</Link>
-              </div>
-              {isLoggedIn
-                ? this.renderLoggedInLinks()
-                : this.renderLoggedOutLinks()}
-            </div>
-            <hr />
-          </div>
-
-          <div className="content">
-            <Route exact={true} path="/" component={LoadableLanding} />
-            <Route path="/hello" component={LoadableHello} />
-            <Route path="/widgets" component={LoadableWidgets} />
-            <Route path="/login" component={LoadableLogin} />
-            <Route path="/signup" component={LoadableSignUp} />
-            <Route path="/logout" component={LoadableLogOut} />
-          </div>
+          <Toasts />
         </div>
-      </Router>
+        <div className="header">
+          <div>
+            <div>
+              <Link to="/">Landing</Link>
+            </div>
+            <div>
+              <Link to="/hello">Hello</Link>
+            </div>
+            <div>
+              <Link to="/widgets">Widgets</Link>
+            </div>
+            {isLoggedIn
+              ? this.renderLoggedInLinks()
+              : this.renderLoggedOutLinks()}
+          </div>
+          <hr />
+        </div>
+
+        <div className="content">
+          <Route exact={true} path="/" component={LoadableLanding} />
+          <Route path="/hello" component={LoadableHello} />
+          <Route path="/widgets" component={LoadableWidgets} />
+          <Route path="/login" component={LoadableLogin} />
+          <Route path="/signup" component={LoadableSignUp} />
+          <Route path="/logout" component={LoadableLogOut} />
+        </div>
+      </div>
     );
   }
 }

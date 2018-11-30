@@ -5,6 +5,7 @@ import Button from "../ui/Button";
 import Input from "../ui/TextInput";
 
 interface ILoginProps {
+  history: any;
   login: (params: any) => void;
 }
 interface ILoginState {

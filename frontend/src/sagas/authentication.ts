@@ -1,5 +1,6 @@
 import { put, takeEvery } from "redux-saga/effects";
 import { IAuthAction, IAuthParams } from "../data/authentication";
+import nav from "../lib/nav";
 import { IAction } from "../lib/types";
 
 import { apiPost } from "./api";
@@ -26,6 +27,9 @@ export function signUp(params: IAuthParams): IAction {
 // ========
 //   AUTH
 // ========
+function* logout() {
+  yield put(showToast({ type: "success", message: "Logged Out" }));
+}
 
 function* postAuth(action: IAuthAction) {
   const authPath = "/auth/identity/callback";
@@ -49,12 +53,13 @@ function* postAuth(action: IAuthAction) {
     payload: data,
     type: "SAVE_CREDENTIALS"
   };
-
   yield put(showToast({ type: "success", message: "Logged In" }));
+  nav("/hello");
   yield put(saveCredsAction);
 }
 
 const authSagas = [
+  takeEvery("SIGN_OUT", logout),
   takeEvery("POST_LOGIN", postAuth),
   takeEvery("POST_SIGNUP", postAuth)
 ];
