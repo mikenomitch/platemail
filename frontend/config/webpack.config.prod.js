@@ -256,7 +256,7 @@ module.exports = {
               {
                 loader: "sass-resources-loader",
                 options: {
-                  resources: [paths.scssVars]
+                  resources: [paths.scssVars, paths.sharedScss]
                 }
               }
             ]

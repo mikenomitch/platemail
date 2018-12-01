@@ -1,4 +1,4 @@
-
+minikube start
 `eval $(minikube docker-env)`
 docker run (...etc...)
 minikube service platemail-service
