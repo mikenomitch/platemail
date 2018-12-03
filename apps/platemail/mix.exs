@@ -29,7 +29,8 @@ defmodule Platemail.Mixfile do
         :ueberauth,
         :ueberauth_identity,
         :comeonin,
-        :scrivener_ecto
+        :scrivener_ecto,
+        :bamboo
       ]
     ]
   end
@@ -52,7 +53,8 @@ defmodule Platemail.Mixfile do
       {:comeonin, "~> 4.0"},
       {:cors_plug, "~> 1.5"},
       {:faker, "~> 0.10"},
-      {:scrivener_ecto, "~> 2.0"}
+      {:scrivener_ecto, "~> 2.0"},
+      {:bamboo, "~> 1.1"}
     ]
   end
 

@@ -32,6 +32,9 @@ defmodule PlatemailWeb.Router do
   scope "/api/v1", PlatemailWeb.Api.V1 do
     pipe_through(:api)
     resources("/users", UserController, except: [:new, :edit, :create])
+
+    post("/auth/password_reset_request", AuthController, :password_reset_request)
+    post("/auth/magic_login_request", AuthController, :magic_login_request)
   end
 
   # == WITH AUTH ==
@@ -83,6 +86,12 @@ defmodule PlatemailWeb.Router do
   scope "/", PlatemailWeb do
     # Use the default browser stack
     pipe_through(:browser)
+
+    get("/confirm_email/:token", PageController, :confirm_email)
+    get("/magic_login/:token", PageController, :magic_login)
+    get("/password_reset/:token", PageController, :password_reset)
+
+    # Serve the frontend app
     get("/*anything", PageController, :index)
   end
 end
