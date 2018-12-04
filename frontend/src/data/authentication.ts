@@ -19,11 +19,26 @@ export interface IAuthAction {
   payload: { params: IAuthParams };
 }
 
+export interface IAuthEmailAction {
+  type: string;
+  payload: { email: string };
+}
+
 // ===========
 //   ACTIONS
 // ===========
 
-export function loadInitialData(dispatch): IAction {
+export function loadFromToken(token): IAction {
+  // Clears current data and then requests new info
+  // To then be saved
+  return {
+    localStorageData: { auth: { token } },
+    payload: { token },
+    type: "GET_AND_SAVE_INFO"
+  };
+}
+
+export function loadInitialData(): IAction {
   return {
     localStorageKey: "auth",
     type: "SAVE_CREDENTIALS"
@@ -58,6 +73,8 @@ export const authentication = (
     case `POST_SIGNUP`:
       return state;
     case `POST_LOGOUT`:
+      return state;
+    case `GET_AND_SAVE_INFO`:
       return state;
     case `SIGN_OUT`:
       return Object.assign({}, state, { token: null, user: null });

@@ -77,22 +77,6 @@ defmodule Platemail.Accounts.Credential do
   def update_authorization_for_user_params(%{
         "password" => pw,
         "password_confirmation" => pwc,
-        "email" => uid,
-        "current_password" => cpw
-      }) do
-    with :ok <- validate_password_and_confirmation(pw, pwc),
-         :ok <- validate_current_password(uid, cpw) do
-      update_pw(String.downcase(uid), pw)
-    else
-      err -> err
-    end
-  end
-
-  # DRY UP - THIS IS QUICK FIX
-
-  def update_authorization_for_user_params(%{
-        "password" => pw,
-        "password_confirmation" => pwc,
         "email" => uid
       }) do
     case validate_password_and_confirmation(pw, pwc) do

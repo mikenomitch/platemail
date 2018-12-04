@@ -2,26 +2,25 @@ import { Component } from "react";
 import * as React from "react";
 
 import Button from "../ui/Button";
+import Link from "../ui/Link";
 import Input from "../ui/TextInput";
 import withAuthActions from "../util/withAuthActions";
 
-interface ISignUpProps {
-  signUp: (params: any) => void;
+interface ILoginProps {
+  history: any;
+  login: (params: any) => void;
 }
-
-interface ISignUpState {
+interface ILoginState {
   email: string;
-  name: string;
   password: string;
 }
 
-class SignUp extends Component<ISignUpProps, ISignUpState> {
+class LoginForm extends Component<ILoginProps, ILoginState> {
   public handleSubmit = evt => {
     evt.preventDefault();
 
-    this.props.signUp({
+    this.props.login({
       email: this.state.email,
-      name: this.state.name,
       password: this.state.password
     });
   };
@@ -32,30 +31,36 @@ class SignUp extends Component<ISignUpProps, ISignUpState> {
   };
 
   public render() {
+    const { email, password } = this.state;
+
     return (
       <div>
-        <h1> Sign Up </h1>
+        <h1> Login </h1>
         <div>
           <form onSubmit={this.handleSubmit}>
-            <Input onChange={this.handleChangeFor("name")} placeholder="name" />
-            <br /> <br />
             <Input
               onChange={this.handleChangeFor("email")}
+              value={email}
               placeholder="email"
             />
             <br /> <br />
             <Input
               onChange={this.handleChangeFor("password")}
+              value={password}
               type="password"
               placeholder="password"
             />
             <br /> <br />
-            <Button onClick={this.handleSubmit}> Sign Up </Button>
+            <Button onClick={this.handleSubmit}> Login </Button>
           </form>
+
+          <br />
+          <br />
+          <Link to="/login/forgot_password"> Forgot your password? </Link>
         </div>
       </div>
     );
   }
 }
 
-export default withAuthActions(SignUp);
+export default withAuthActions(LoginForm);

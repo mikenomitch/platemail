@@ -1,17 +1,17 @@
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 
-import { login, signUp } from "../../sagas/authentication";
+import {
+  login,
+  passwordReset,
+  sendMagicLink,
+  sendPasswordReset,
+  signUp
+} from "../../sagas/authentication";
 
-export function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    login: params => dispatch(login(params)),
-    signUp: params => dispatch(signUp(params))
-  };
-}
+import { logOut } from "../../data/authentication";
 
 export default WrapperComponent =>
   connect(
     null,
-    mapDispatchToProps
+    { login, logOut, passwordReset, sendMagicLink, sendPasswordReset, signUp }
   )(WrapperComponent);

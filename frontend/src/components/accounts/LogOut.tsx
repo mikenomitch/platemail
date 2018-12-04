@@ -3,6 +3,7 @@ import * as React from "react";
 import { withRouter } from "react-router-dom";
 
 import Button from "../ui/Button";
+import withAuthActions from "../util/withAuthActions";
 
 interface ILogOutProps {
   history: any;
@@ -30,4 +31,4 @@ class LogOut extends Component<ILogOutProps, ILogOutState> {
   }
 }
 
-export default withRouter(LogOut);
+export default withRouter(withAuthActions(LogOut));

@@ -2,7 +2,7 @@ defmodule PlatemailWeb.Api.V1.UserController do
   use PlatemailWeb, :controller
 
   alias Platemail.Accounts
-  alias Platemail.Accounts.User
+  alias Platemail.Accounts.{Authentication, User}
 
   action_fallback(PlatemailWeb.FallbackController)
 
@@ -28,7 +28,7 @@ defmodule PlatemailWeb.Api.V1.UserController do
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Accounts.get_user!(id)
 
-    with {:ok, %User{} = user} <- Accounts.update_user(user, user_params) do
+    with {:ok, user = %User{}} <- Accounts.update_user(user, user_params) do
       render(conn, "show.json", user: user)
     end
   end
@@ -38,6 +38,14 @@ defmodule PlatemailWeb.Api.V1.UserController do
 
     with {:ok, %User{}} <- Accounts.delete_user(user) do
       send_resp(conn, :no_content, "")
+    end
+  end
+
+  def info(conn, _params) do
+    with user = %User{} <- Authentication.Plug.current_resource(conn) do
+      render(conn, "show.json", user: user)
+    else
+      _ -> {:error, :unauthorized}
     end
   end
 end

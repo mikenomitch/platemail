@@ -5,24 +5,25 @@ import Button from "../ui/Button";
 import Input from "../ui/TextInput";
 import withAuthActions from "../util/withAuthActions";
 
-interface ISignUpProps {
-  signUp: (params: any) => void;
+interface IPasswordResetProps {
+  match: { params: { reset_token: string } };
+  passwordReset: (params: any) => void;
 }
 
-interface ISignUpState {
-  email: string;
-  name: string;
+interface IPasswordResetState {
   password: string;
 }
 
-class SignUp extends Component<ISignUpProps, ISignUpState> {
+class PasswordReset extends Component<
+  IPasswordResetProps,
+  IPasswordResetState
+> {
   public handleSubmit = evt => {
     evt.preventDefault();
 
-    this.props.signUp({
-      email: this.state.email,
-      name: this.state.name,
-      password: this.state.password
+    this.props.passwordReset({
+      password: this.state.password,
+      reset_token: this.props.match.params.reset_token
     });
   };
 
@@ -34,23 +35,17 @@ class SignUp extends Component<ISignUpProps, ISignUpState> {
   public render() {
     return (
       <div>
-        <h1> Sign Up </h1>
+        <h1> Password Reset </h1>
         <div>
           <form onSubmit={this.handleSubmit}>
-            <Input onChange={this.handleChangeFor("name")} placeholder="name" />
-            <br /> <br />
-            <Input
-              onChange={this.handleChangeFor("email")}
-              placeholder="email"
-            />
-            <br /> <br />
             <Input
               onChange={this.handleChangeFor("password")}
+              label="Your new password:"
               type="password"
-              placeholder="password"
+              placeholder="new password"
             />
             <br /> <br />
-            <Button onClick={this.handleSubmit}> Sign Up </Button>
+            <Button onClick={this.handleSubmit}> Reset Password </Button>
           </form>
         </div>
       </div>
@@ -58,4 +53,4 @@ class SignUp extends Component<ISignUpProps, ISignUpState> {
   }
 }
 
-export default withAuthActions(SignUp);
+export default withAuthActions(PasswordReset);

@@ -43,16 +43,18 @@ function __getDefaultCb(method, opts) {
   return method === "DELETE" ? __identity : __jsonify;
 }
 
-function __checkStatus(res) {
+async function __checkStatus(res, resHandler) {
+  const jsonRes = await resHandler(res);
+
   if (res.status === 401 || res.status === 403) {
-    throw new Error("unauthorized");
+    throw new Error(jsonRes.message || "unauthorized");
   }
 
   if (res.status >= 400) {
-    throw new Error("error");
+    throw new Error(jsonRes.message || "error");
   }
 
-  return res;
+  return jsonRes;
 }
 
 function __makeURL(path: string, opts: any): string {
@@ -73,9 +75,7 @@ function __baseCall(
     body,
     headers,
     method
-  })
-    .then(__checkStatus)
-    .then(onReturn);
+  }).then(res => __checkStatus(res, onReturn));
 }
 
 const api = {

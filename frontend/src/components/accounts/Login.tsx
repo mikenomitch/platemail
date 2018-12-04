@@ -1,8 +1,10 @@
 import { Component } from "react";
 import * as React from "react";
+import { Route } from "react-router-dom";
 
-import Button from "../ui/Button";
-import Input from "../ui/TextInput";
+import CheckEmail from "./CheckEmail";
+import ForgotPassword from "./ForgotPassword";
+import LoginForm from "./LoginForm";
 
 interface ILoginProps {
   history: any;
@@ -14,44 +16,12 @@ interface ILoginState {
 }
 
 class Login extends Component<ILoginProps, ILoginState> {
-  public handleSubmit = evt => {
-    evt.preventDefault();
-
-    this.props.login({
-      email: this.state.email,
-      password: this.state.password
-    });
-  };
-
-  public handleChangeFor = (attr: string) => event => {
-    const val: string = event.target.value;
-    this.setState(current => ({ ...current, [attr]: val }));
-  };
-
   public render() {
-    const { email, password } = this.state;
-
     return (
       <div>
-        <h1> Login </h1>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <Input
-              onChange={this.handleChangeFor("email")}
-              value={email}
-              placeholder="email"
-            />
-            <br /> <br />
-            <Input
-              onChange={this.handleChangeFor("password")}
-              value={password}
-              type="password"
-              placeholder="password"
-            />
-            <br /> <br />
-            <Button> Login </Button>
-          </form>
-        </div>
+        <Route exact={true} path="/login" component={LoginForm} />
+        <Route path="/login/forgot_password" component={ForgotPassword} />
+        <Route path="/login/check_email" component={CheckEmail} />
       </div>
     );
   }

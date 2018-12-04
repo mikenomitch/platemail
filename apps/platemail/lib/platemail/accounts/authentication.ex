@@ -47,6 +47,29 @@ defmodule Platemail.Accounts.Authentication do
     end
   end
 
+  def replace_credential(credential, auth, current_user, repo) do
+    case validate_auth_for_registration(auth) do
+      :ok ->
+        case user_from_credential(credential, current_user, repo) do
+          {:ok, user} ->
+            case repo.transaction(fn ->
+                   repo.delete(credential)
+                   credential_from_auth(user, auth, repo)
+                   user
+                 end) do
+              {:ok, user} -> {:ok, user}
+              {:error, reason} -> {:error, reason}
+            end
+
+          {:error, reason} ->
+            {:error, reason}
+        end
+
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
   defp auth_and_validate(%{provider: :identity} = auth, repo) do
     try do
       case repo.get_by(Credential, uid: uid_from_auth(auth), provider: to_string(auth.provider)) do
@@ -158,29 +181,6 @@ defmodule Platemail.Accounts.Authentication do
 
   # All the other providers are oauth so should be good
   defp validate_auth_for_registration(_auth), do: :ok
-
-  defp replace_credential(credential, auth, current_user, repo) do
-    case validate_auth_for_registration(auth) do
-      :ok ->
-        case user_from_credential(credential, current_user, repo) do
-          {:ok, user} ->
-            case repo.transaction(fn ->
-                   repo.delete(credential)
-                   credential_from_auth(user, auth, repo)
-                   user
-                 end) do
-              {:ok, user} -> {:ok, user}
-              {:error, reason} -> {:error, reason}
-            end
-
-          {:error, reason} ->
-            {:error, reason}
-        end
-
-      {:error, reason} ->
-        {:error, reason}
-    end
-  end
 
   defp user_from_credential(credential, current_user, repo) do
     case repo.one(Ecto.assoc(credential, :user)) do

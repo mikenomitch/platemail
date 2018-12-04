@@ -2,6 +2,7 @@ import { put } from "redux-saga/effects";
 
 import { callError, callStart, callSuccess } from "../data/calls";
 import api from "../lib/api";
+import { showToast } from "./ui";
 
 export function* __fetchWtihTracking(
   apiCall,
@@ -16,13 +17,30 @@ export function* __fetchWtihTracking(
     }
 
     const res = yield apiCall(endpoint, params, options);
+
     if (callKey) {
       yield put(callSuccess(callKey));
     }
+
+    if (options.successMessage) {
+      yield put(
+        showToast({ type: "success", message: options.successMessage })
+      );
+    }
+
     return res;
   } catch (err) {
     if (callKey) {
       yield put(callError(callKey));
+    }
+
+    const errorMessage =
+      options.errorMessage ||
+      err.message ||
+      "There was an issue with your request.";
+
+    if (!options.hideError) {
+      yield put(showToast({ type: "error", message: errorMessage }));
     }
   }
 }
