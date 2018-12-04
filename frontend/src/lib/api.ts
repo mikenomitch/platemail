@@ -1,6 +1,4 @@
-const portString = process.env.API_PORT ? `:${process.env.API_PORT}` : "";
-const baseNonApiURL = `http://${process.env.API_HOST}${portString}`;
-const baseURL = `${baseNonApiURL}/api/v1`;
+import { BASE_API_URL, BASE_URL } from "./constants";
 
 function __jsonify(res) {
   return res.json();
@@ -47,18 +45,18 @@ async function __checkStatus(res, resHandler) {
   const jsonRes = await resHandler(res);
 
   if (res.status === 401 || res.status === 403) {
-    throw new Error(jsonRes.message || "unauthorized");
+    throw new Error(jsonRes.error_message || "unauthorized");
   }
 
   if (res.status >= 400) {
-    throw new Error(jsonRes.message || "error");
+    throw new Error(jsonRes.error_message || "error");
   }
 
   return jsonRes;
 }
 
 function __makeURL(path: string, opts: any): string {
-  return opts.useNonApi ? baseNonApiURL + path : baseURL + path;
+  return opts.useNonApi ? BASE_URL + path : BASE_API_URL + path;
 }
 
 function __baseCall(

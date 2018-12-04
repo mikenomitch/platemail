@@ -36,7 +36,7 @@ export function* __fetchWtihTracking(
 
     const errorMessage =
       options.errorMessage ||
-      err.message ||
+      err.error_message ||
       "There was an issue with your request.";
 
     if (!options.hideError) {

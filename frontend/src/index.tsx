@@ -6,11 +6,8 @@ import { Route, Router } from "react-router-dom";
 import "./index.scss";
 
 import App from "./components/app/AppContainer";
-import connectToSocket from "./lib/connectToSocket";
 import history from "./lib/history";
 import createStore from "./store/createStore";
-
-connectToSocket();
 
 const store = createStore();
 

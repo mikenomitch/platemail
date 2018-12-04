@@ -6,6 +6,7 @@ import {
 } from "../data/authentication";
 import nav from "../lib/nav";
 import { IAction } from "../lib/types";
+import { joinChannel } from "./channels";
 
 import { apiGet, apiPost } from "./api";
 import { showToast } from "./ui";
@@ -79,6 +80,9 @@ function* getAndSaveInfo(action: IAction) {
   };
 
   yield put(saveCredsAction);
+  yield put(joinChannel("users:general", {}));
+  yield put(joinChannel(`users:${data.user.id}`, { token: data.token }));
+
   nav(LOGGED_IN_PATH);
 }
 
@@ -145,25 +149,31 @@ function* postAuth(action: IAuthAction) {
     authPath,
     action.payload.params,
     {
+      successMessage: "Logged In",
       useNonApi: true
     },
     "POST_CREDENTIALS"
   );
 
-  const saveCredsAction = {
-    localStorageData: {
-      auth: {
-        token: data.token,
-        user: data.user
-      }
-    },
-    payload: data,
-    type: "SAVE_CREDENTIALS"
-  };
+  if (data) {
+    const saveCredsAction = {
+      localStorageData: {
+        auth: {
+          token: data.token,
+          user: data.user
+        }
+      },
+      payload: data,
+      type: "SAVE_CREDENTIALS"
+    };
 
-  yield put(saveCredsAction);
-  yield put(showToast({ type: "success", message: "Logged In" }));
-  nav(LOGGED_IN_PATH);
+    yield put(saveCredsAction);
+
+    yield put(joinChannel("users:general", {}));
+    yield put(joinChannel(`users:${data.user.id}`, { token: data.token }));
+
+    nav(LOGGED_IN_PATH);
+  }
 }
 
 const authSagas = [

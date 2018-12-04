@@ -28,7 +28,7 @@ defmodule PlatemailWeb.Api.V1.FallbackController do
   def call(conn, {:error, :unprocessable_entity, message}) do
     conn
     |> put_status(:unprocessable_entity)
-    |> render(ErrorView, "error.json", message: message)
+    |> render(ErrorView, "error.json", error_message: message)
   end
 
   # =============
@@ -42,7 +42,7 @@ defmodule PlatemailWeb.Api.V1.FallbackController do
   def call(conn, {:error, :not_found, message}) do
     conn
     |> put_status(:not_found)
-    |> render(ErrorView, "error.json", message: message)
+    |> render(ErrorView, "error.json", error_message: message)
   end
 
   # ================
@@ -56,6 +56,6 @@ defmodule PlatemailWeb.Api.V1.FallbackController do
   def call(conn, {:error, :unauthorized, message}) do
     conn
     |> put_status(:forbidden)
-    |> render(ErrorView, "error.json", message: message)
+    |> render(ErrorView, "error.json", error_message: message)
   end
 end

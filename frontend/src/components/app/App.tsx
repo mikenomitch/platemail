@@ -51,13 +51,19 @@ interface IAppProps {
     pathname: string;
     search: string;
   };
+  connectToSocket: () => void;
   loadFromToken: (token: string) => void;
   loadInitialData: () => void;
 }
 
 class App extends Component<IAppProps, {}> {
   public componentDidMount() {
-    const { loadFromToken, loadInitialData, location } = this.props;
+    const {
+      connectToSocket,
+      loadFromToken,
+      loadInitialData,
+      location
+    } = this.props;
 
     if (location.pathname === "/logged_in") {
       const { token } = parse(location.search);
@@ -65,6 +71,8 @@ class App extends Component<IAppProps, {}> {
     } else {
       loadInitialData();
     }
+
+    connectToSocket();
   }
 
   public renderLoggedOutLinks() {

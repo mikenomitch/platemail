@@ -5,6 +5,7 @@ import createSagaMiddleware from "redux-saga";
 
 import { authentication } from "../data/authentication";
 import { calls } from "../data/calls";
+import { channels } from "../data/channels";
 import { enthusiasm } from "../data/enthusiasm";
 import { ui } from "../data/ui";
 import { widgets } from "../data/widgets";
@@ -22,6 +23,7 @@ const logger = createLogger({
 const rootReducer = combineReducers({
   authentication,
   calls,
+  channels,
   enthusiasm,
   ui,
   widgets
