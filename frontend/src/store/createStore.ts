@@ -9,9 +9,10 @@ import { channels } from "../data/channels";
 import { enthusiasm } from "../data/enthusiasm";
 import { ui } from "../data/ui";
 import { widgets } from "../data/widgets";
-import withLocalStorage from "./middleware/withLocalStorage";
+import getFromLocalStorage from "./middleware/getFromLocalStorage";
+import saveToLocalStorage from "./middleware/saveToLocalStorage";
 
-import { rootSaga } from "../sagas/rootSaga";
+import { rootSaga } from "../actions/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -32,7 +33,13 @@ const rootReducer = combineReducers({
 const storeMaker = () => {
   const store = createStore(
     rootReducer,
-    applyMiddleware(logger, multi, sagaMiddleware, withLocalStorage)
+    applyMiddleware(
+      logger,
+      multi,
+      getFromLocalStorage,
+      sagaMiddleware,
+      saveToLocalStorage
+    )
   );
 
   sagaMiddleware.run(rootSaga);

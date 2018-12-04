@@ -1,8 +1,10 @@
 import { put } from "redux-saga/effects";
 
-import { callError, callStart, callSuccess } from "../data/calls";
+import { callError, callStart, callSuccess } from "../actions/calls";
 import api from "../lib/api";
 import { showToast } from "./ui";
+
+const STANDARD_ERROR_MESSAGE = "There was an issue with your request.";
 
 export function* __fetchWtihTracking(
   apiCall,
@@ -35,9 +37,7 @@ export function* __fetchWtihTracking(
     }
 
     const errorMessage =
-      options.errorMessage ||
-      err.error_message ||
-      "There was an issue with your request.";
+      options.errorMessage || err.error_message || STANDARD_ERROR_MESSAGE;
 
     if (!options.hideError) {
       yield put(showToast({ type: "error", message: errorMessage }));

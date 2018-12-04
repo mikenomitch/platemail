@@ -6,9 +6,9 @@ const defaultState = {
   socket: null
 };
 
-// ===========
-//   REDUCER
-// ===========
+// =================
+//   STATE CHANGES
+// =================
 
 function __addSocket(state) {
   const socket = new Socket(BASE_SOCKET_URL, { params: {} });
@@ -37,12 +37,31 @@ function __joinChannel(state, { name, params }) {
   return Object.assign({}, state, { channels: newChannels });
 }
 
+function __leaveUserChannels(state) {
+  const newChannelKeys = Object.keys(state.channels).filter(
+    channelName => !channelName.startsWith("users")
+  );
+
+  const newChannels = newChannelKeys.reduce((memo, channelName) => {
+    memo[channelName] = state.channels[channelName];
+    return memo;
+  }, {});
+
+  return Object.assign({}, state, { channels: newChannels });
+}
+
+// ===========
+//   REDUCER
+// ===========
+
 export function channels(state = defaultState, action) {
   switch (action.type) {
     case "CONNECT_TO_SOCKET":
       return __addSocket(state);
     case "JOIN_CHANNEL":
       return __joinChannel(state, action.payload);
+    case "LEAVE_USER_CHANNELS":
+      return __leaveUserChannels(state);
     default:
       return state;
   }

@@ -1,9 +1,4 @@
-// import { put, takeEvery } from "redux-saga/effects";
 import { IAction } from "../lib/types";
-
-// TODOs:
-// When you log out, disconnect
-// When you log back in, reconnect to the socket
 
 export function connectToSocket(): IAction {
   return {
@@ -18,5 +13,8 @@ export function joinChannel(name: string, params: object): IAction {
   };
 }
 
-// const channelSagas = [takeEvery("JOIN_CHANNEL", joinChannel)];
-// export default channelSagas;
+export function leaveUserChannels(): IAction {
+  return {
+    type: "LEAVE_USER_CHANNELS"
+  };
+}

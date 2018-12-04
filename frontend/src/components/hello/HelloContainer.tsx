@@ -1,12 +1,11 @@
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { showToast } from "../../sagas/ui";
+import { showToast } from "../../actions/ui";
 import Hello from "./Hello";
 
 import {
   decrementEnthusiasm,
   incrementEnthusiasm
-} from "../../data/enthusiasm";
+} from "../../actions/enthusiasm";
 
 export function mapStateToProps({ enthusiasm: { enthusiasmLevel, name } }) {
   return {
@@ -15,15 +14,11 @@ export function mapStateToProps({ enthusiasm: { enthusiasmLevel, name } }) {
   };
 }
 
-export function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    onDecrement: () => dispatch(decrementEnthusiasm()),
-    onIncrement: () => dispatch(incrementEnthusiasm()),
-    showToast: params => dispatch(showToast(params))
-  };
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    onDecrement: decrementEnthusiasm,
+    onIncrement: incrementEnthusiasm,
+    showToast
+  }
 )(Hello);

@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import App from "./App";
 
-import { loadFromToken, loadInitialData } from "../../data/authentication";
-import { connectToSocket } from "../../sagas/channels";
+import { loadFromToken, loadInitialData } from "../../actions/authentication";
+import { connectToSocket } from "../../actions/channels";
 
 export function mapStateToProps({ authentication: { token } }) {
   return { token };

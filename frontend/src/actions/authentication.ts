@@ -1,21 +1,59 @@
 import { put, takeEvery } from "redux-saga/effects";
-import {
-  IAuthAction,
-  IAuthEmailAction,
-  IAuthParams
-} from "../data/authentication";
 import nav from "../lib/nav";
 import { IAction } from "../lib/types";
-import { joinChannel } from "./channels";
+import { joinChannel, leaveUserChannels } from "./channels";
 
 import { apiGet, apiPost } from "./api";
 import { showToast } from "./ui";
 
 const LOGGED_IN_PATH = "/hello";
 
+// =========
+//   TYPES
+// =========
+
+export interface IAuthParams {
+  email: string;
+  password: string;
+}
+
+export interface IAuthAction {
+  type: string;
+  payload: { params: IAuthParams };
+}
+
+export interface IAuthEmailAction {
+  type: string;
+  payload: { email: string };
+}
+
 // ===================
 //   ACTION CREATORS
 // ===================
+
+export function loadFromToken(token): IAction {
+  // Clears current data and then requests new info
+  // To then be saved
+  return {
+    localStorageData: { auth: { token } },
+    payload: { token },
+    type: "GET_AND_SAVE_INFO"
+  };
+}
+
+export function loadInitialData(): IAction {
+  return {
+    localStorageKey: "auth",
+    type: "HANDLE_CREDENTIALS"
+  };
+}
+
+export function logOut(): IAction {
+  return {
+    localStorageData: { auth: null },
+    type: "SIGN_OUT"
+  };
+}
 
 export function login(params: IAuthParams): IAction {
   return {
@@ -71,22 +109,19 @@ function* getAndSaveInfo(action: IAction) {
     user: data.user
   };
 
-  const saveCredsAction = {
+  yield put({
     localStorageData: {
       auth: authData
     },
     payload: authData,
-    type: "SAVE_CREDENTIALS"
-  };
-
-  yield put(saveCredsAction);
-  yield put(joinChannel("users:general", {}));
-  yield put(joinChannel(`users:${data.user.id}`, { token: data.token }));
+    type: "HANDLE_CREDENTIALS"
+  });
 
   nav(LOGGED_IN_PATH);
 }
 
 function* logout() {
+  yield put(leaveUserChannels());
   yield put(showToast({ type: "success", message: "Logged Out" }));
 }
 
@@ -164,26 +199,45 @@ function* postAuth(action: IAuthAction) {
         }
       },
       payload: data,
+      type: "HANDLE_CREDENTIALS"
+    };
+
+    yield put(saveCredsAction);
+
+    nav(LOGGED_IN_PATH);
+  }
+}
+
+function* handleCredentials(action) {
+  const { token, user } = action.payload;
+
+  if (token) {
+    const saveCredsAction = {
+      localStorageData: {
+        auth: { token, user }
+      },
+      payload: action.payload,
       type: "SAVE_CREDENTIALS"
     };
 
     yield put(saveCredsAction);
 
     yield put(joinChannel("users:general", {}));
-    yield put(joinChannel(`users:${data.user.id}`, { token: data.token }));
-
-    nav(LOGGED_IN_PATH);
+    yield put(
+      joinChannel(`users:${action.payload.user.id}`, {
+        token: action.payload.token
+      })
+    );
   }
 }
 
-const authSagas = [
+export const authSagas = [
   takeEvery("SIGN_OUT", logout),
   takeEvery("POST_LOGIN", postAuth),
   takeEvery("POST_SIGNUP", postAuth),
   takeEvery("POST_MAGIC_LINK", postMagicLink),
   takeEvery("POST_PASSWORD_RESET", postReset),
   takeEvery("POST_PASSWORD_RESET_REQUEST", postResetRequest),
-  takeEvery("GET_AND_SAVE_INFO", getAndSaveInfo)
+  takeEvery("GET_AND_SAVE_INFO", getAndSaveInfo),
+  takeEvery("HANDLE_CREDENTIALS", handleCredentials)
 ];
-
-export default authSagas;

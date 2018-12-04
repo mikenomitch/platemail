@@ -5,7 +5,7 @@ import { IToast } from "../../data/ui";
 import Toast from "../ui/Toast";
 
 interface IToastsProps {
-  toasts: [];
+  toasts: IToast[];
 }
 
 class Toasts extends Component<IToastsProps, {}> {

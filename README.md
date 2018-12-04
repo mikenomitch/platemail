@@ -32,7 +32,7 @@ Backend features:
   - Including tokens for password reset
 - Basic auth via JWTs
 - Swagger API docs
-- Auth credential confirmation/password resets/magic login (TODO)
+- Auth credential confirmation/password resets/magic login
 - Event broadcasting via Channels (TODO)
 - TSL/HTTPS support (TODO)
 - A few simple example tests (TODO)
@@ -49,7 +49,7 @@ Frontend features:
 - Fetching with auth and call status tracking
 - Gzipped and minified production build
 - Redux-based data layer with DRY base reducer
-- Socket connection to the backend's phoenix channels (TODO)
+- Socket connection to the backend's phoenix channels
 - A few simple example tests (TODO)
 
 Development features:

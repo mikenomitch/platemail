@@ -65,14 +65,14 @@ class App extends Component<IAppProps, {}> {
       location
     } = this.props;
 
+    connectToSocket();
+
     if (location.pathname === "/logged_in") {
       const { token } = parse(location.search);
       loadFromToken(token);
     } else {
       loadInitialData();
     }
-
-    connectToSocket();
   }
 
   public renderLoggedOutLinks() {

@@ -3,6 +3,8 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { IToast } from "../data/ui";
 import { IAction } from "../lib/types";
 
+const TOAST_DELAY = 1000;
+
 const randomNumber = (): number => {
   return Math.floor(Math.random() * 999999);
 };
@@ -37,12 +39,10 @@ function removeToast(toast: IToast): IAction {
 
 function* addAndRemoveToast(action: IAction) {
   yield put(addToast(action.payload));
-  yield call(delay, 1000);
+  yield call(delay, TOAST_DELAY);
   yield put(hideToast(action.payload));
-  yield call(delay, 1000);
+  yield call(delay, TOAST_DELAY);
   yield put(removeToast(action.payload));
 }
 
-const authSagas = [takeEvery("SHOW_TOAST", addAndRemoveToast)];
-
-export default authSagas;
+export const uiSagas = [takeEvery("SHOW_TOAST", addAndRemoveToast)];

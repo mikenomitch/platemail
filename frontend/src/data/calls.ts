@@ -1,44 +1,5 @@
 import withResetState from "./withResetState";
 
-// ===========
-//   ACTIONS
-// ===========
-
-// Tracking the calls (sync actions)
-
-export function callError(callKey: string) {
-  return {
-    payload: {
-      key: callKey,
-      status: "error"
-    },
-    type: "SET_CALL"
-  };
-}
-
-export function callStart(callKey: string) {
-  return {
-    payload: {
-      key: callKey,
-      status: "started"
-    },
-    type: "SET_CALL"
-  };
-}
-
-export function callSuccess(callKey: string) {
-  return {
-    payload: {
-      key: callKey,
-      status: "success"
-    },
-    type: "SET_CALL"
-  };
-}
-
-// Note: Action creators for actually
-// making calls are in the api saga
-
 // ====================
 //   EXTERNAL HELPERS
 // ====================

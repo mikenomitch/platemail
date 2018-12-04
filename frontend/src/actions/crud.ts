@@ -95,7 +95,7 @@ function __makeItemDeletor(name: string, basePath: string) {
   };
 }
 
-function makeCrudSagas(name: string, basePath: string) {
+export function makeCrudSagas(name: string, basePath: string) {
   return [
     takeEvery(`GET_${name}S`, __makeItemsGetter(name, basePath)),
     takeEvery(`GET_${name}`, __makeItemGetter(name, basePath)),
@@ -104,5 +104,3 @@ function makeCrudSagas(name: string, basePath: string) {
     takeEvery(`DELETE_${name}`, __makeItemDeletor(name, basePath))
   ];
 }
-
-export default makeCrudSagas;

@@ -26,13 +26,11 @@ class Widgets extends Component<IWidgetsProps, IWidgetsState> {
     return (
       <div className="widgets-wrapper">
         <h1> Widgets </h1>
-        <div>
-          <ul>
-            {this.props.items.map(i => (
-              <li>Widget {i.title}</li>
-            ))}
-          </ul>
-        </div>
+        <ul>
+          {this.props.items.map(i => (
+            <li key={i.id}>Widget {i.title}</li>
+          ))}
+        </ul>
       </div>
     );
   }
