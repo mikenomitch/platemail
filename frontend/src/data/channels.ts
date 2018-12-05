@@ -21,17 +21,8 @@ function __joinChannel(state, { name, params, callbacks }) {
   const { channels: originalChannels, socket } = state;
   const channel = socket.channel(name, params);
 
-  channel
-    .join()
-    .receive("ok", resp => {
-      console.log("Joined successfully", resp);
-    })
-    .receive("error", resp => {
-      console.log("Unable to join", resp);
-    });
-
+  channel.join();
   Object.keys(callbacks).forEach(eventName => {
-    console.log("HANDLING - ", eventName);
     channel.on(eventName, callbacks[eventName]);
   });
 

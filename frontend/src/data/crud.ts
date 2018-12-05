@@ -89,7 +89,6 @@ const handleEvent = (
   state: ICrudReducerState<CrudType>,
   payload: { type: string; item: CrudType }
 ): ICrudReducerState<CrudType> => {
-  console.log("HANDLING EVENT ACTION - ", payload);
   switch (payload.type) {
     case "created":
       return handleUpsertItem(state, payload.item);

@@ -39,25 +39,19 @@ export function leaveUserChannels(): IAction {
 }
 
 function* joinUserChannels(action, dispatch, getState) {
-  yield put(
-    joinChannel(
-      "users:general",
-      {},
-      {
-        widget_event: res => {
-          dispatch({ type: "WIDGET_EVENT", payload: res });
-        }
-      }
-    )
-  );
+  const generalChannelCallbacks = {
+    widget_event: res => {
+      dispatch({ type: "WIDGET_EVENT", payload: res });
+    }
+  };
+  const individualChannelCallbacks = {};
 
+  yield put(joinChannel("users:general", {}, generalChannelCallbacks));
   yield put(
     joinChannel(
       `users:${action.payload.user.id}`,
-      {
-        token: action.payload.token
-      },
-      {}
+      { token: action.payload.token },
+      individualChannelCallbacks
     )
   );
 }
