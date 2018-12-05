@@ -1,4 +1,10 @@
 defmodule Platemail.Accounts.Authentication do
+  @moduledoc """
+  Authentication module.
+
+  See: https://github.com/ueberauth/guardian for more info
+  """
+
   use Guardian, otp_app: :platemail
 
   alias Platemail.Accounts.{Credential, User}
@@ -276,79 +282,3 @@ defmodule Platemail.Accounts.Authentication do
     result
   end
 end
-
-# =========
-#   USAGE
-# =========
-
-# See: https://github.com/ueberauth/guardian
-
-# ## encode a token for a resource encod
-# {:ok, token, claims} = Platemail.Accounts.Authentication.encode_and_sign(resource)
-
-# # decode and verify a token
-# {:ok, claims} = Platemail.Accounts.Authentication.decode_and_verify(token)
-
-# # revoke a token (use GuardianDb or something similar if you need revoke to actually track a token)
-# {:ok, claims} = Platemail.Accounts.Authentication.revoke(token)
-
-# # Refresh a token before it expires
-# {:ok, _old_stuff, {new_token, new_claims}} = Platemail.Accounts.Authentication.refresh(token)
-
-# # Exchange a token of type "refresh" for a new token of type "access"
-# {:ok, _old_stuff, {new_token, new_claims}} = Platemail.Accounts.Authentication.exchange(token, "refresh", "access")
-
-# # Lookup a resource directly from a token
-# {:ok, resource, claims} = Platemail.Accounts.Authentication.resource_from_token(token)
-
-# ==============
-#   PLUG USAGE
-# ==============
-
-# # If a session is loaded the token/resource/claims will be put into the session and connection
-# # If no session is loaded, the token/resource/claims only go onto the connection
-# conn = Platemail.Accounts.Authentication.Plug.sign_in(conn, resource)
-
-# # Optionally with claims and options
-# conn = Platemail.Accounts.Authentication.Plug.sign_in(conn, resource, %{some: "claim"}, ttl: {1, :minute})
-
-# # remove from session (if fetched) and revoke the token
-# conn = Platemail.Accounts.Authentication.Plug.sign_out(conn)
-
-# # Set a "refresh" token directly on a cookie.
-# # Can be used in conjunction with `Guardian.Plug.VerifyCookie`
-# conn = Platemail.Accounts.Authentication.Plug.remember_me(conn, resource)
-
-# # Fetch the information from the current connection
-# token = Platemail.Accounts.Authentication.Plug.current_token(conn)
-# claims = Platemail.Accounts.Authentication.Plug.current_claims(conn)
-# resource = Platemail.Accounts.Authentication.Plug.current_resource(conn)
-# Creating with custom claims and options
-
-# =================
-#   CUSTOM CLAIMS
-# =================
-
-# # Add custom claims to a token
-# {:ok, token, claims} = Platemail.Accounts.Authentication.encode_and_sign(resource, %{some: "claim"})
-
-# # Create a specific token type (i.e. "access"/"refresh" etc)
-# {:ok, token, claims} = Platemail.Accounts.Authentication.encode_and_sign(resource, %{}, token_type: "refresh")
-
-# # Customize the time to live (ttl) of the token
-# {:ok, token, claims} = Platemail.Accounts.Authentication.encode_and_sign(resource, %{}, ttl: {1, :minute})
-
-# # Customize the secret
-# {:ok, token, claims} = Platemail.Accounts.Authentication.encode_and_sign(resource, %{}, secret: "custom")
-# {:ok, token, claims} = Platemail.Accounts.Authentication.encode_and_sign(resource, %{}, secret: {SomeMod, :some_func, ["some", "args"]})
-
-# ==========================
-#   DECODING AND VERIFYING
-# ==========================
-
-# # Check some literal claims. (i.e. this is an access token)
-# {:ok, claims} = Platemail.Accounts.Authentication.decode_and_verify(token, %{"typ" => "access"})
-
-# # Use a custom secret
-# {:ok, claims} = Platemail.Accounts.Authentication.decode_and_verify(token, %{}, secret: "custom")
-# {:ok, claims} = Platemail.Accounts.Authentication.decode_and_verify(token, %{}, secret: {SomeMod, :some_func, ["some", "args"]})

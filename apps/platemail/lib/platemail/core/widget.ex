@@ -10,7 +10,6 @@ defmodule Platemail.Core.Widget do
     timestamps()
   end
 
-  @doc false
   def changeset(widget, attrs) do
     widget
     |> cast(attrs, [:title, :content])

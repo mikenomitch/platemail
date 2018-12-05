@@ -88,9 +88,7 @@ defmodule PlatemailWeb.Router do
     # Use the default browser stack
     pipe_through(:browser)
 
-    get("/confirm_email/:token", PageController, :confirm_email)
     get("/login_link/:token", PageController, :login_link)
-    get("/password_reset/:token", PageController, :password_reset)
 
     # Serve the frontend app
     get("/*anything", PageController, :index)

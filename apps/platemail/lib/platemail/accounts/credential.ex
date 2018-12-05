@@ -1,4 +1,9 @@
 defmodule Platemail.Accounts.Credential do
+  @moduledoc """
+  Saves Credentials, such as email & password and associates
+  them with users via uid (user email)
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 

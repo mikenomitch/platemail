@@ -1,7 +1,10 @@
-# Taken from following link:
-# https://github.com/bitwalker/distillery/blob/master/docs/guides/running_migrations.md
-
 defmodule Platemail.ReleaseTasks do
+  @moduledoc """
+  Holds the tasks that are run by distillery on each release.
+
+  # Taken from following:
+  # https://github.com/bitwalker/distillery/blob/master/docs/guides/running_migrations.md
+  """
   @start_apps [
     # :crypto,
     # :ssl,

@@ -4,7 +4,7 @@ defmodule PlatemailWeb.Api.V1.UserController do
   alias Platemail.Accounts
   alias Platemail.Accounts.{Authentication, User}
 
-  action_fallback(PlatemailWeb.FallbackController)
+  action_fallback(PlatemailWeb.Api.V1.FallbackController)
 
   def index(conn, _params) do
     users = Accounts.list_users()

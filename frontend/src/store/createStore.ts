@@ -30,20 +30,21 @@ const rootReducer = combineReducers({
   widgets
 });
 
+const prodMiddleware = [
+  multi,
+  getFromLocalStorage,
+  sagaMiddleware,
+  saveToLocalStorage
+];
+
+const devMiddleware = [logger].concat(prodMiddleware);
+
+const middleWare =
+  process.env.NODE_ENV === "production" ? prodMiddleware : devMiddleware;
+
 const storeMaker = () => {
-  const store = createStore(
-    rootReducer,
-    applyMiddleware(
-      logger,
-      multi,
-      getFromLocalStorage,
-      sagaMiddleware,
-      saveToLocalStorage
-    )
-  );
-
+  const store = createStore(rootReducer, applyMiddleware(...middleWare));
   sagaMiddleware.run(rootSaga, store.dispatch, store.getState);
-
   return store;
 };
 

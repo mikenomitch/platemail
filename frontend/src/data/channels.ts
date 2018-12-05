@@ -6,6 +6,10 @@ const defaultState = {
   socket: null
 };
 
+const merge = (objA, objB) => {
+  return Object.assign({}, objA, objB);
+};
+
 // =================
 //   STATE CHANGES
 // =================
@@ -14,7 +18,7 @@ function __addSocket(state) {
   const socket = new Socket(BASE_SOCKET_URL, { params: {} });
   socket.connect(null);
 
-  return Object.assign({}, state, { socket });
+  return merge(state, { socket });
 }
 
 function __joinChannel(state, { name, params, callbacks }) {
@@ -22,15 +26,16 @@ function __joinChannel(state, { name, params, callbacks }) {
   const channel = socket.channel(name, params);
 
   channel.join();
+
   Object.keys(callbacks).forEach(eventName => {
     channel.on(eventName, callbacks[eventName]);
   });
 
-  const newChannels = Object.assign({}, originalChannels, {
+  const newChannels = merge(originalChannels, {
     [name]: channel
   });
 
-  return Object.assign({}, state, { channels: newChannels });
+  return merge(state, { channels: newChannels });
 }
 
 function __leaveUserChannels(state) {
@@ -43,7 +48,7 @@ function __leaveUserChannels(state) {
     return memo;
   }, {});
 
-  return Object.assign({}, state, { channels: newChannels });
+  return merge(state, { channels: newChannels });
 }
 
 // ===========

@@ -7,10 +7,6 @@ defmodule PlatemailWeb.PageController do
     serve_application(conn)
   end
 
-  def confirm_email(conn, %{"token" => _token}) do
-    serve_application(conn)
-  end
-
   def login_link(conn, %{"token" => token}) do
     with {:ok, claims} <- Authentication.decode_and_verify(token, %{"typ" => "login_link"}),
          user = %User{} <- Repo.get(User, claims["sub"]) |> Repo.preload(:credentials),
@@ -19,10 +15,6 @@ defmodule PlatemailWeb.PageController do
     else
       _ -> serve_application(conn)
     end
-  end
-
-  def password_reset(conn, %{"token" => _token}) do
-    serve_application(conn)
   end
 
   defp serve_application(conn) do

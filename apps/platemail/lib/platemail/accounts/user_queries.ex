@@ -1,4 +1,11 @@
 defmodule Platemail.Accounts.UserQueries do
+  @moduledoc """
+  Queries the db for user-related data.
+
+  'get_' implies actually making a call
+  otherwise it is likely building a query
+  """
+
   import Ecto.Query
 
   alias Platemail.{

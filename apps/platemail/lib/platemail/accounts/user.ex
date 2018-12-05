@@ -6,27 +6,23 @@ defmodule Platemail.Accounts.User do
   schema "users" do
     field(:email, :string)
     field(:name, :string)
-
     has_many(:credentials, Credential)
 
     timestamps()
   end
 
-  @doc false
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:email, :name])
     |> validate_required([:email, :name])
   end
 
-  @doc false
   def registration_changeset(user, attrs) do
     user
     |> cast(attrs, [:email, :name])
     |> validate_required([:email, :name])
   end
 
-  @doc false
   def validate_email(_email) do
     true
   end
