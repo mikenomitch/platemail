@@ -42,7 +42,7 @@ const storeMaker = () => {
     )
   );
 
-  sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga, store.dispatch, store.getState);
 
   return store;
 };

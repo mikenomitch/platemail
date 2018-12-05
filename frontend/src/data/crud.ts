@@ -10,6 +10,11 @@ export interface ICrudReducerState<T> {
   items: T[];
 }
 
+export interface IHandleEvent<T> {
+  payload: any;
+  type: string;
+}
+
 export interface IUpsertItem<T> {
   payload: T;
   type: string;
@@ -31,6 +36,7 @@ export interface IRemoveItems {
 }
 
 export type HashActions =
+  | IHandleEvent<CrudType>
   | IUpsertItem<CrudType>
   | IUpsertItems<CrudType>
   | IRemoveItem
@@ -50,36 +56,50 @@ const defaultState = {
 
 const handleUpsertItem = (
   state: ICrudReducerState<CrudType>,
-  action: IUpsertItem<CrudType>
+  payload: CrudType
 ): ICrudReducerState<CrudType> => {
   const newItems = state.items
-    .filter(item => action.payload.id !== item.id)
-    .concat([action.payload]);
+    .filter(item => payload.id !== item.id)
+    .concat([payload]);
 
   return { ...state, items: newItems };
 };
 
 const handleUpsertItems = (
   state: ICrudReducerState<CrudType>,
-  action: IUpsertItems<CrudType>
+  payload: CrudType[]
 ): ICrudReducerState<CrudType> => {
-  const addedIds = action.payload.map(i => i.id);
+  const addedIds = payload.map(i => i.id);
   const newItems = state.items
     .filter(item => !addedIds.includes(item.id))
-    .concat(action.payload);
+    .concat(payload);
 
   return { ...state, items: newItems };
 };
 
 const handleRemoveItem = (
   state: ICrudReducerState<CrudType>,
-  action: IRemoveItem
+  payload: number
 ): ICrudReducerState<CrudType> => {
-  const itemsWithRemoved = state.items.filter(
-    item => item.id !== action.payload
-  );
-
+  const itemsWithRemoved = state.items.filter(item => item.id !== payload);
   return { ...state, items: itemsWithRemoved };
+};
+
+const handleEvent = (
+  state: ICrudReducerState<CrudType>,
+  payload: { type: string; item: CrudType }
+): ICrudReducerState<CrudType> => {
+  console.log("HANDLING EVENT ACTION - ", payload);
+  switch (payload.type) {
+    case "created":
+      return handleUpsertItem(state, payload.item);
+    case "updated":
+      return handleUpsertItem(state, payload.item);
+    case "deleted":
+      return handleRemoveItem(state, payload.item.id);
+    default:
+      return state;
+  }
 };
 
 // Top level reducer
@@ -90,12 +110,14 @@ const makeCrudReducer = (name: string) => {
     action: HashActions
   ): ICrudReducerState<CrudType> => {
     switch (action.type) {
+      case `${name}_EVENT`:
+        return handleEvent(state, action.payload);
       case `UPSERT_${name}`:
-        return handleUpsertItem(state, action as IUpsertItem<CrudType>);
+        return handleUpsertItem(state, action.payload);
       case `UPSERT_${name}S`:
-        return handleUpsertItems(state, action as IUpsertItems<CrudType>);
+        return handleUpsertItems(state, action.payload);
       case `REMOVE_${name}`:
-        return handleRemoveItem(state, action as IRemoveItem);
+        return handleRemoveItem(state, action.payload);
     }
     return state;
   };

@@ -1,7 +1,7 @@
 import { put, takeEvery } from "redux-saga/effects";
 import nav from "../lib/nav";
 import { IAction } from "../lib/types";
-import { joinChannel, leaveUserChannels } from "./channels";
+import { joinChannels, leaveUserChannels } from "./channels";
 
 import { apiGet, apiPost } from "./api";
 import { showToast } from "./ui";
@@ -221,13 +221,7 @@ function* handleCredentials(action) {
     };
 
     yield put(saveCredsAction);
-
-    yield put(joinChannel("users:general", {}));
-    yield put(
-      joinChannel(`users:${action.payload.user.id}`, {
-        token: action.payload.token
-      })
-    );
+    yield put(joinChannels(user, token));
   }
 }
 

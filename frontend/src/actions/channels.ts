@@ -1,4 +1,9 @@
+import { put, takeEvery } from "redux-saga/effects";
 import { IAction } from "../lib/types";
+
+interface ICallbacksMap {
+  [s: string]: (input: any) => void;
+}
 
 export function connectToSocket(): IAction {
   return {
@@ -6,9 +11,23 @@ export function connectToSocket(): IAction {
   };
 }
 
-export function joinChannel(name: string, params: object): IAction {
+export function joinChannels(user, token): IAction {
   return {
-    payload: { name, params },
+    payload: {
+      token,
+      user
+    },
+    type: "JOIN_USER_CHANNELS"
+  };
+}
+
+export function joinChannel(
+  name: string,
+  params: object,
+  callbacks: ICallbacksMap
+): IAction {
+  return {
+    payload: { name, params, callbacks },
     type: "JOIN_CHANNEL"
   };
 }
@@ -18,3 +37,33 @@ export function leaveUserChannels(): IAction {
     type: "LEAVE_USER_CHANNELS"
   };
 }
+
+function* joinUserChannels(action, dispatch, getState) {
+  yield put(
+    joinChannel(
+      "users:general",
+      {},
+      {
+        widget_event: res => {
+          dispatch({ type: "WIDGET_EVENT", payload: res });
+        }
+      }
+    )
+  );
+
+  yield put(
+    joinChannel(
+      `users:${action.payload.user.id}`,
+      {
+        token: action.payload.token
+      },
+      {}
+    )
+  );
+}
+
+export const channelSagas = (dispatch, getState) => [
+  takeEvery("JOIN_USER_CHANNELS", action =>
+    joinUserChannels(action, dispatch, getState)
+  )
+];

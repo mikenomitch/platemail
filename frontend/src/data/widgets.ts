@@ -7,7 +7,7 @@ import withResetState from "./withResetState";
 
 export interface IWidget {
   content: string | null;
-  id: number | undefined;
+  id: number;
   title: string | null;
   user_id: number | null | undefined;
 }

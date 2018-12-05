@@ -17,7 +17,7 @@ function __addSocket(state) {
   return Object.assign({}, state, { socket });
 }
 
-function __joinChannel(state, { name, params }) {
+function __joinChannel(state, { name, params, callbacks }) {
   const { channels: originalChannels, socket } = state;
   const channel = socket.channel(name, params);
 
@@ -29,6 +29,11 @@ function __joinChannel(state, { name, params }) {
     .receive("error", resp => {
       console.log("Unable to join", resp);
     });
+
+  Object.keys(callbacks).forEach(eventName => {
+    console.log("HANDLING - ", eventName);
+    channel.on(eventName, callbacks[eventName]);
+  });
 
   const newChannels = Object.assign({}, originalChannels, {
     [name]: channel
