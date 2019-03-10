@@ -1,5 +1,5 @@
 # Dockerfile
-FROM elixir:1.7.3-alpine as build
+FROM elixir:1.8.1-alpine as build
 
 USER root
 

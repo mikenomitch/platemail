@@ -9,7 +9,7 @@ defmodule PlatemailWeb.Mixfile do
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixir: "~> 1.7",
+      elixir: "~> 1.8",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext, :phoenix_swagger] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -37,9 +37,9 @@ defmodule PlatemailWeb.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.0-rc.3", override: true},
+      {:phoenix, "~> 1.4.1", override: true},
       {:phoenix_pubsub, "~> 1.0"},
-      {:ecto_sql, "~> 3.0-rc"},
+      {:ecto_sql, "~> 3.0.5"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},

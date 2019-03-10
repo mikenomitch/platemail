@@ -4,7 +4,7 @@ Platemail is meant to provide a base boilerplate for quickly building out webapp
 
 ### Backend:
 
-- Elixir (1.7)
+- Elixir (1.8)
 - Erlang/OTP (21)
 - Phoenix (1.4)
 - Postgres
@@ -18,8 +18,9 @@ Platemail is meant to provide a base boilerplate for quickly building out webapp
 
 ### Ops:
 
-- Kubernetes
-- GCP
+- Terraform
+- Nomad
+- Docker
 
 ## Goals
 
@@ -97,9 +98,8 @@ Start the frontend:
 Deployment Dependencies:
 
 - docker
-- kubectl
-- gcloud cli
-- google cloud account
+- terraform
+- nomad
 
 ## Testing
 
