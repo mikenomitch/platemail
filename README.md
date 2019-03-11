@@ -88,7 +88,7 @@ Local Dev Dependencies:
 ## Running Locally
 
 Set ENV vars
-`export PORT=4000 HOST=localhost`
+`export PORT=4000 HOST=localhost DB_USER=postgres DB_PASSWORD=postgres DB_NAME=platemail_dev DB_HOST=localhost REPLACE_OS_VARS=true`
 
 Start the backend:
 `iex -S mix phx.server`

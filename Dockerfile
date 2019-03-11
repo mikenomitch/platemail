@@ -28,8 +28,8 @@ COPY . .
 RUN mix release --no-tar --verbose
 
 # prepare release image
-FROM alpine:3.6
-RUN apk add --update bash openssl
+FROM alpine:3.9
+RUN apk add --update bash libssl1.1 openssl
 
 RUN mkdir /app && chown -R nobody: /app
 WORKDIR /app
