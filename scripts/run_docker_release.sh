@@ -1,6 +1,8 @@
 echo === BUILD LOCALLY ===
 docker build -t platemail .
 
+echo === TODO: PUSH TO DOCKERHUB ===
+
 echo === RUN LOCALLY ===
 docker run --env HOST=localhost \
   --env PORT=4000 \
