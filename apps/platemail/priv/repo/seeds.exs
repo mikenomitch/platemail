@@ -25,11 +25,11 @@ end
 
 users = Enum.map(0..10, make_user)
 
-mike =
-  Platemail.Accounts.create_user(%{
-    email: "mikenomitch@gmail.com",
-    name: "Mike Nomitch"
-  })
+# mike =
+#   Platemail.Accounts.create_user(%{
+#     email: "mikenomitch@gmail.com",
+#     name: "Mike Nomitch"
+#   })
 
 # === USER CREDENTIALS ===
 

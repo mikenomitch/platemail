@@ -87,6 +87,9 @@ Local Dev Dependencies:
 
 ## Running Locally
 
+Set ENV vars
+`export PORT=4000 HOST=localhost`
+
 Start the backend:
 `iex -S mix phx.server`
 
