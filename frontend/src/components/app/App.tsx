@@ -69,7 +69,8 @@ class App extends Component<IAppProps, {}> {
 
     if (location.pathname === "/logged_in") {
       const { token } = parse(location.search);
-      loadFromToken(token);
+      const tokenString = token instanceof Array ? token[0] : token;
+      loadFromToken(tokenString || "");
     } else {
       loadInitialData();
     }

@@ -83,7 +83,7 @@ Local Dev Dependencies:
 `mix deps.get`
 `mix ecto.create`
 `mix ecto.migrate`
-`cd apps/platemail_web/lib/platemail_web/app && npm install`
+`cd ./frontend && npm install`
 
 ## Running Locally
 
@@ -92,6 +92,9 @@ Start the backend:
 
 Start the frontend:
 `cd priv/app && npm run start`
+
+Or run the local startup script:
+`./scripts/run.sh`
 
 ## Deploying
 
