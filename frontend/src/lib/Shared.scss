@@ -16,23 +16,25 @@
 
   transition: border $transition-time-short;
   transition: outline-color $transition-time-short;
+  transition: outline-style $transition-time-short;
   transition: outline-width $transition-time-short;
 
   &:hover,
   &:focus {
-    outline-width: 3px;
+    outline-style: solid;
+    outline-width: 2px;
     outline-color: $border-color-focused;
   }
 }
 
 @mixin input-error {
   border: solid $border-width-base $color-error;
-  outline-width: 3px;
+  outline-width: 2px;
   outline-color: $border-color-focused;
 
   &:hover,
   &:focus {
-    outline-width: 3px;
+    outline-width: 2px;
     outline-color: $color-error;
   }
 }
