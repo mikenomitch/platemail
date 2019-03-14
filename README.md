@@ -70,7 +70,7 @@ Devops featues:
 - Error Alerting (TODO)
 - Logging (TODO)
 
-## Setting Up
+## Setting Up for Local Dev
 
 Local Dev Dependencies:
 
@@ -103,7 +103,7 @@ Or run the local startup script:
 
 Deployment Dependencies:
 
-- docker
+- vagrant
 - terraform
 - nomad
 

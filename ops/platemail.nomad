@@ -1,52 +1,69 @@
 job "platemail" {
   datacenters = ["dc1"]
-
   type = "service"
 
-  update {
-    max_parallel = 1
-    min_healthy_time = "10s"
-    healthy_deadline = "3m"
-    progress_deadline = "10m"
-    auto_revert = false
-    canary = 0
-  }
+  // update {
+  //   max_parallel = 1
+  //   min_healthy_time = "10s"
+  //   healthy_deadline = "3m"
+  //   progress_deadline = "10m"
+  //   auto_revert = false
+  //   canary = 0
+  // }
 
-  migrate {
-    max_parallel = 1
-    health_check = "checks"
-    min_healthy_time = "10s"
-    healthy_deadline = "5m"
-  }
+  // migrate {
+  //   max_parallel = 1
+  //   health_check = "checks"
+  //   min_healthy_time = "10s"
+  //   healthy_deadline = "5m"
+  // }
 
   group "application" {
     count = 1
 
-    restart {
-      attempts = 2
-      interval = "30m"
-      delay = "15s"
-      mode = "fail"
-    }
+    // restart {
+    //   attempts = 2
+    //   interval = "30m"
+    //   delay = "15s"
+    //   mode = "fail"
+    // }
 
-    ephemeral_disk {
-      size = 300
-    }
+    // ephemeral_disk {
+    //   size = 300
+    // }
 
-    task "webservice" {
+    task "server" {
       driver = "docker"
 
       config {
         image = "mnomitch/platemail"
-        args = [
-          "-text", "'hello world'",
-          "-listen", ":4000",
-        ]
+        network_mode = "bridge"
+        args = ["foreground"]
+      }
 
-        port_map {
-          http = 4000
+      service {
+        name = "platemail-web"
+        tags = ["platemail-web", "platemail-web"]
+        port = "platemail_web"
+        check {
+          type = "http"
+          path = "/health"
+          interval = "10s"
+          timeout = "2s"
         }
       }
+
+      resources {
+        cpu = 256
+        memory = 256
+
+        network {
+          mbits = 10
+          port "platemail_web" {
+            static = 4000
+          }
+        }
+}
 
       env {
         PORT = "4000"
