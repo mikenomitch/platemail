@@ -6,6 +6,7 @@
 erl_crash.dump
 *.ez
 .envrc
+.vagrant
 
 /frontend/node_modules
 /frontend/npm-debug.log*
@@ -59,5 +60,3 @@ erl_crash.dump
 /apps/platemail_web/priv/static/static/*.css
 /apps/platemail_web/priv/static/swagger.json
 
-# Secrets
-/k8s/platemail-secrets.yaml

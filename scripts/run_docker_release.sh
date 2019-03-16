@@ -1,10 +1,12 @@
-echo === BUILD LOCALLY ===
+echo === BUILD IMAGE ===
 docker build -t platemail .
 
-echo === TODO: PUSH TO DOCKERHUB ===
+echo === PUSH TO DOCKERHUB ===
+docker push mnomitch/platemail
 
 echo === RUN LOCALLY ===
 docker run --env HOST=localhost \
+  --env FOO="BAZ" \
   --env PORT=4000 \
   --env DB_USER=postgres \
   --env DB_PASSWORD=postgres \

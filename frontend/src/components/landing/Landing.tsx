@@ -7,7 +7,7 @@ function Landing() {
   return (
     <div>
       <div className="headers">
-        <h1>Page Title</h1>
+        <h1>The Page Title</h1>
         <h3>Subtitle for the Page. Goes Here.</h3>
       </div>
 

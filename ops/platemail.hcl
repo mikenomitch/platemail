@@ -39,12 +39,27 @@ job "platemail" {
         image = "mnomitch/platemail"
         network_mode = "bridge"
         args = ["foreground"]
+
+        port_map = {
+          http = 4000
+          https = 4000
+        }
+      }
+
+      template {
+        destination = "secrets/file.env"
+        env         = true
+        splay       = "5m"
+        data = <<EOH
+FOO="{{key "FOO"}}"
+EOH
       }
 
       service {
         name = "platemail-web"
         tags = ["platemail-web", "platemail-web"]
-        port = "platemail_web"
+        port = "https"
+
         check {
           type = "http"
           path = "/health"
@@ -58,12 +73,11 @@ job "platemail" {
         memory = 256
 
         network {
-          mbits = 10
-          port "platemail_web" {
-            static = 4000
-          }
+          mbits = 2
+          port "http" {}
+          port "https" {}
         }
-}
+      }
 
       env {
         PORT = "4000"

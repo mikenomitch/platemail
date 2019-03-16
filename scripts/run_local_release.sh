@@ -6,7 +6,11 @@ export DB_USER=postgres
 export HOST=localhost
 export MIX_ENV=prod
 export PORT=4000
+export FOO="BAR"
 export REPLACE_OS_VARS=true
+
+echo === BUILDING FRONTEND ===
+cd ./frontend && npm run build && cd ..
 
 echo === COMPILING ===
 mix compile

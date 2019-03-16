@@ -72,6 +72,7 @@ function getClientEnvironment(publicUrl) {
         NODE_ENV: process.env.NODE_ENV || "development",
         PUBLIC_URL: publicUrl,
         API_HOST: process.env.HOST,
+        FOO: process.env.FOO,
         API_PORT: process.env.PORT
       }
     );
