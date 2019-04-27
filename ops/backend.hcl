@@ -1,4 +1,4 @@
-job "platemail" {
+job "backend" {
   datacenters = ["dc1"]
   type = "service"
 
@@ -6,7 +6,7 @@ job "platemail" {
     count = 2
 
     task "server" {
-      // driver = "docker"
+      driver = "docker"
 
       config {
         image = "mnomitch/platemail"
@@ -19,18 +19,18 @@ job "platemail" {
         }
       }
 
-//       template {
-//         destination = "secrets/file.env"
-//         env         = true
-//         splay       = "5m"
-//         data = <<EOH
-// FOO="{{key "FOO"}}"
-// EOH
-//       }
+      template {
+        destination = "secrets/file.env"
+        env         = true
+        splay       = "5m"
+        data = <<EOH
+FOO="{{key "FOO"}}"
+EOH
+      }
 
       service {
-        name = "platemail-web"
-        tags = ["urlprefix-/", "platemail-web"]
+        name = "platemail-backend"
+        tags = ["urlprefix-/"]
         port = "https"
 
         check {
