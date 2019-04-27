@@ -1,40 +1,34 @@
 job "proxy" {
   datacenters = ["dc1"]
   type = "system"
-  update {
-    stagger = "5s"
-    max_parallel = 1
-  }
 
-  group "haproxy" {
+  group "fabio" {
     count = 1
-    task "haproxy" {
-      driver = "docker"
-      config {
-        image = "haproxy/haproxy:1.9.7-alpine"
-        command = "/usr/local/bin/envoy"
-        args = [
-            "--concurrency 4",
-            "--config-path /etc/envoy.json",
-            "--mode serve",
-        ]
-        volumes = ["new/envoy.json:/etc/envoy.json" ]
-        network_mode = "host"
-      }
+
+    task "fabio" {
+      driver = "raw_exec"
+
+      // https://github.com/fabiolb/fabio/releases
       artifact {
-        source = "https://gist.githubusercontent.com/anubhavmishra/afe699320bdc4d855d13e7cc244822e0/raw/5891bdb7b0ad1dc633c771c8c8e892cafc8a9978/envoy.json"
+        source = "https://github.com/fabiolb/fabio/releases/download/v1.5.11/fabio-1.5.11-go1.11.5-darwin_amd64"
       }
-      template {
-        source        = "local/envoy.json"
-        destination   = "new/envoy.json"
-        change_mode   = "restart"
+
+      config {
+        command = "fabio-1.5.11-go1.11.5-darwin_amd64"
       }
+
       resources {
+        cpu = 256
+        memory = 256
+
         network {
-          mbits = 10
-          port "envoy" {
-            static = 1010
-          }1
+          mbits = 20
+          port "lb" {
+            static = 9999
+          }
+          port "fabio_ui" {
+            static = 9998
+          }
         }
       }
     }
