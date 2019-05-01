@@ -9,9 +9,6 @@ RUN npm install
 
 COPY ./ ./
 
-# TODO: make it slightly less aggressive
-RUN chmod 777 ./build_and_launch.sh
-
 EXPOSE 4000
 
 CMD ["npm", "run", "start_prod"]

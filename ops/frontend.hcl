@@ -12,8 +12,6 @@ job "frontend" {
         image = "mnomitch/platemail_frontend"
         network_mode = "bridge"
 
-        command = "npm run build && node app.js"
-
         port_map = {
           http = 4000
           https = 4000
@@ -37,8 +35,13 @@ EOH
         check {
           type = "http"
           path = "/"
-          interval = "10s"
+          interval = "5m"
           timeout = "2s"
+
+          check_restart {
+            limit = 3
+            grace = "5m"
+          }
         }
       }
 
@@ -52,6 +55,8 @@ EOH
           port "https" {}
         }
       }
+
+      kill_timeout = "5m"
 
       env {
         PORT = "4000"
