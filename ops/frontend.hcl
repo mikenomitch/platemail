@@ -24,6 +24,7 @@ job "frontend" {
         splay       = "5m"
         data = <<EOH
 FOO="{{key "FOO"}}"
+REACT_APP_FOO="{{key "REACT_APP_FOO"}}"
 EOH
       }
 
@@ -35,12 +36,13 @@ EOH
         check {
           type = "http"
           path = "/"
-          interval = "5m"
+          interval = "10s"
           timeout = "2s"
 
           check_restart {
-            limit = 3
-            grace = "5m"
+            limit = 60
+            interval = "10s"
+            grace = "10s"
           }
         }
       }
@@ -56,7 +58,7 @@ EOH
         }
       }
 
-      kill_timeout = "5m"
+      kill_timeout = "10m"
 
       env {
         PORT = "4000"
