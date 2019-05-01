@@ -73,6 +73,7 @@ function getClientEnvironment(publicUrl) {
         PUBLIC_URL: publicUrl,
         API_HOST: process.env.HOST,
         FOO: process.env.FOO,
+        REACT_APP_FOO: process.env.REACT_APP_FOO,
         API_PORT: process.env.PORT
       }
     );

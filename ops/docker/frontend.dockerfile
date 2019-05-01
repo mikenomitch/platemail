@@ -1,5 +1,5 @@
 # Dockerfile
-FROM node:8.16.0-alpine
+FROM node:10.15.3-alpine
 
 WORKDIR /usr/src/app
 
@@ -7,12 +7,11 @@ WORKDIR /usr/src/app
 COPY ./package*.json ./
 RUN npm install
 
-# COPY ./frontend ./
 COPY ./ ./
 
-# do this in prod!
-RUN npm run build
+# TODO: make it slightly less aggressive
+RUN chmod 777 ./build_and_launch.sh
 
 EXPOSE 4000
 
-CMD ["node", "app.js"]
+CMD ["npm", "run", "start_prod"]

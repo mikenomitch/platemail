@@ -15,10 +15,12 @@ Platemail is meant to provide a base boilerplate for quickly building out webapp
 - Webpack (4)
 - Preact
 - Redux
+- Node (10.15)
 
 ### Ops:
 
 - Terraform
+- Consul
 - Nomad
 - Docker
 
@@ -51,6 +53,7 @@ Frontend features:
 - Gzipped and minified production build
 - Redux-based data layer with DRY base reducer
 - Socket connection to the backend's phoenix channels
+- Server-side rendering of specific pages (TODO)
 - A few simple example tests (TODO)
 
 Development features:
@@ -65,10 +68,11 @@ Development features:
 
 Devops featues:
 
-- Infrastructure in Code
+- Infrastructure as Code (Terraform)
+- Containerized Orchestration (Docker & Nomad)
+- Load balanced (Fabio)
 - Single command deploys (TODO)
-- Error Alerting (TODO)
-- Logging (TODO)
+- Error Alerting & Logging (TODO)
 
 ## Setting Up for Local Dev
 
@@ -87,24 +91,15 @@ Local Dev Dependencies:
 
 ## Running Locally
 
-Set ENV vars
-`export PORT=4000 HOST=localhost DB_USER=postgres DB_PASSWORD=postgres DB_NAME=platemail_dev DB_HOST=localhost REPLACE_OS_VARS=true`
-
-Start the backend:
-`iex -S mix phx.server`
-
-Start the frontend:
-`cd priv/app && npm run start`
-
-Or run the local startup script:
+Run the local startup script:
 `./scripts/run.sh`
 
 ## Deploying
 
 Deployment Dependencies:
 
-- vagrant
 - terraform
+- consul
 - nomad
 
 ## Testing

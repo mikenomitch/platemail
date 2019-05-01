@@ -69,6 +69,14 @@ defmodule PlatemailWeb.Router do
   end
 
   # ==================
+  #   Health Check
+  # ==================
+
+  scope "/", PlatemailWeb do
+    get("/health", PageController, :healthcheck)
+  end
+
+  # ==================
   #   BROWSER ROUTES
   # ==================
 

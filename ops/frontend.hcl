@@ -12,6 +12,8 @@ job "frontend" {
         image = "mnomitch/platemail_frontend"
         network_mode = "bridge"
 
+        command = "npm run build && node app.js"
+
         port_map = {
           http = 4000
           https = 4000

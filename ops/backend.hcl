@@ -9,7 +9,7 @@ job "backend" {
       driver = "docker"
 
       config {
-        image = "mnomitch/platemail"
+        image = "mnomitch/platemail_backend"
         network_mode = "bridge"
         args = ["foreground"]
 
