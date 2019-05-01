@@ -34,7 +34,7 @@ EOH
 
         check {
           type = "http"
-          path = "/health"
+          path = "/"
           interval = "10s"
           timeout = "2s"
         }

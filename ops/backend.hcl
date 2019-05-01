@@ -30,7 +30,7 @@ EOH
 
       service {
         name = "platemail-backend"
-        tags = ["urlprefix-/"]
+        tags = ["urlprefix-/api"]
         port = "https"
 
         check {

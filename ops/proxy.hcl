@@ -8,7 +8,8 @@ job "proxy" {
     task "fabio" {
       driver = "raw_exec"
 
-      // see https://github.com/fabiolb/fabio/releases for links
+      // see https://github.com/fabiolb/fabio/releases
+      // for other releases
       artifact {
         source = "https://github.com/fabiolb/fabio/releases/download/v1.5.11/fabio-1.5.11-go1.11.5-darwin_amd64"
       }
