@@ -60,3 +60,6 @@ erl_crash.dump
 /apps/platemail_web/priv/static/static/*.css
 /apps/platemail_web/priv/static/swagger.json
 
+
+/ops/terraform/.terraform
+/ops/terraform/.terraform/*

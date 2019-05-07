@@ -1,5 +1,5 @@
 # Dockerfile
-FROM node:10.15.3-alpine
+FROM node:8.16.0-alpine
 
 WORKDIR /usr/src/app
 
@@ -10,5 +10,7 @@ RUN npm install
 COPY ./ ./
 
 EXPOSE 4000
+
+# TODO: build it and change "start_prod" to "start"
 
 CMD ["npm", "run", "start_prod"]
