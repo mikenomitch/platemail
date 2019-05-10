@@ -1,5 +1,5 @@
 job "frontend" {
-  datacenters = ["dc1"]
+  datacenters = ["us-east-1"]
   type = "service"
 
   group "application" {
@@ -22,9 +22,14 @@ job "frontend" {
         destination = "secrets/file.env"
         env         = true
         splay       = "5m"
+//         data = <<EOH
+// FOO="{{key "FOO"}}"
+// REACT_APP_FOO="{{key "REACT_APP_FOO"}}"
+// EOH
+//       }
         data = <<EOH
-FOO="{{key "FOO"}}"
-REACT_APP_FOO="{{key "REACT_APP_FOO"}}"
+FOO="FOO"
+REACT_APP_FOO="Bar"
 EOH
       }
 
@@ -41,7 +46,6 @@ EOH
 
           check_restart {
             limit = 60
-            interval = "10s"
             grace = "10s"
           }
         }

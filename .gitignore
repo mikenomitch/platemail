@@ -1,12 +1,41 @@
-/_build
-/.elixir_ls
-/.vscode/chrome
-/cover
-/deps
-erl_crash.dump
-*.ez
-.envrc
-.vagrant
+# === GENERAL ===
+
+.vscode/chrome
+
+# === API ===
+
+/api/_build
+/api/.elixir_ls
+/api/cover
+/api/deps
+/api/erl_crash.dump
+/api/*.ez
+/api/.envrc
+
+/api/apps/platemail/_build
+/api/apps/platemail/db
+/api/apps/platemail/deps
+/api/apps/platemail/*.ez
+/api/apps/platemail/.elixir_ls
+
+/api/apps/platemail/config/*.secret.exs
+/api/apps/platemail/priv/app/coverage
+/api/apps/platemail/priv/app/build
+/api/apps/platemail/priv/app/.DS_Store
+/api/apps/platemail/priv/app/.env.local
+/api/apps/platemail/priv/app/.env.development.local
+/api/apps/platemail/priv/app/.env.test.local
+/api/apps/platemail/priv/app/.env.production.local
+
+/api/apps/platemail_web/priv/static/static
+/api/apps/platemail_web/priv/static/swagger.json
+/api/apps/platemail_web/priv/static/webapp
+/api/apps/platemail_web/priv/static/css
+
+# Generated on crash by the VM
+/api/apps/platemail/erl_crash.dump
+
+# === FRONTEND ===
 
 /frontend/node_modules
 /frontend/npm-debug.log*
@@ -14,52 +43,9 @@ erl_crash.dump
 /frontend/yarn-error.log*
 /frontend/build
 
-/apps/platemail_web/priv/static/webapp
-/apps/platemail_web/priv/static/css
-/apps/platemail_web/priv/static/css
-
-# App artifacts
-/apps/platemail/_build
-/apps/platemail/db
-/apps/platemail/deps
-/apps/platemail/*.ez
-/apps/platemail/.elixir_ls
-
-# Generated on crash by the VM
-/apps/platemail/erl_crash.dump
-
-# Files matching config/*.secret.exs pattern contain sensitive
-# data and you should not commit them into version control.
-#
-# Alternatively, you may comment the line below and commit the
-# secrets files as long as you replace their contents by environment
-# variables.
-/apps/platemail/config/*.secret.exs
-
-# testing
-/apps/platemail/priv/app/coverage
-
-# production
-/apps/platemail/priv/app/build
-
-# misc
-/apps/platemail/priv/app/.DS_Store
-/apps/platemail/priv/app/.env.local
-/apps/platemail/priv/app/.env.development.local
-/apps/platemail/priv/app/.env.test.local
-/apps/platemail/priv/app/.env.production.local
-
-/frontend/node_modules
-/frontend/npm-debug.log*
-/frontend/yarn-debug.log*
-/frontend/yarn-error.log*
-
-/apps/platemail_web/priv/static/static
-/apps/platemail_web/priv/static/static/*
-/apps/platemail_web/priv/static/static/*.js
-/apps/platemail_web/priv/static/static/*.css
-/apps/platemail_web/priv/static/swagger.json
-
+# === OPS ===
 
 /ops/terraform/.terraform
 /ops/terraform/.terraform/*
+/ops/terraform/terraform.tfstate
+/ops/terraform/terraform.tfstate.backup

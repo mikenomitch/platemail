@@ -13,6 +13,7 @@ echo === BUILDING FRONTEND ===
 cd ./frontend && npm run build && cd ..
 
 echo === COMPILING ===
+cd ./api
 mix compile
 mix phx.digest
 

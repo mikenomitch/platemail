@@ -1,16 +1,11 @@
 # DevOps ToDos:
 
-- Get frontend "production" build running on node alone - DONE
-  - Get this running in a lone docker container - DONE
-  - Get this container running as a nomad job - DONE
-- Get backend running as a Nomad job with Docker - DONE
-- Locally can run all containers/have single IP to use app - DONE
-
+- Frontend properly building
 - Locally can swap out K/Vs well
-- Get Terraform working with nomad/consul/etc
-- Get it up on AWS with RDS
+- With RDS up (https://registry.terraform.io/modules/terraform-aws-modules/rds/aws/1.28.0)
 
 - To explore once this is done:
-  - Backend running without Docker (for hot upgrades)
-  - Server-Side rendering with Node
-    If you cant use Fabio for some reason...
+  - Releasing with the new elixir release on 1.9
+  - Server-Side rendering with Node (next js?)
+  - Create react app 3
+    - https://facebook.github.io/create-react-app/docs/title-and-meta-tags#generating-dynamic-meta-tags-on-the-server

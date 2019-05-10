@@ -1,33 +1,24 @@
 job "proxy" {
-  datacenters = ["dc1"]
+  datacenters = ["us-east-1"]
   type = "system"
 
-  group "fabio" {
-    count = 1
-
-    task "fabio" {
-      driver = "raw_exec"
-
-      // see https://github.com/fabiolb/fabio/releases
-      // for other releases
-      artifact {
-        source = "https://github.com/fabiolb/fabio/releases/download/v1.5.11/fabio-1.5.11-go1.11.5-darwin_amd64"
-      }
-
+  group "proxy" {
+    task "proxy" {
+      driver = "docker"
       config {
-        command = "fabio-1.5.11-go1.11.5-darwin_amd64"
+        image = "fabiolb/fabio"
+        network_mode = "host"
       }
 
       resources {
-        cpu = 256
-        memory = 256
-
+        cpu    = 200
+        memory = 128
         network {
           mbits = 20
           port "lb" {
             static = 9999
           }
-          port "fabio_ui" {
+          port "ui" {
             static = 9998
           }
         }

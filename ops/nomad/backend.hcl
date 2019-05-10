@@ -1,5 +1,5 @@
 job "backend" {
-  datacenters = ["dc1"]
+  datacenters = ["us-east-1"]
   type = "service"
 
   group "application" {

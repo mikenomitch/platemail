@@ -4,7 +4,7 @@ export function mapStateToProps({ calls }) {
   return { calls };
 }
 
-export default ComponentToExtend => {
+export default (ComponentToExtend: any) => {
   return connect(
     mapStateToProps,
     null

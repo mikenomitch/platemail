@@ -1,6 +1,7 @@
 import store from "store/dist/store.modern";
+import { IAction } from "../../lib/types";
 
-const getFromLocalStorage = reduxStore => next => action => {
+const getFromLocalStorage = reduxStore => next => (action: IAction) => {
   const hasLocalKey = action.localStorageKey;
   if (hasLocalKey) {
     const storedAuth = store.get(action.localStorageKey) || "{}";
