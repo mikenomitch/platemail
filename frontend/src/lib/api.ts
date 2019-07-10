@@ -77,13 +77,6 @@ function __baseCall(
 }
 
 const api = {
-  delete: (
-    path: string,
-    opts: object = { useNonApi: false }
-  ): Promise<object> => {
-    const url = __makeURL(path, opts);
-    return __baseCall("DELETE", url, {}, opts);
-  },
   get: (
     path: string,
     params = {},
@@ -104,6 +97,7 @@ const api = {
 
     return __baseCall("GET", url, {}, opts);
   },
+
   post: (
     path: string,
     params: object,
@@ -112,6 +106,7 @@ const api = {
     const url = __makeURL(path, opts);
     return __baseCall("POST", url, params, opts);
   },
+
   put: (
     path: string,
     params: object,
@@ -119,6 +114,14 @@ const api = {
   ): Promise<object> => {
     const url = __makeURL(path, opts);
     return __baseCall("PUT", url, params, opts);
+  },
+
+  delete: (
+    path: string,
+    opts: object = { useNonApi: false }
+  ): Promise<object> => {
+    const url = __makeURL(path, opts);
+    return __baseCall("DELETE", url, {}, opts);
   }
 };
 

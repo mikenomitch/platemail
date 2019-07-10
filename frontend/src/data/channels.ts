@@ -1,5 +1,5 @@
 import { BASE_SOCKET_URL } from "../lib/constants";
-import { Socket } from "../lib/phoenix";
+import { Socket } from "../vendor/phoenix";
 
 const defaultState = {
   channels: {},
@@ -59,10 +59,13 @@ export function channels(state = defaultState, action) {
   switch (action.type) {
     case "CONNECT_TO_SOCKET":
       return __addSocket(state);
+
     case "JOIN_CHANNEL":
       return __joinChannel(state, action.payload);
+
     case "LEAVE_USER_CHANNELS":
       return __leaveUserChannels(state);
+
     default:
       return state;
   }

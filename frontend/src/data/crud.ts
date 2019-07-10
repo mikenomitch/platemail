@@ -92,10 +92,13 @@ const handleEvent = (
   switch (payload.type) {
     case "created":
       return handleUpsertItem(state, payload.item);
+
     case "updated":
       return handleUpsertItem(state, payload.item);
+
     case "deleted":
       return handleRemoveItem(state, payload.item.id);
+
     default:
       return state;
   }
@@ -111,10 +114,13 @@ const makeCrudReducer = (name: string) => {
     switch (action.type) {
       case `${name}_EVENT`:
         return handleEvent(state, action.payload);
+
       case `UPSERT_${name}`:
         return handleUpsertItem(state, action.payload);
+
       case `UPSERT_${name}S`:
         return handleUpsertItems(state, action.payload);
+
       case `REMOVE_${name}`:
         return handleRemoveItem(state, action.payload);
     }

@@ -23,6 +23,7 @@ export function ui(state = defaultState, action) {
       return Object.assign({}, state, {
         toasts: [action.payload]
       });
+
     case "HIDE_TOAST":
       const toast = state.toasts.find((t: IToast) => t.id === action.payload);
       if (!toast) {
@@ -33,10 +34,12 @@ export function ui(state = defaultState, action) {
       return Object.assign({}, state, {
         toasts: [withHidden]
       });
+
     case "REMOVE_TOAST":
       return Object.assign({}, state, {
         toasts: state.toasts.filter((t: IToast) => t.id !== action.payload)
       });
+
     default:
       return state;
   }

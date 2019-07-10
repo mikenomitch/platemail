@@ -5,6 +5,7 @@ const withResetState = (defaultState, revertType) => childReducer => (
   switch (action.type) {
     case revertType:
       return defaultState;
+
     default:
       return childReducer(state, action);
   }

@@ -28,6 +28,7 @@ function __setCall(state, payload) {
   const newCallVal = Object.assign({}, payload, {
     previousCall: state[payload.key]
   });
+
   return Object.assign({}, state, { [payload.key]: newCallVal });
 }
 
@@ -36,6 +37,7 @@ function callReducer(state = defaultState, action) {
   switch (action.type) {
     case "SET_CALL":
       return __setCall(state, action.payload);
+
     default:
       return state;
   }
