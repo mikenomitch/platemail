@@ -8,9 +8,7 @@ defmodule PlatemailWeb.PageController do
   end
 
   def healthcheck(conn, _params) do
-    IO.puts "healthcheck"
     msg = "Healthy - #{System.get_env("FOO")}"
-    IO.puts msg
     Plug.Conn.send_resp(conn, 200, msg)
   end
 

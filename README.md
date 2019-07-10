@@ -4,8 +4,8 @@ Platemail is meant to provide a base boilerplate for quickly building out webapp
 
 ### Backend:
 
-- Elixir (1.8)
-- Erlang/OTP (21)
+- Elixir (1.9)
+- Erlang/OTP (22)
 - Phoenix (1.4)
 - Postgres
 

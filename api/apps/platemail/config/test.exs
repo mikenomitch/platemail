@@ -1,6 +1,5 @@
 use Mix.Config
 
-# Configure your database
 config :platemail, Platemail.Repo,
   username: "postgres",
   password: "postgres",
@@ -8,5 +7,5 @@ config :platemail, Platemail.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-# Same passwords in tests
+# Use same passwords in tests
 config :pbkdf2_elixir, rounds: 1

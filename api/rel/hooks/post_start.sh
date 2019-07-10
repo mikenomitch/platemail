@@ -1,1 +1,0 @@
-echo "=== Phoenix App Started ==="

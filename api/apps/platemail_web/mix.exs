@@ -9,7 +9,7 @@ defmodule PlatemailWeb.Mixfile do
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixir: "~> 1.8",
+      elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext, :phoenix_swagger] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -18,9 +18,6 @@ defmodule PlatemailWeb.Mixfile do
     ]
   end
 
-  # Configuration for the OTP application.
-  #
-  # Type `mix help compile.app` for more information.
   def application do
     [
       mod: {PlatemailWeb.Application, []},
@@ -28,36 +25,28 @@ defmodule PlatemailWeb.Mixfile do
     ]
   end
 
-  # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
-  # Specifies your project dependencies.
-  #
-  # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.1", override: true},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:ecto_sql, "~> 3.0.5"},
+      {:phoenix, "~> 1.4.9", override: true},
+      {:phoenix_pubsub, "~> 1.1.2"},
+      {:ecto_sql, "~> 3.1.6"},
       {:phoenix_ecto, "~> 4.0"},
-      {:phoenix_html, "~> 2.10"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:gettext, "~> 0.11"},
+      {:phoenix_html, "~> 2.13"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:gettext, "~> 0.17"},
       {:platemail, in_umbrella: true},
-      {:plug_cowboy, "~> 2.0"},
-      {:plug, "~> 1.7"},
-      {:jason, "~> 1.0"},
+      {:plug_cowboy, "~> 2.1.0"},
+      {:plug, "~> 1.8.2"},
+      {:jason, "~> 1.1"},
       {:scrivener_ecto, "~> 2.0"},
       {:phoenix_swagger, "~> 0.8"},
       {:ex_json_schema, "~> 0.5"}
     ]
   end
 
-  # Aliases are shortcuts or tasks specific to the current project.
-  # For example, we extend the test task to create and migrate the database.
-  #
-  # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [test: ["ecto.create --quiet", "ecto.migrate", "test"]]
   end

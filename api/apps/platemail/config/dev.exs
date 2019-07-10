@@ -1,6 +1,5 @@
 use Mix.Config
 
-# Configure your database
 config :platemail, Platemail.Repo,
   database: "platemail_dev",
   username: "postgres",

@@ -3,9 +3,7 @@
   "paths": {
     "/api/v1/widgets/{id}": {
       "get": {
-        "tags": [
-          "Widget"
-        ],
+        "tags": ["Widget"],
         "summary": "",
         "responses": {
           "200": {
@@ -15,9 +13,7 @@
             "description": "OK"
           }
         },
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "operationId": "PlatemailWeb.Api.V1.WidgetController.show",
         "description": "The show page for a widget.\n"
