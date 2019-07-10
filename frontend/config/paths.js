@@ -47,14 +47,14 @@ module.exports = {
   appIndexJs: resolveApp("src/index.tsx"),
   appPackageJson: resolveApp("package.json"),
   appSrc: resolveApp("src"),
-  sharedScss: resolveApp("src/lib/Shared.scss"),
+  sharedScss: resolveApp("src/lib/styles/Shared.scss"),
   yarnLockFile: resolveApp("yarn.lock"),
   testsSetup: resolveApp("src/test/setupTests.ts"),
   appNodeModules: resolveApp("node_modules"),
   appTsConfig: resolveApp("tsconfig.json"),
   appTsProdConfig: resolveApp("tsconfig.prod.json"),
   appTsLint: resolveApp("tslint.json"),
-  scssVars: resolveApp("src/lib/Variables.scss"),
+  scssVars: resolveApp("src/lib/styles/Variables.scss"),
   publicUrl: getPublicUrl(resolveApp("package.json")),
   servedPath: getServedPath(resolveApp("package.json"))
 };
