@@ -6,6 +6,17 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <script>
+      // this is not great, but will allow us to use env
+      // vars from either the prod build setup, or
+      // via process.env locally
+      try {
+        window.runtimeEnv = __PROD_BUILD_RUNTIME_VARS__;
+        window.useRuntimeEnv = true;
+      } catch (error) {
+        window.useRuntimeEnv = false;
+      }
+    </script>
     <meta name="theme-color" content="#000000" />
     <!--
       manifest.json provides metadata used when your web app is added to the

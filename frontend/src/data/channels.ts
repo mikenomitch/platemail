@@ -1,4 +1,4 @@
-import { BASE_SOCKET_URL } from "../lib/constants";
+import { baseSocketUrl } from "../lib/runtimeEnv";
 import { Socket } from "../vendor/phoenix";
 
 const defaultState = {
@@ -15,7 +15,8 @@ const merge = (objA, objB) => {
 // =================
 
 function __addSocket(state) {
-  const socket = new Socket(BASE_SOCKET_URL, { params: {} });
+  console.log("baseSocketUrl", baseSocketUrl());
+  const socket = new Socket(baseSocketUrl(), { params: {} });
   socket.connect(null);
 
   return merge(state, { socket });

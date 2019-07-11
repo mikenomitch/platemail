@@ -1,13 +1,14 @@
 # Dockerfile
-FROM node:8.16.0-alpine
+FROM node:10.16.0-alpine
 
 WORKDIR /usr/src/app
 
-# COPY ./frontend/package*.json ./
-COPY ./package*.json ./
+COPY ./frontend/package*.json ./
 RUN npm install
 
-COPY ./ ./
+COPY ./frontend ./
+
+RUN npm run build
 
 EXPOSE 4000
 

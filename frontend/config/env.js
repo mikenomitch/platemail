@@ -71,10 +71,8 @@ function getClientEnvironment(publicUrl) {
       {
         NODE_ENV: process.env.NODE_ENV || "development",
         PUBLIC_URL: publicUrl,
-        API_HOST: process.env.HOST,
-        FOO: process.env.FOO,
-        REACT_APP_FOO: process.env.REACT_APP_FOO,
-        API_PORT: process.env.PORT
+        API_HOST: process.env.HOST || "0.0.0.0",
+        API_PORT: process.env.PORT || "3000"
       }
     );
   // Stringify all values so we can feed into Webpack DefinePlugin
@@ -82,7 +80,8 @@ function getClientEnvironment(publicUrl) {
     "process.env": Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);
       return env;
-    }, {})
+    }, {}),
+    __ENV_FROM_SERVER__: { devstring: "yay" }
   };
 
   return { raw, stringified };

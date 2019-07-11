@@ -1,4 +1,4 @@
-import { BASE_API_URL, BASE_URL } from "./constants";
+import { baseApiUrl, baseUrl } from "./runtimeEnv";
 
 function __jsonify(res) {
   return res.json();
@@ -56,7 +56,7 @@ async function __checkStatus(res, resHandler) {
 }
 
 function __makeURL(path: string, opts: any): string {
-  return opts.useNonApi ? BASE_URL + path : BASE_API_URL + path;
+  return opts.useNonApi ? baseUrl() + path : baseApiUrl() + path;
 }
 
 function __baseCall(
