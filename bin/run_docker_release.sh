@@ -1,5 +1,3 @@
-# echo === RUN LOCALLY ===
-
 docker run --env HOST=localhost \
   --env FOO="BAZ" \
   --env PORT=4000 \

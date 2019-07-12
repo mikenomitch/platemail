@@ -22,14 +22,13 @@ job "frontend" {
         destination = "secrets/file.env"
         env         = true
         splay       = "5m"
-//         data = <<EOH
-// FOO="{{key "FOO"}}"
-// REACT_APP_FOO="{{key "REACT_APP_FOO"}}"
-// EOH
-//       }
         data = <<EOH
-FOO="FOO"
-REACT_APP_FOO="Bar"
+FOO="{{key "platemail_ui/FOO"}}"
+PORT="{{key "platemail_ui/PORT"}}"
+API_PORT="{{key "platemail_ui/API_PORT"}}"
+API_HOST="{{key "platemail_ui/API_HOST"}}"
+NODE_ENV="{{key "platemail_ui/NODE_ENV"}}"
+REACT_APP="{{key "platemail_ui/REACT_APP"}}"
 EOH
       }
 
@@ -65,7 +64,6 @@ EOH
       kill_timeout = "10m"
 
       env {
-        PORT = "4000"
         HTTPS = true
       }
     }

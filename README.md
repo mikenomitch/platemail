@@ -90,7 +90,7 @@ Local Dev Dependencies:
 ## Running Locally
 
 Run the local startup script:
-`./scripts/run.sh`
+`./bin/run.sh`
 
 ## Deploying
 

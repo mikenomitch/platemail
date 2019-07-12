@@ -9,9 +9,8 @@ job "backend" {
       driver = "docker"
 
       config {
-        image = "mnomitch/platemail_backend"
+        image = "mnomitch/platemail_api"
         network_mode = "bridge"
-        args = ["foreground"]
 
         port_map = {
           http = 4000
@@ -24,13 +23,20 @@ job "backend" {
         env         = true
         splay       = "5m"
         data = <<EOH
-FOO="{{key "FOO"}}"
+FOO="{{key "platemail_api/FOO"}}"
+PORT="{{key "platemail_api/PORT"}}"
+DB_USER="{{key "platemail_api/DB_USER"}}"
+DB_PASSWORD="{{key "platemail_api/DB_PASSWORD"}}"
+DB_NAME="{{key "platemail_api/DB_NAME"}}"
+DB_HOST="{{key "platemail_api/DB_HOST"}}"
+SECRET_KEY_BASE="{{key "platemail_api/SECRET_KEY_BASE"}}"
+REPLACE_OS_VARS="{{key "platemail_api/REPLACE_OS_VARS"}}"
 EOH
       }
 
       service {
         name = "platemail-backend"
-        tags = ["urlprefix-/api"]
+        tags = ["urlprefix-/api", "urlprefix-/docs"]
         port = "https"
 
         check {
@@ -50,16 +56,6 @@ EOH
           port "http" {}
           port "https" {}
         }
-      }
-
-      env {
-        PORT = "4000"
-        DB_USER = "postgres"
-        DB_PASSWORD = "postgres"
-        DB_NAME = "platemail_dev"
-        DB_HOST = "host.docker.internal"
-        SECRET_KEY_BASE = "9bhPzyt2a7QLFKecq0o8YTlKtpMk77Q4Sg1FxOZzGCao/+HZ4Eos637DGK0M4m2K"
-        REPLACE_OS_VARS = true
       }
     }
   }
