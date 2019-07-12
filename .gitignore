@@ -35,13 +35,13 @@
 # Generated on crash by the VM
 /api/apps/platemail/erl_crash.dump
 
-# === FRONTEND ===
+# === UI ===
 
-/frontend/node_modules
-/frontend/npm-debug.log*
-/frontend/yarn-debug.log*
-/frontend/yarn-error.log*
-/frontend/build
+/ui/node_modules
+/ui/npm-debug.log*
+/ui/yarn-debug.log*
+/ui/yarn-error.log*
+/ui/build
 
 # === OPS ===
 

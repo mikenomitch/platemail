@@ -67,7 +67,6 @@ EOH
       env {
         PORT = "4000"
         HTTPS = true
-        REPLACE_OS_VARS = true
       }
     }
   }

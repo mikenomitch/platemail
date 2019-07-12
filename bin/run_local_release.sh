@@ -6,11 +6,7 @@ export DB_USER=postgres
 export HOST=localhost
 export MIX_ENV=prod
 export PORT=4000
-export FOO="BAR"
 export REPLACE_OS_VARS=true
-
-echo === BUILDING FRONTEND ===
-cd ./frontend && npm run build && cd ..
 
 echo === COMPILING ===
 cd ./api
@@ -18,7 +14,7 @@ mix compile
 mix phx.digest
 
 echo === BUILDING RELEASE ===
-mix release --env=prod
+mix release
 
 echo === RUNNING RELEASE ===
-_build/prod/rel/platemail/bin/platemail foreground
+_build/prod/rel/platemail/bin/platemail start

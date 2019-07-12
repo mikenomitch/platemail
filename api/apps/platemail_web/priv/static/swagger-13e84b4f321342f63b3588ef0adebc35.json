@@ -1,0 +1,27 @@
+{
+  "swagger": "2.0",
+  "paths": {},
+  "info": {
+    "version": "1.0",
+    "title": "Platemail"
+  },
+  "definitions": {
+    "Widget": {
+      "type": "object",
+      "title": "Widget",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Widget 23-B",
+          "description": "Name of the widget"
+        },
+        "content": {
+          "type": "string",
+          "example": "Widget 14-A",
+          "description": "Content of the widget."
+        }
+      },
+      "description": "A widget is similar to a sprocket."
+    }
+  }
+}

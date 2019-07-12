@@ -84,10 +84,8 @@ Local Dev Dependencies:
 - node/npm
 - webpack
 
-`mix deps.get`
-`mix ecto.create`
-`mix ecto.migrate`
-`cd ./frontend && npm install`
+`cd ./api && mix deps.get && mix ecto.create && mix ecto.migrate`
+`cd ./ui && npm install`
 
 ## Running Locally
 

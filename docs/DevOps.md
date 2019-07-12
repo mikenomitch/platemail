@@ -1,8 +1,8 @@
 # DevOps ToDos:
 
-- Frontend properly building
-- Locally can swap out K/Vs well
-- With RDS up (https://registry.terraform.io/modules/terraform-aws-modules/rds/aws/1.28.0)
+- Get RDS Running
+- Get DNS up
+- Get Logging/Alerting working
 
 - To explore once this is done:
   - Elixir 1.9 Releases

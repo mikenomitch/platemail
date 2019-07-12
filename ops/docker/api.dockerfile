@@ -1,5 +1,5 @@
 # Dockerfile
-FROM elixir:1.8.1-alpine as build
+FROM elixir:1.9.0-alpine as build
 
 USER root
 
@@ -20,15 +20,14 @@ ENV MIX_ENV=prod
 # install mix dependencies
 COPY mix.exs mix.lock ./
 COPY config ./
-COPY deps ./
-RUN mix deps.compile
+RUN mix deps.get --only prod
 
 # build release
-COPY . .
-RUN mix release --no-tar --verbose
+COPY ./ ./
+RUN mix release
 
 # prepare release image
-FROM alpine:3.9
+FROM alpine:3.10.1
 RUN apk add --update bash libssl1.1 openssl
 
 RUN mkdir /app && chown -R nobody: /app
