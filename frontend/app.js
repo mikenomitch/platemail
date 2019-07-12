@@ -1,11 +1,13 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+
+const envHash = require("./config/envVars");
 const app = express();
 
 const handleIndex = (req, res) => {
   const indexPath = path.join(__dirname, "build", "index.html");
-  const envString = JSON.stringify({ API_PORT: "RUNTIME PORT" });
+  const envString = JSON.stringify(envHash);
 
   const indexFile = fs.readFileSync(indexPath, "utf8");
   const withEnv = indexFile.replace("__PROD_BUILD_RUNTIME_VARS__", envString);

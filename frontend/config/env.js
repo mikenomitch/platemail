@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const paths = require("./paths");
+const envVars = require("./envVars");
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve("./paths")];
@@ -56,32 +57,15 @@ process.env.NODE_PATH = (process.env.NODE_PATH || "")
   .map(folder => path.resolve(appDirectory, folder))
   .join(path.delimiter);
 
-// Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be
-// injected into the application via DefinePlugin in Webpack configuration.
-const REACT_APP = /^REACT_APP_/i;
-
 function getClientEnvironment(publicUrl) {
-  const raw = Object.keys(process.env)
-    .filter(key => REACT_APP.test(key))
-    .reduce(
-      (env, key) => {
-        env[key] = process.env[key];
-        return env;
-      },
-      {
-        NODE_ENV: process.env.NODE_ENV || "development",
-        PUBLIC_URL: publicUrl,
-        API_HOST: process.env.HOST || "0.0.0.0",
-        API_PORT: process.env.PORT || "3000"
-      }
-    );
+  const raw = Object.assign({ PUBLIC_URL: publicUrl }, envVars);
+
   // Stringify all values so we can feed into Webpack DefinePlugin
   const stringified = {
     "process.env": Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);
       return env;
-    }, {}),
-    __ENV_FROM_SERVER__: { devstring: "yay" }
+    }, {})
   };
 
   return { raw, stringified };
