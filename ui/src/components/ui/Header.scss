@@ -1,0 +1,58 @@
+$header-height: 4rem;
+$header-max-width: 60rem;
+
+$header-side-width: 11rem;
+
+.header {
+  height: $header-height;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: $spacing-md;
+  border-bottom: solid $border-width-thick $border-color-base;
+
+  &__inner {
+    flex: 0 1 $header-max-width;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    flex: 0 0 $header-side-width;
+    font-size: $font-size-md-lg;
+    font-weight: $font-weight-bold;
+  }
+
+  &__main-links {
+    display: inline-flex;
+    align-items: flex-end;
+  }
+
+  &__end-links {
+    flex: 0 0 $header-side-width;
+
+    display: inline-flex;
+    align-items: flex-end;
+  }
+
+  &__link {
+    margin: 0 $spacing-md;
+
+    a {
+      color: black;
+      text-decoration: none;
+
+      @include clickable(transparent);
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+}

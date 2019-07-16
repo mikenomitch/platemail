@@ -2,13 +2,20 @@ import { parse } from "query-string";
 import * as React from "react";
 import { Component } from "react";
 import Loadable from "react-loadable";
-import { Link, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import "sanitize.css";
 import "./App.scss";
 
 import Loader from "../loader/Loader";
 import Toasts from "./ToastsContainer";
+
+import Header, {
+  HeaderEndLinks,
+  HeaderLink,
+  HeaderLogo,
+  HeaderMainLinks
+} from "../ui/Header";
 
 const LoadableHello = Loadable({
   loader: () => import("../hello/HelloContainer"),
@@ -77,24 +84,20 @@ class App extends Component<IAppProps, {}> {
   }
 
   public renderLoggedOutLinks() {
-    return (
-      <div>
-        <div>
-          <Link to="/login">Login</Link>
-        </div>
-        <div>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      </div>
-    );
+    return [
+      <HeaderLink key="0" to="/login">
+        {" "}
+        Login{" "}
+      </HeaderLink>,
+      <HeaderLink key="1" to="/signup">
+        {" "}
+        Sign Up{" "}
+      </HeaderLink>
+    ];
   }
 
   public renderLoggedInLinks() {
-    return (
-      <div>
-        <Link to="/logout">Logout</Link>
-      </div>
-    );
+    return <HeaderLink to="/logout"> Logout </HeaderLink>;
   }
 
   public render() {
@@ -106,23 +109,23 @@ class App extends Component<IAppProps, {}> {
         <div>
           <Toasts />
         </div>
-        <div className="header">
-          <div>
-            <div>
-              <Link to="/">Landing</Link>
-            </div>
-            <div>
-              <Link to="/hello">Hello</Link>
-            </div>
-            <div>
-              <Link to="/widgets">Widgets</Link>
-            </div>
+        <Header>
+          <HeaderLogo>
+            <HeaderLink to="/">Platemail</HeaderLink>
+          </HeaderLogo>
+
+          <HeaderMainLinks>
+            <HeaderLink to="/">Landing</HeaderLink>
+            <HeaderLink to="/hello"> Hello </HeaderLink>
+            <HeaderLink to="/widgets"> Widgets </HeaderLink>
+          </HeaderMainLinks>
+
+          <HeaderEndLinks>
             {isLoggedIn
               ? this.renderLoggedInLinks()
               : this.renderLoggedOutLinks()}
-          </div>
-          <hr />
-        </div>
+          </HeaderEndLinks>
+        </Header>
 
         <div className="content">
           <Route exact={true} path="/" component={LoadableLanding} />

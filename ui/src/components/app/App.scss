@@ -1,13 +1,5 @@
-.header {
-  ul {
-    width: 500px;
-    display: inline-flex;
-    justify-content: space-between;
-  }
-}
-
 .content {
   display: flex;
   justify-content: center;
-  margin: $spacing-lg;
+  margin: $spacing-md;
 }
