@@ -1,5 +1,4 @@
-import { delay } from "redux-saga";
-import { call, put, takeEvery } from "redux-saga/effects";
+import { delay, put, takeEvery } from "redux-saga/effects";
 import { IToast } from "../data/ui";
 import { IAction } from "../lib/types";
 
@@ -39,9 +38,9 @@ function removeToast(toast: IToast): IAction {
 
 function* addAndRemoveToast(action: IAction) {
   yield put(addToast(action.payload));
-  yield call(delay, TOAST_DELAY);
+  yield delay(TOAST_DELAY);
   yield put(hideToast(action.payload));
-  yield call(delay, TOAST_DELAY);
+  yield delay(TOAST_DELAY);
   yield put(removeToast(action.payload));
 }
 

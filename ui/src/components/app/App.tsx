@@ -7,15 +7,10 @@ import { Route } from "react-router-dom";
 import "sanitize.css";
 import "./App.scss";
 
+import AppHeader from "./AppHeader";
+
 import Loader from "../loader/Loader";
 import Toasts from "./ToastsContainer";
-
-import Header, {
-  HeaderEndLinks,
-  HeaderLink,
-  HeaderLogo,
-  HeaderMainLinks
-} from "../ui/Header";
 
 const LoadableHello = Loadable({
   loader: () => import("../hello/HelloContainer"),
@@ -63,7 +58,7 @@ interface IAppProps {
   loadInitialData: () => void;
 }
 
-class App extends Component<IAppProps, {}> {
+class App extends Component<IAppProps, { token }> {
   public componentDidMount() {
     const {
       connectToSocket,
@@ -83,49 +78,15 @@ class App extends Component<IAppProps, {}> {
     }
   }
 
-  public renderLoggedOutLinks() {
-    return [
-      <HeaderLink key="0" to="/login">
-        {" "}
-        Login{" "}
-      </HeaderLink>,
-      <HeaderLink key="1" to="/signup">
-        {" "}
-        Sign Up{" "}
-      </HeaderLink>
-    ];
-  }
-
-  public renderLoggedInLinks() {
-    return <HeaderLink to="/logout"> Logout </HeaderLink>;
-  }
-
   public render() {
     const { token } = this.props;
-    const isLoggedIn = !!token;
 
     return (
       <div>
         <div>
           <Toasts />
         </div>
-        <Header>
-          <HeaderLogo>
-            <HeaderLink to="/">Platemail</HeaderLink>
-          </HeaderLogo>
-
-          <HeaderMainLinks>
-            <HeaderLink to="/">Landing</HeaderLink>
-            <HeaderLink to="/hello"> Hello </HeaderLink>
-            <HeaderLink to="/widgets"> Widgets </HeaderLink>
-          </HeaderMainLinks>
-
-          <HeaderEndLinks>
-            {isLoggedIn
-              ? this.renderLoggedInLinks()
-              : this.renderLoggedOutLinks()}
-          </HeaderEndLinks>
-        </Header>
+        <AppHeader token={token} />
 
         <div className="content">
           <Route exact={true} path="/" component={LoadableLanding} />

@@ -1,0 +1,23 @@
+.hidden-desktop {
+  @media only screen and (min-width: $breakpoint-desktop) {
+    display: none;
+  }
+}
+
+.hidden-tablet {
+  @media only screen and (min-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.desktop-only {
+  @media only screen and (max-width: $breakpoint-desktop-minus-one) {
+    display: none;
+  }
+}
+
+.tablet-or-up-only {
+  @media only screen and (max-width: $breakpoint-desktop-minus-one) {
+    display: none;
+  }
+}
