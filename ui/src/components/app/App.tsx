@@ -5,6 +5,9 @@ import Loadable from "react-loadable";
 import { Route } from "react-router-dom";
 
 import "sanitize.css";
+import "sanitize.css/forms.css";
+import "sanitize.css/typography.css";
+
 import "./App.scss";
 
 import AppHeader from "./AppHeader";
@@ -18,7 +21,7 @@ const LoadableHello = Loadable({
 });
 
 const LoadableWidgets = Loadable({
-  loader: () => import("../widgets/WidgetsContainer"),
+  loader: () => import("../widgets/Widgets"),
   loading: Loader
 });
 

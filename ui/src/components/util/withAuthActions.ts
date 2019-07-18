@@ -9,8 +9,8 @@ import {
   signUp
 } from "../../actions/authentication";
 
-export default (WrapperComponent: any) =>
+export default (WrappedComponent: any) =>
   connect(
     null,
     { login, logOut, passwordReset, sendMagicLink, sendPasswordReset, signUp }
-  )(WrapperComponent);
+  )(WrappedComponent);

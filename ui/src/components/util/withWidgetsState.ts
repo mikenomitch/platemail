@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import Widgets from "./Widgets";
 
 import {
   createWidget,
@@ -13,7 +12,8 @@ export function mapStateToProps({ widgets: { items } }) {
   return { items };
 }
 
-export default connect(
-  mapStateToProps,
-  { createWidget, deleteWidget, getWidget, getWidgets, updateWidget }
-)(Widgets);
+export default (WrappedComponent: any) =>
+  connect(
+    mapStateToProps,
+    { createWidget, deleteWidget, getWidget, getWidgets, updateWidget }
+  )(WrappedComponent);

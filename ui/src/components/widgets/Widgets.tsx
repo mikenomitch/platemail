@@ -1,8 +1,11 @@
-import * as React from "react";
 import { Component } from "react";
+import * as React from "react";
+
+import "./Widgets.scss";
 
 import { IWidget } from "../../data/widgets";
-import "./Widgets.scss";
+
+import withWidgetsState from "../util/withWidgetsState";
 
 interface IWidgetsProps {
   createWidget: (id: object) => void;
@@ -36,4 +39,4 @@ class Widgets extends Component<IWidgetsProps, IWidgetsState> {
   }
 }
 
-export default Widgets;
+export default withWidgetsState(Widgets);

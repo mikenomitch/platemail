@@ -72,9 +72,9 @@ export function HeaderMobileMenuBreak() {
 
 function Header({ children }: IChildProps) {
   return (
-    <div className={headerClass}>
+    <nav className={headerClass}>
       <div className="header__inner">{children}</div>
-    </div>
+    </nav>
   );
 }
 
