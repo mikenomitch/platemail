@@ -37,16 +37,16 @@ defmodule Platemail.Mixfile do
 
   defp deps do
     [
-      {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 3.1.0"},
+      {:postgrex, "~> 0.14.3"},
+      {:ecto, "~> 3.1"},
       {:ueberauth_identity, "~> 0.2"},
-      {:ueberauth, "~> 0.4"},
-      {:pbkdf2_elixir, "~> 0.12"},
-      {:guardian, "~> 1.0"},
-      {:comeonin, "~> 4.0"},
-      {:cors_plug, "~> 1.5"},
+      {:ueberauth, "~> 0.6"},
+      {:pbkdf2_elixir, "~> 1.0"},
+      {:guardian, "~> 1.2"},
+      {:comeonin, "~> 5.1"},
+      {:cors_plug, "~> 2.0"},
       {:faker, "~> 0.12"},
-      {:scrivener_ecto, "~> 2.0"},
+      {:scrivener_ecto, "~> 2.2"},
       {:bamboo, "~> 1.2"}
     ]
   end

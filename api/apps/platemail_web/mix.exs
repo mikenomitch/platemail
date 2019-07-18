@@ -41,9 +41,9 @@ defmodule PlatemailWeb.Mixfile do
       {:plug_cowboy, "~> 2.1.0"},
       {:plug, "~> 1.8.2"},
       {:jason, "~> 1.1"},
-      {:scrivener_ecto, "~> 2.0"},
+      {:scrivener_ecto, "~> 2.2"},
       {:phoenix_swagger, "~> 0.8"},
-      {:ex_json_schema, "~> 0.5"}
+      {:ex_json_schema, "~> 0.6"}
     ]
   end
 

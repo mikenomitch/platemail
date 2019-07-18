@@ -72,7 +72,7 @@ defmodule Platemail.Accounts.Credential do
   def validate_current_password(uid, current_pw) do
     auth = Repo.get_by(__MODULE__, uid: uid)
 
-    if Comeonin.Pbkdf2.checkpw(current_pw, auth.token) do
+    if Pbkdf2.check_pass(current_pw, auth.token) do
       :ok
     else
       {:error, :old_password_does_not_match}
@@ -93,7 +93,7 @@ defmodule Platemail.Accounts.Credential do
   defp update_pw(uid, pw) do
     __MODULE__
     |> Repo.get_by(uid: uid)
-    |> __MODULE__.changeset(%{token: Comeonin.Pbkdf2.hashpwsalt(pw)})
+    |> __MODULE__.changeset(%{token: Pbkdf2.hash_pwd_salt(pw)})
     |> Repo.update()
   end
 end
