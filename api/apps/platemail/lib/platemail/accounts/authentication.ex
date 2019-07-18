@@ -85,7 +85,7 @@ defmodule Platemail.Accounts.Authentication do
         credential ->
           case auth.credentials.other.password do
             pass when is_binary(pass) ->
-              if Comeonin.Pbkdf2.check_pass(auth.credentials.other.password, credential.token) do
+              if Pbkdf2.check_pass(auth.credentials.other.password, credential.token) do
                 credential
               else
                 {:error, :password_does_not_match}
@@ -251,7 +251,7 @@ defmodule Platemail.Accounts.Authentication do
   defp token_from_auth(%{provider: :identity} = auth) do
     case auth do
       %{credentials: %{other: %{password: pass}}} when not is_nil(pass) ->
-        Comeonin.Pbkdf2.hashpwsalt(pass)
+        Pbkdf2.hashpwsalt(pass)
 
       _ ->
         nil
