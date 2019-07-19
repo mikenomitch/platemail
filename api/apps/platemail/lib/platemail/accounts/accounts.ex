@@ -10,56 +10,36 @@ defmodule Platemail.Accounts do
     Repo
   }
 
-  @doc """
-  Returns the list of users.
-  """
+  @type db_res :: {:ok, User.t()} | {:error, %Ecto.Changeset{}}
+
+  @spec list_users() :: [User.t()]
   def list_users do
     Repo.all(User)
   end
 
-  @doc """
-  Gets a single user.
-  Raises `Ecto.NoResultsError` if the User does not exist.
-  """
+  @spec get_user!(number) :: User.t()
   def get_user!(id), do: Repo.get!(User, id)
 
-  @doc """
-  Creates a user.
-
-  ## Examples
-
-      iex> create_user(%{field: value})
-      {:ok, %User{}}
-
-      iex> create_user(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
+  @spec create_user(map) :: db_res
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a user.
-  """
+  @spec update_user(User.t(), map) :: db_res
   def update_user(%User{} = user, attrs) do
     user
     |> User.changeset(attrs)
     |> Repo.update()
   end
 
-  @doc """
-  Deletes a User.
-  """
+  @spec delete_user(User.t()) :: db_res
   def delete_user(%User{} = user) do
     Repo.delete(user)
   end
 
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking user changes.
-  """
+  @spec change_user(User.t()) :: %Ecto.Changeset{}
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end

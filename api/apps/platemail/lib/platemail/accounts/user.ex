@@ -23,6 +23,7 @@ defmodule Platemail.Accounts.User do
     |> validate_required([:email, :name])
   end
 
+  @spec validate_email(binary) :: true
   def validate_email(_email) do
     true
   end
