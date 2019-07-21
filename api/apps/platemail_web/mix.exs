@@ -43,8 +43,7 @@ defmodule PlatemailWeb.Mixfile do
       {:platemail, in_umbrella: true},
       {:plug_cowboy, "~> 2.1.0"},
       {:plug, "~> 1.8.2"},
-      {:scrivener_ecto, "~> 2.2"},
-      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false}
+      {:scrivener_ecto, "~> 2.2"}
     ]
   end
 

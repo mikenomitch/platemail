@@ -97,7 +97,6 @@ defmodule Platemail.Accounts.Authentication do
       end
     rescue
       error ->
-        IO.inspect(error)
         {:error, :email_not_valid}
     end
   end
@@ -155,7 +154,8 @@ defmodule Platemail.Accounts.Authentication do
     name = name_from_auth(auth)
 
     result =
-      User.registration_changeset(%User{}, scrub(%{email: auth.info.email, name: name}))
+      %User{}
+      |> User.registration_changeset(scrub(%{email: auth.info.email, name: name}))
       |> repo.insert
 
     case result do
@@ -206,8 +206,8 @@ defmodule Platemail.Accounts.Authentication do
     credential = Ecto.build_assoc(user, :credentials)
 
     result =
-      Credential.changeset(
-        credential,
+      credential
+      |> Credential.changeset(
         scrub(%{
           provider: to_string(auth.provider),
           uid: uid_from_auth(auth),
@@ -276,7 +276,8 @@ defmodule Platemail.Accounts.Authentication do
   # We don't have any nested structures in our params that we are using scrub with so this is a very simple scrub
   defp scrub(params) do
     result =
-      Enum.filter(params, fn
+      params
+      |> Enum.filter(fn
         {_key, val} when is_binary(val) -> String.trim(val) != ""
         {_key, val} when is_nil(val) -> false
         _ -> true

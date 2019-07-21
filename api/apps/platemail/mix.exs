@@ -47,8 +47,7 @@ defmodule Platemail.Mixfile do
       {:postgrex, "~> 0.14.3"},
       {:scrivener_ecto, "~> 2.2"},
       {:ueberauth_identity, "~> 0.2"},
-      {:ueberauth, "~> 0.6"},
-      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false}
+      {:ueberauth, "~> 0.6"}
     ]
   end
 

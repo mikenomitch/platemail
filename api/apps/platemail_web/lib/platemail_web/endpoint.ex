@@ -4,7 +4,7 @@ defmodule PlatemailWeb.Endpoint do
   socket("/socket", PlatemailWeb.UserSocket, websocket: true)
 
   plug(Plug.Static, at: "/", from: :platemail_web)
-  plug(CORSPlug, origin: ["http://localhost:3000", "http://localhost:4000"], max_age: 86400)
+  plug(CORSPlug, origin: ["http://localhost:3000", "http://localhost:4000"], max_age: 86_400)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

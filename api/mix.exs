@@ -23,6 +23,8 @@ defmodule Platemail.Umbrella.Mixfile do
   end
 
   defp deps do
-    []
+    [
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false}
+    ]
   end
 end
