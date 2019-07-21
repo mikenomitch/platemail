@@ -1,5 +1,5 @@
 consul 1.5.2
-elixir 1.9.0
+elixir 1.9.1
 erlang 22.0.5
 nodejs 10.16.0
 nomad 0.9.3

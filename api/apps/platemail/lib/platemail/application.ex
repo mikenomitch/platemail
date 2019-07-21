@@ -9,11 +9,16 @@ defmodule Platemail.Application do
   """
   use Application
 
+  @spec start(any, any) :: {:error, any} | {:ok, pid}
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    Supervisor.start_link([
-      supervisor(Platemail.Repo, []),
-    ], strategy: :one_for_one, name: Platemail.Supervisor)
+    Supervisor.start_link(
+      [
+        supervisor(Platemail.Repo, [])
+      ],
+      strategy: :one_for_one,
+      name: Platemail.Supervisor
+    )
   end
 end

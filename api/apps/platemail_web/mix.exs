@@ -30,20 +30,21 @@ defmodule PlatemailWeb.Mixfile do
 
   defp deps do
     [
-      {:phoenix, "~> 1.4.9", override: true},
-      {:phoenix_pubsub, "~> 1.1.2"},
       {:ecto_sql, "~> 3.1.6"},
+      {:ex_json_schema, "~> 0.6"},
+      {:gettext, "~> 0.17"},
+      {:jason, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.13"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:gettext, "~> 0.17"},
+      {:phoenix_pubsub, "~> 1.1.2"},
+      {:phoenix_swagger, "~> 0.8"},
+      {:phoenix, "~> 1.4.9", override: true},
       {:platemail, in_umbrella: true},
       {:plug_cowboy, "~> 2.1.0"},
       {:plug, "~> 1.8.2"},
-      {:jason, "~> 1.1"},
       {:scrivener_ecto, "~> 2.2"},
-      {:phoenix_swagger, "~> 0.8"},
-      {:ex_json_schema, "~> 0.6"}
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false}
     ]
   end
 

@@ -2,6 +2,7 @@ defmodule Platemail.Email do
   import Bamboo.Email
   alias Platemail.Mailer
 
+  @spec send_login_link(binary, binary) :: Bamboo.Email.t()
   def send_login_link(email_address, token) do
     login_link = "localhost:4000/magic_login/#{token}"
 
@@ -13,6 +14,7 @@ defmodule Platemail.Email do
     |> Mailer.deliver_later()
   end
 
+  @spec send_password_reset(binary, binary) :: Bamboo.Email.t()
   def send_password_reset(email_address, token) do
     pw_reset_link = "localhost:3000/password_reset/#{token}"
 
@@ -24,6 +26,7 @@ defmodule Platemail.Email do
     |> Mailer.deliver_later()
   end
 
+  @spec send_welcome_email(binary) :: Bamboo.Email.t()
   def send_welcome_email(email_address) do
     email_address
     |> base_email()
@@ -33,6 +36,7 @@ defmodule Platemail.Email do
     |> Mailer.deliver_later()
   end
 
+  @spec base_email(binary) :: Bamboo.Email.t()
   defp base_email(email_address) do
     new_email()
     |> to(System.get_env("EMAIL_OVERRIDE") || email_address)

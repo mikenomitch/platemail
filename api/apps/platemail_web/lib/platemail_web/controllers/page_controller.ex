@@ -3,15 +3,20 @@ defmodule PlatemailWeb.PageController do
   alias Platemail.Accounts.{Authentication, User}
   alias Platemail.Repo
 
+  @type conn_t :: Plug.Conn.t()
+
+  @spec index(conn_t, map) :: conn_t
   def index(conn, _params) do
     serve_application(conn)
   end
 
+  @spec healthcheck(conn_t, map) :: conn_t
   def healthcheck(conn, _params) do
     msg = "Healthy - #{System.get_env("FOO")}"
     Plug.Conn.send_resp(conn, 200, msg)
   end
 
+  @spec login_link(conn_t, map) :: conn_t
   def login_link(conn, %{"token" => token}) do
     with {:ok, claims} <- Authentication.decode_and_verify(token, %{"typ" => "login_link"}),
          user = %User{} <- Repo.get(User, claims["sub"]) |> Repo.preload(:credentials),
@@ -22,6 +27,7 @@ defmodule PlatemailWeb.PageController do
     end
   end
 
+  @spec serve_application(conn_t) :: conn_t
   defp serve_application(conn) do
     path = Application.app_dir(:platemail_web, "priv/static/index.html")
 

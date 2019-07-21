@@ -178,7 +178,7 @@ defmodule Platemail.Accounts.Authentication do
         {:error, :password_empty}
 
       ^pwc ->
-        validate_pw_length(pw, email)
+        validate_pw_length(pw) && validate_email(email)
 
       _ ->
         {:error, :password_confirmation_does_not_match}
@@ -236,22 +236,26 @@ defmodule Platemail.Accounts.Authentication do
     end
   end
 
-  defp validate_pw_length(pw, email) when is_binary(pw) do
+  defp validate_pw_length(pw) when is_binary(pw) do
     if String.length(pw) >= 6 do
-      validate_email(email)
+      true
     else
       {:error, :password_length_is_less_than_6}
     end
   end
 
   defp validate_email(email) when is_binary(email) do
-    User.validate_email(email)
+    if User.validate_email(email) do
+      true
+    else
+      {:error, :email_is_invalid}
+    end
   end
 
   defp token_from_auth(%{provider: :identity} = auth) do
     case auth do
       %{credentials: %{other: %{password: pass}}} when not is_nil(pass) ->
-        Pbkdf2.hashpwsalt(pass)
+        Pbkdf2.hash_pwd_salt(pass)
 
       _ ->
         nil

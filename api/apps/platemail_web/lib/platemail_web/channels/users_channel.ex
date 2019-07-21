@@ -8,7 +8,11 @@ defmodule PlatemailWeb.UsersChannel do
   @endpoint PlatemailWeb.Endpoint
   @general_channel "users:general"
 
+  @type socket_t :: any
+
   # Data broadcast to everybody
+  @spec join(binary, map, socket_t) ::
+          {:ok, socket_t} | {:error, %{reason: binary}}
   def join(@general_channel, _message, socket) do
     {:ok, socket}
   end

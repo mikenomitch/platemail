@@ -1,3 +1,0 @@
-# Platemail
-
-**TODO: Add description**

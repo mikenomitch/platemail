@@ -1,6 +1,9 @@
 defmodule PlatemailWeb.Authentication.ErrorHandler do
   import Plug.Conn
 
+  @type conn_t :: Plug.Conn.t()
+
+  @spec auth_error(conn_t, {any, any}, map) :: conn_t
   def auth_error(conn, {_type, _reason}, _opts) do
     conn
     |> put_status(:forbidden)

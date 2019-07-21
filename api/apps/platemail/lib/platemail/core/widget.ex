@@ -1,4 +1,5 @@
 defmodule Platemail.Core.Widget do
+  alias Platemail.Core.Widget
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -10,6 +11,7 @@ defmodule Platemail.Core.Widget do
     timestamps()
   end
 
+  @spec changeset(Widget.t(), map) :: Ecto.Changeset.t()
   def changeset(widget, attrs) do
     widget
     |> cast(attrs, [:title, :content])

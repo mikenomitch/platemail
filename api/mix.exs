@@ -7,6 +7,7 @@ defmodule Platemail.Umbrella.Mixfile do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       elixirc_options: [warnings_as_errors: true],
+      dialyzer: [plt_add_deps: :apps_direct],
       releases: [
         platemail: [
           version: "0.0.5",

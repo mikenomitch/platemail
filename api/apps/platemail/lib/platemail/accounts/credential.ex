@@ -46,6 +46,8 @@ defmodule Platemail.Accounts.Credential do
     |> unique_constraint(:provider_uid)
   end
 
+  @spec validate_password_and_confirmation(binary, any) ::
+          :ok | {:error, :password_does_not_match | :password_length_is_less_than_6}
   def validate_password_and_confirmation(pw, pwc) do
     case validate_password(pw) do
       :ok -> validate_pw_confirmation(pw, pwc)
@@ -53,6 +55,7 @@ defmodule Platemail.Accounts.Credential do
     end
   end
 
+  @spec validate_password(binary) :: :ok | {:error, :password_length_is_less_than_6}
   def validate_password(pw) do
     if String.length(pw) >= 6 do
       :ok
@@ -61,6 +64,7 @@ defmodule Platemail.Accounts.Credential do
     end
   end
 
+  @spec validate_pw_confirmation(any, any) :: :ok | {:error, :password_does_not_match}
   def validate_pw_confirmation(pw, pwc) do
     if pw == pwc do
       :ok
@@ -69,16 +73,17 @@ defmodule Platemail.Accounts.Credential do
     end
   end
 
+  @spec validate_current_password(any, any) :: :ok | {:error, :old_password_does_not_match}
   def validate_current_password(uid, current_pw) do
     auth = Repo.get_by(__MODULE__, uid: uid)
 
-    if Pbkdf2.check_pass(current_pw, auth.token) do
-      :ok
-    else
-      {:error, :old_password_does_not_match}
+    case Pbkdf2.check_pass(current_pw, auth.token) do
+      {:ok, _} -> :ok
+      _ -> {:error, :old_password_does_not_match}
     end
   end
 
+  @spec update_authorization_for_user_params(map) :: any
   def update_authorization_for_user_params(%{
         "password" => pw,
         "password_confirmation" => pwc,

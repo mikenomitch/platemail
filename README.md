@@ -73,6 +73,7 @@ Devops featues:
 - Load balanced (Fabio)
 - Single command deploys (TODO)
 - Error Alerting & Logging (TODO)
+  - set up via Terraform Providers (TODO)
 
 ## Setting Up for Local Dev
 
