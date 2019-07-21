@@ -68,39 +68,39 @@ export default function AppHeader({ token }: IAppHeaderProps) {
   });
 
   return (
-    <Header>
+    <div>
+      {/* === DESKTOP === */}
       <DesktopOnly>
-        <HeaderLogo>
-          <HeaderLink to="/">Platemail</HeaderLink>
-        </HeaderLogo>
+        <Header>
+          <HeaderLogo>
+            <HeaderLink to="/">Platemail</HeaderLink>
+          </HeaderLogo>
+
+          <HeaderMainLinks>
+            <HeaderLink to="/">Landing</HeaderLink>
+            <HeaderLink to="/hello"> Hello </HeaderLink>
+            <HeaderLink to="/widgets"> Widgets </HeaderLink>
+          </HeaderMainLinks>
+          <HeaderEndLinks>
+            {isLoggedIn
+              ? renderLoggedInLinks(hideMenu)
+              : renderLoggedOutLinks(hideMenu)}
+          </HeaderEndLinks>
+        </Header>
       </DesktopOnly>
 
-      <DesktopOnly>
-        <HeaderMainLinks>
-          <HeaderLink to="/">Landing</HeaderLink>
-          <HeaderLink to="/hello"> Hello </HeaderLink>
-          <HeaderLink to="/widgets"> Widgets </HeaderLink>
-        </HeaderMainLinks>
-      </DesktopOnly>
-
-      <DesktopOnly>
-        <HeaderEndLinks>
-          {isLoggedIn
-            ? renderLoggedInLinks(hideMenu)
-            : renderLoggedOutLinks(hideMenu)}
-        </HeaderEndLinks>
-      </DesktopOnly>
+      {/* === MOBILE === */}
 
       <HiddenDesktop>
-        <HeaderLogo>
-          <HeaderLink to="/">P</HeaderLink>
-        </HeaderLogo>
-      </HiddenDesktop>
-      <HiddenDesktop />
-      <HiddenDesktop>
-        <HeaderMobileMenuToggle toggleMenu={toggleMenu}>
-          ...
-        </HeaderMobileMenuToggle>
+        <Header>
+          <HeaderLogo>
+            <HeaderLink to="/">P</HeaderLink>
+          </HeaderLogo>
+          <div />
+          <HeaderMobileMenuToggle toggleMenu={toggleMenu}>
+            ...
+          </HeaderMobileMenuToggle>
+        </Header>
       </HiddenDesktop>
 
       {showMenu && (
@@ -122,6 +122,6 @@ export default function AppHeader({ token }: IAppHeaderProps) {
             : renderLoggedOutLinks(hideMenu)}
         </HeaderMobileMenu>
       )}
-    </Header>
+    </div>
   );
 }
