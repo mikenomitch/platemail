@@ -47,6 +47,7 @@ Frontend features:
   - Postcss Modules
   - SASS compilation
   - Basic variables, helper functions, and mixins
+  - Theming support
   - Normalized CSS
 - Frontend routing
 - Fetching with auth and call status tracking
