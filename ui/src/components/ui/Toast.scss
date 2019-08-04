@@ -3,7 +3,6 @@
   position: fixed;
   top: 0rem;
   right: 1rem;
-  background-color: $white;
   border: solid $border-width-thick;
   border-radius: $border-radius-base;
 
@@ -14,6 +13,9 @@
   margin: $spacing-sm;
 
   @include pop-in;
+
+  @include var(color, color);
+  @include var(background-color, background-color);
 }
 
 .toast.hidden {

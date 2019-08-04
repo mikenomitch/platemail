@@ -88,7 +88,7 @@
 }
 
 @mixin floating {
-  box-shadow: $box-shadow-base;
+  @include var(box-shadow, box-shadow);
 }
 
 @mixin floating-light {
@@ -111,7 +111,9 @@
 
   &:hover,
   &:focus {
-    margin: $orig-margin - $spacing-xs;
+    margin: ($orig-margin - $spacing-xs);
+    margin-top: $orig-margin;
+    margin-bottom: $orig-margin;
   }
 }
 

@@ -13,6 +13,6 @@
 }
 
 .card.clickable {
-  @include clickable($almost-white);
+  @include clickable(transparent);
   @include focus-margin($spacing-md);
 }

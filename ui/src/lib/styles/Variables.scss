@@ -22,8 +22,6 @@ $gray-dark: #333;
 $almost-black: #111;
 $black: #000;
 
-$background-color: $white;
-
 $color-primary: #12a4c9;
 $color-primary-light: lighten($color-primary, 10%);
 $color-primary-dark: darken($color-primary, 10%);
@@ -118,3 +116,37 @@ $transition-time-very-long: 5s;
 
 $box-shadow-base: 0 18px 50px -10px rgba(0, 0, 0, 0.2);
 $box-shadow-light: 0 18px 50px -10px rgba(0, 0, 0, 0.1);
+
+// ========================
+//   THEMED VARS + HELPER
+// ========================
+
+// property & default
+$variableDefaults: (
+  color: $black,
+  background-color: $white,
+  primary: $color-primary,
+  secondary: $color-secondary,
+  tertiary: $color-tertiary,
+  box-shadow: $box-shadow-base
+);
+
+// Usage example:
+// a {
+//   @include var(color, primary);
+// }
+
+@mixin var($cssProperty, $themeVariable) {
+  #{$cssProperty}: map-get($variableDefaults, $themeVariable);
+  #{$cssProperty}: var(
+    --#{$themeVariable},
+    map-get($variableDefaults, $themeVariable)
+  );
+}
+
+// Cannot use sass variables in themes
+@mixin dark-theme {
+  --color: white;
+  --background-color: black;
+  --box-shadow: 0 18px 50px -10px rgba(100, 100, 100, 0.5);
+}
