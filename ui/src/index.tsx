@@ -1,5 +1,6 @@
+import * as preact from "preact";
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+// import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Route, Router } from "react-router-dom";
 
@@ -11,11 +12,25 @@ import createStore from "./store/createStore";
 
 const store = createStore();
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={App} />
-    </Router>
-  </Provider>,
-  document.getElementById("root") as HTMLElement
-);
+const rootElement = document.getElementById("root") as HTMLElement;
+
+if (rootElement.hasChildNodes() && rootElement.firstElementChild) {
+  preact.render(
+    <Provider store={store}>
+      <Router history={history}>
+        <Route path="/" component={App} />
+      </Router>
+    </Provider>,
+    rootElement,
+    rootElement.firstElementChild
+  );
+} else {
+  preact.render(
+    <Provider store={store}>
+      <Router history={history}>
+        <Route path="/" component={App} />
+      </Router>
+    </Provider>,
+    rootElement
+  );
+}

@@ -89,6 +89,7 @@ class App extends Component<IAppProps, { token }> {
         <div>
           <Toasts />
         </div>
+
         <AppHeader token={token} />
 
         <div className="content">

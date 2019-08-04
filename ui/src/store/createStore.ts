@@ -43,8 +43,24 @@ const middleWare =
   process.env.NODE_ENV === "production" ? prodMiddleware : devMiddleware;
 
 const storeMaker = () => {
-  const store = createStore(rootReducer, applyMiddleware(...middleWare));
+  // Grab the state from a global variable injected into the server-generated HTML
+  const preloadedState = (window as any).__PRELOADED_STATE__;
+
+  // Allow the passed state to be garbage-collected
+  delete (window as any).__PRELOADED_STATE__;
+
+  const store = createStore(
+    rootReducer,
+    preloadedState,
+    applyMiddleware(...middleWare)
+  );
   sagaMiddleware.run(rootSaga, store.dispatch, store.getState);
+
+  // Tell react-snap how to save Redux state
+  (window as any).snapSaveState = () => ({
+    __PRELOADED_STATE__: store.getState()
+  });
+
   return store;
 };
 
