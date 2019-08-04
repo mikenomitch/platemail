@@ -22,7 +22,7 @@
     "analyze": "source-map-explorer build/static/js/main.*",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "postbuild": "INLINE_RUNTIME_CHUNK=false react-snap",
+    "postbuild": "react-snap",
     "start_prod": "node scripts/build.js && node scripts/start.js",
     "test": "node scripts/test.js --env=jsdom"
   },
@@ -146,7 +146,8 @@
     "inlineCss": true,
     "include": [
       "/",
-      "/hello"
+      "/hello",
+      "/login"
     ],
     "crawl": false,
     "preloadImages": true,

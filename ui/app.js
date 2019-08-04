@@ -5,8 +5,14 @@ const fs = require("fs");
 const envHash = require("./config/envVars");
 const app = express();
 
-const handleIndex = (req, res) => {
-  const indexPath = path.join(__dirname, "build", "index.html");
+const handleIndex = ({ params }, res) => {
+  let dir;
+  if (params.route) {
+    dir = `build/${params.route}`;
+  } else {
+    dir = "build";
+  }
+  const indexPath = path.join(__dirname, dir, "index.html");
   const envString = JSON.stringify(envHash);
 
   const indexFile = fs.readFileSync(indexPath, "utf8");
