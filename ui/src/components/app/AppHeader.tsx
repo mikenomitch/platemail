@@ -10,6 +10,7 @@ import Header, {
   HeaderMainLinks,
   HeaderMobileMenu,
   HeaderMobileMenuBreak,
+  headerMobileMenuClass,
   HeaderMobileMenuToggle
 } from "../ui/Header";
 
@@ -52,7 +53,9 @@ export default function AppHeader({ token }: IAppHeaderProps) {
   const hideMenu = () => setState(false);
 
   const handleClick = e => {
-    if (!classInAncestry(e.target, headerClass)) {
+    const outsideHeader = !classInAncestry(e.target, headerClass);
+    const outsideMenu = !classInAncestry(e.target, headerMobileMenuClass);
+    if (outsideHeader && outsideMenu) {
       hideMenu();
     }
   };

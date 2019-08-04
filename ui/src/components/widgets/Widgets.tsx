@@ -5,7 +5,7 @@ import "./Widgets.scss";
 
 import { IWidget } from "../../data/widgets";
 
-import withWidgetsState from "../util/withWidgetsState";
+import withWidgetsContext from "../util/withWidgetsContext";
 
 interface IWidgetsProps {
   createWidget: (id: object) => void;
@@ -39,4 +39,4 @@ class Widgets extends Component<IWidgetsProps, IWidgetsState> {
   }
 }
 
-export default withWidgetsState(Widgets);
+export default withWidgetsContext(Widgets);

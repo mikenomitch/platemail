@@ -10,10 +10,20 @@ defmodule PlatemailWeb.Api.V1.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    %{id: user.id, email: user.email, name: user.name}
+    %{
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      nodes: Node.list
+    }
   end
 
   def user_json(user) do
-    %{id: user.id, email: user.email, name: user.name}
+    %{
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      nodes: Node.list
+    }
   end
 end

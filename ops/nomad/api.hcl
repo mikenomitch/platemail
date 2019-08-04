@@ -1,4 +1,4 @@
-job "backend" {
+job "api" {
   datacenters = ["us-east-1"]
   type = "service"
 
@@ -35,7 +35,7 @@ EOH
       }
 
       service {
-        name = "platemail-backend"
+        name = "platemail-api"
         tags = ["urlprefix-/api", "urlprefix-/docs"]
         port = "https"
 

@@ -3,7 +3,8 @@
   position: fixed;
   top: 0rem;
   right: 1rem;
-  color: white;
+  background-color: $white;
+  border: solid $border-width-thick;
   border-radius: $border-radius-base;
 
   min-height: 2rem;
@@ -20,13 +21,16 @@
 }
 
 .toast.error {
-  background-color: $color-error;
+  border-color: $color-error;
+  color: $color-error;
 }
 
 .toast.info {
-  background-color: $color-info;
+  border-color: $color-info;
+  color: $color-info;
 }
 
 .toast.success {
-  background-color: $color-success;
+  border-color: $color-success;
+  color: $color-success;
 }

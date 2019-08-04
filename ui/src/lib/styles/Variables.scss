@@ -27,6 +27,7 @@ $background-color: $white;
 $color-primary: #12a4c9;
 $color-primary-light: lighten($color-primary, 10%);
 $color-primary-dark: darken($color-primary, 10%);
+$color-primary-very-light: lighten($color-primary, 50%);
 
 $color-secondary: #28536b;
 $color-secondary-light: lighten($color-secondary, 10%);
@@ -116,3 +117,4 @@ $transition-time-very-long: 5s;
 // == BOX SHADOW ==
 
 $box-shadow-base: 0 18px 50px -10px rgba(0, 0, 0, 0.2);
+$box-shadow-light: 0 18px 50px -10px rgba(0, 0, 0, 0.1);

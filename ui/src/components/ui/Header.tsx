@@ -7,6 +7,7 @@ import { onEnterOrSpace } from "../../lib/domHelpers";
 import "./Header.scss";
 
 export const headerClass = "header";
+export const headerMobileMenuClass = "header__mobile-menu";
 
 export interface IHeaderLinkProps {
   to: string;
@@ -63,7 +64,7 @@ export function HeaderMobileMenuToggle({
 }
 
 export function HeaderMobileMenu({ children }: IChildProps) {
-  return <div className="header__mobile-menu">{children}</div>;
+  return <div className={headerMobileMenuClass}>{children}</div>;
 }
 
 export function HeaderMobileMenuBreak() {

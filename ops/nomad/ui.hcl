@@ -1,4 +1,4 @@
-job "frontend" {
+job "ui" {
   datacenters = ["us-east-1"]
   type = "service"
 
@@ -9,7 +9,7 @@ job "frontend" {
       driver = "docker"
 
       config {
-        image = "mnomitch/platemail_frontend"
+        image = "mnomitch/platemail_ui"
         network_mode = "bridge"
 
         port_map = {

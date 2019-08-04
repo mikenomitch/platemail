@@ -31,6 +31,7 @@ defmodule PlatemailWeb.Router do
   scope "/api/v1", PlatemailWeb.Api.V1 do
     pipe_through(:api)
     resources("/users", UserController, except: [:new, :edit, :create])
+    get("/metadata", MetadataController, :show)
 
     post("/auth/reset_password", AuthController, :reset_password)
     post("/auth/password_reset_request", AuthController, :password_reset_request)

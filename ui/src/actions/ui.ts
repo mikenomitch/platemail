@@ -2,7 +2,7 @@ import { delay, put, takeEvery } from "redux-saga/effects";
 import { IToast } from "../data/ui";
 import { IAction } from "../lib/types";
 
-const TOAST_DELAY = 1000;
+const TOAST_DELAY = 3000;
 
 const randomNumber = (): number => {
   return Math.floor(Math.random() * 999999);

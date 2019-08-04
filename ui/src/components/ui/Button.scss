@@ -1,10 +1,11 @@
 .button {
   padding: $spacing-sm;
   background: none;
-  background-color: $color-primary;
-  color: $white;
-  border: none;
+  background-color: transparent;
+  color: $color-primary;
+  border: solid $border-width-base $color-primary;
   border-radius: $border-radius-sm;
 
-  @include clickable($color-primary-light);
+  @include floating-light;
+  @include clickable($color-primary-very-light);
 }

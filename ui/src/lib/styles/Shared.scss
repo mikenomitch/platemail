@@ -91,6 +91,10 @@
   box-shadow: $box-shadow-base;
 }
 
+@mixin floating-light {
+  box-shadow: $box-shadow-light;
+}
+
 @mixin clickable($hover-color) {
   cursor: pointer;
 
