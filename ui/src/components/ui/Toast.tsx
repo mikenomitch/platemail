@@ -10,7 +10,7 @@ export interface IProps {
   children: ReactChild;
 }
 
-const Toast: React.SFC<IProps> = ({ children, hidden, type }) => {
+const Toast: React.FunctionComponent<IProps> = ({ children, hidden, type }) => {
   const toastClasses = cx("toast", {
     error: type === "error",
     hidden,

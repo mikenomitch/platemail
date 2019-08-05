@@ -10,7 +10,7 @@ export interface IProps {
   children: ReactChild;
 }
 
-function InputWrapper(props: IProps) {
+export default (props: IProps) => {
   const { error, label } = props;
 
   const childClasses = cx("input-wrapper__child", {
@@ -24,6 +24,4 @@ function InputWrapper(props: IProps) {
       {error && <div className="input-wrapper__error">{error}</div>}
     </div>
   );
-}
-
-export default InputWrapper;
+};

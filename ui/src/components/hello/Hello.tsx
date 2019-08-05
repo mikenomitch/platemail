@@ -31,12 +31,12 @@ export interface IProps {
   onDecrement?: () => void;
 }
 
-function Hello({
+export default ({
   name,
   enthusiasmLevel = 1,
   onIncrement,
   onDecrement
-}: IProps) {
+}: IProps) => {
   if (enthusiasmLevel <= 0) {
     throw new Error("You could be a little more enthusiastic. :D");
   }
@@ -76,6 +76,4 @@ function Hello({
       <Button onClick={toggleTheme}>Toggle Theme</Button>
     </div>
   );
-}
-
-export default Hello;
+};

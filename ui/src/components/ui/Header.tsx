@@ -71,12 +71,8 @@ export function HeaderMobileMenuBreak() {
   return <div className="header__mobile-menu__break">-------</div>;
 }
 
-function Header({ children }: IChildProps) {
-  return (
-    <nav className={headerClass}>
-      <div className="header__inner">{children}</div>
-    </nav>
-  );
-}
-
-export default Header;
+export default ({ children }: IChildProps) => (
+  <nav className={headerClass}>
+    <div className="header__inner">{children}</div>
+  </nav>
+);

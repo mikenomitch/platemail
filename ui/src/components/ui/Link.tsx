@@ -3,8 +3,4 @@ import { Link as RouterLink } from "react-router-dom";
 
 import "./Link.scss";
 
-function Link(props) {
-  return <RouterLink className="link" {...props} />;
-}
-
-export default Link;
+export default props => <RouterLink className="link" {...props} />;

@@ -3,7 +3,7 @@ import "./TextArea.scss";
 
 import InputWrapper from "./InputWrapper";
 
-function TextArea(props) {
+export default props => {
   const { error, label } = props;
 
   return (
@@ -15,6 +15,4 @@ function TextArea(props) {
       />
     </InputWrapper>
   );
-}
-
-export default TextArea;
+};

@@ -1,6 +1,6 @@
 import { parse } from "query-string";
 import * as React from "react";
-import { Component } from "react";
+import { useEffect } from "react";
 import Loadable from "react-loadable";
 import { Route } from "react-router-dom";
 
@@ -50,7 +50,7 @@ const LoadablePasswordReset = Loadable({
   loading: Loader
 });
 
-interface IAppProps {
+interface IProps {
   token: string;
   location: {
     pathname: string;
@@ -61,52 +61,49 @@ interface IAppProps {
   loadInitialData: () => void;
 }
 
-class App extends Component<IAppProps, { token }> {
-  public componentDidMount() {
-    const {
-      connectToSocket,
-      loadFromToken,
-      loadInitialData,
-      location
-    } = this.props;
+export default function App(props: IProps) {
+  const {
+    connectToSocket,
+    loadFromToken,
+    loadInitialData,
+    location: { pathname, search },
+    token
+  } = props;
 
+  const onMount = () => {
     connectToSocket();
 
-    if (location.pathname === "/logged_in") {
-      const { token } = parse(location.search);
-      const tokenString = token instanceof Array ? token[0] : token;
+    if (pathname === "/logged_in") {
+      const { token: locationToken } = parse(search);
+      const tokenString = locationToken instanceof Array ? token[0] : token;
       loadFromToken(tokenString || "");
     } else {
       loadInitialData();
     }
-  }
+  };
 
-  public render() {
-    const { token } = this.props;
+  useEffect(onMount, []);
 
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <Toasts />
-        </div>
-
-        <AppHeader token={token} />
-
-        <div className="content">
-          <Route exact={true} path="/" component={LoadableLanding} />
-          <Route path="/hello" component={LoadableHello} />
-          <Route path="/widgets" component={LoadableWidgets} />
-          <Route path="/login" component={LoadableLogin} />
-          <Route
-            path="/password_reset/:reset_token"
-            component={LoadablePasswordReset}
-          />
-          <Route path="/signup" component={LoadableSignUp} />
-          <Route path="/logout" component={LoadableLogOut} />
-        </div>
+        <Toasts />
       </div>
-    );
-  }
-}
 
-export default App;
+      <AppHeader token={token} />
+
+      <div className="content">
+        <Route exact={true} path="/" component={LoadableLanding} />
+        <Route path="/hello" component={LoadableHello} />
+        <Route path="/widgets" component={LoadableWidgets} />
+        <Route path="/login" component={LoadableLogin} />
+        <Route
+          path="/password_reset/:reset_token"
+          component={LoadablePasswordReset}
+        />
+        <Route path="/signup" component={LoadableSignUp} />
+        <Route path="/logout" component={LoadableLogOut} />
+      </div>
+    </div>
+  );
+}

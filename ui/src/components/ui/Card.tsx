@@ -9,7 +9,7 @@ export interface IProps {
   children: ReactFragment;
 }
 
-function Card({ clickable, children }: IProps) {
+export default ({ clickable, children }: IProps) => {
   const cardClasses = cx("card", {
     clickable
   });
@@ -25,6 +25,4 @@ function Card({ clickable, children }: IProps) {
       {children}
     </div>
   );
-}
-
-export default Card;
+};

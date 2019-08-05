@@ -1,9 +1,7 @@
 import * as React from "react";
 import "./Loader.scss";
 
-function Loader() {
+export default () => {
   // As of now, just show nothing.
   return <div />;
-}
-
-export default Loader;
+};

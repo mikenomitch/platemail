@@ -3,7 +3,7 @@ import "./TextInput.scss";
 
 import InputWrapper from "./InputWrapper";
 
-function TextInput(props) {
+export default props => {
   const { error, label } = props;
 
   return (
@@ -15,6 +15,4 @@ function TextInput(props) {
       />
     </InputWrapper>
   );
-}
-
-export default TextInput;
+};
