@@ -5,14 +5,9 @@ const fs = require("fs");
 const envHash = require("./config/envVars");
 const app = express();
 
-const handleIndex = ({ params }, res) => {
-  let dir;
-  if (params.route) {
-    dir = `build/${params.route}`;
-  } else {
-    dir = "build";
-  }
-  const indexPath = path.join(__dirname, dir, "index.html");
+const handleIndex = (req, res, route = nil) => {
+  const buildDir = route ? `build/${route}` : "build";
+  const indexPath = path.join(__dirname, buildDir, "index.html");
   const envString = JSON.stringify(envHash);
 
   const indexFile = fs.readFileSync(indexPath, "utf8");
@@ -26,7 +21,11 @@ app.get("/", function(req, res) {
 });
 
 app.get("/:route", function(req, res) {
-  return handleIndex(req, res);
+  try {
+    return handleIndex(req, res, req.params.route);
+  } catch (err) {
+    return handleIndex(req, res);
+  }
 });
 
 app.use(express.static(path.join(__dirname, "build")));
