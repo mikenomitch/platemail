@@ -8,11 +8,11 @@ import * as Sentry from "@sentry/browser";
 import "./index.scss";
 
 import App from "./components/app/AppContainer";
-import { DSN } from "./lib/constants";
+import { UI_DSN } from "./lib/constants";
 import history from "./lib/history";
 import createStore from "./store/createStore";
 
-Sentry.init({ dsn: DSN });
+Sentry.init({ dsn: UI_DSN });
 
 const store = createStore();
 

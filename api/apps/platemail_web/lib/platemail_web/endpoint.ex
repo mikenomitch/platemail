@@ -1,5 +1,6 @@
 defmodule PlatemailWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :platemail_web
+  use Sentry.Phoenix.Endpoint
 
   socket("/socket", PlatemailWeb.UserSocket, websocket: true)
 

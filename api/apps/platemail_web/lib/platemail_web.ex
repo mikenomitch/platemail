@@ -48,6 +48,8 @@ defmodule PlatemailWeb do
 
   def router do
     quote do
+      use Plug.ErrorHandler
+      use Sentry.Plug
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller

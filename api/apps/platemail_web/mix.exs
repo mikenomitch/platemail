@@ -48,6 +48,9 @@ defmodule PlatemailWeb.Mixfile do
   end
 
   defp aliases do
-    [test: ["ecto.create --quiet", "ecto.migrate", "test"]]
+    [
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      sentry_recompile: ["compile", "deps.compile sentry --force"]
+    ]
   end
 end

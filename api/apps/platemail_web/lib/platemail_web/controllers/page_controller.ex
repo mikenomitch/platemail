@@ -12,7 +12,7 @@ defmodule PlatemailWeb.PageController do
 
   @spec healthcheck(conn_t, map) :: conn_t
   def healthcheck(conn, _params) do
-    msg = "Healthy - #{System.get_env("FOO")}"
+    msg = "Healthy"
     Plug.Conn.send_resp(conn, 200, msg)
   end
 

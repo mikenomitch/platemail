@@ -13,7 +13,7 @@ const rawEnv = Object.keys(process.env)
       NODE_ENV: process.env.NODE_ENV || "development",
       API_HOST: process.env.HOST || "0.0.0.0",
       API_PORT: process.env.PORT || "3000",
-      DSN: process.env.DSN,
+      UI_DSN: process.env.UI_DSN,
       TEST: "hello"
     }
   );

@@ -24,3 +24,11 @@ config :platemail, Platemail.Mailer,
 import_config "#{Mix.env()}.exs"
 
 config :phoenix, :json_library, Jason
+
+config :sentry,
+  dsn: System.get_env("API_DSN"),
+  included_environments: ~w(production staging),
+  environment_name: System.get_env("MIX_ENV") || "dev",
+  tags: %{
+    env: System.get_env("MIX_ENV") || "dev"
+  }

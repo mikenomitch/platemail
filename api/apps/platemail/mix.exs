@@ -55,7 +55,8 @@ defmodule Platemail.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      sentry_recompile: ["compile", "deps.compile sentry --force"]
     ]
   end
 end
