@@ -146,8 +146,7 @@
     "inlineCss": true,
     "include": [
       "/",
-      "/hello",
-      "/login"
+      "/hello"
     ],
     "crawl": false,
     "preloadImages": true,

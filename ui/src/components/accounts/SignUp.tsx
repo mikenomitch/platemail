@@ -1,61 +1,51 @@
-import { Component } from "react";
 import * as React from "react";
+import { useState } from "react";
 
 import Button from "../ui/Button";
 import Input from "../ui/TextInput";
 import withAuthActions from "../util/withAuthActions";
 
-interface ISignUpProps {
+interface IProps {
   signUp: (params: any) => void;
 }
+function SignUp(props: IProps) {
+  const [state, setState] = useState({ email: "", password: "", name: "" });
 
-interface ISignUpState {
-  email: string;
-  name: string;
-  password: string;
-}
-
-class SignUp extends Component<ISignUpProps, ISignUpState> {
-  public handleSubmit = evt => {
+  const handleSubmit = evt => {
     evt.preventDefault();
 
-    this.props.signUp({
-      email: this.state.email,
-      name: this.state.name,
-      password: this.state.password
+    props.signUp({
+      email: state.email,
+      name: state.name,
+      password: state.password
     });
   };
 
-  public handleChangeFor = (attr: string) => event => {
+  const handleChangeFor = (attr: string) => event => {
     const val: string = event.target.value;
-    this.setState(current => ({ ...current, [attr]: val }));
+    setState(current => ({ ...current, [attr]: val }));
   };
 
-  public render() {
-    return (
+  return (
+    <div>
+      <h1> Sign Up </h1>
       <div>
-        <h1> Sign Up </h1>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <Input onChange={this.handleChangeFor("name")} placeholder="name" />
-            <br /> <br />
-            <Input
-              onChange={this.handleChangeFor("email")}
-              placeholder="email"
-            />
-            <br /> <br />
-            <Input
-              onChange={this.handleChangeFor("password")}
-              type="password"
-              placeholder="password"
-            />
-            <br /> <br />
-            <Button onClick={this.handleSubmit}> Sign Up </Button>
-          </form>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <Input onChange={handleChangeFor("name")} placeholder="name" />
+          <br /> <br />
+          <Input onChange={handleChangeFor("email")} placeholder="email" />
+          <br /> <br />
+          <Input
+            onChange={handleChangeFor("password")}
+            type="password"
+            placeholder="password"
+          />
+          <br /> <br />
+          <Button onClick={handleSubmit}> Sign Up </Button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default withAuthActions(SignUp);
