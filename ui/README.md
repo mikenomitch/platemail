@@ -10,4 +10,5 @@ See main README for a description of what comprises the frontend.
   - Normalizer
   - Date-fns
   - Shapshot
+  - Reselect
   - An i18n library

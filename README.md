@@ -49,6 +49,7 @@ Frontend features:
   - Basic variables, helper functions, and mixins
   - Theming support
   - Normalized CSS
+- Functional react components using hooks
 - Frontend routing
 - Fetching with auth and call status tracking
 - Gzipped and minified production build

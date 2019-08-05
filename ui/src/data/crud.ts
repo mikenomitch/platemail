@@ -7,7 +7,7 @@ import { IWidget } from "./widgets";
 export type CrudType = IWidget;
 
 export interface ICrudReducerState<T> {
-  items: T[];
+  items: ReadonlyArray<T>;
 }
 
 export interface IHandleEvent<T> {
@@ -21,7 +21,7 @@ export interface IUpsertItem<T> {
 }
 
 export interface IUpsertItems<T> {
-  payload: T[];
+  payload: ReadonlyArray<T>;
   type: string;
 }
 
@@ -31,7 +31,7 @@ export interface IRemoveItem {
 }
 
 export interface IRemoveItems {
-  payload: number[];
+  payload: ReadonlyArray<number>;
   type: string;
 }
 

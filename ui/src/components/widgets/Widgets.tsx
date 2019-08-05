@@ -9,7 +9,7 @@ import withWidgetsContext from "../util/withWidgetsContext";
 
 interface IProps {
   getWidgets: () => void;
-  items: IWidget[];
+  items: ReadonlyArray<IWidget>;
 }
 
 function Widgets({ items, getWidgets }: IProps) {

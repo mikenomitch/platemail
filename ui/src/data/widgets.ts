@@ -12,10 +12,15 @@ export interface IWidget {
   user_id: number | null | undefined;
 }
 
+export interface IState {
+  items: ReadonlyArray<IWidget>;
+}
+
 // ===========
 //   REDUCER
 // ===========
 
-export const widgets = withResetState({ items: [] }, "SIGN_OUT")(
+const resetState: IState = { items: [] };
+export const widgets = withResetState(resetState, "SIGN_OUT")(
   makeCrudReducer("WIDGET")
 );
