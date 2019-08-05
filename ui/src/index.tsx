@@ -1,6 +1,6 @@
+import * as Sentry from "@sentry/browser";
 import * as preact from "preact";
 import * as React from "react";
-// import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Route, Router } from "react-router-dom";
 
@@ -9,6 +9,9 @@ import "./index.scss";
 import App from "./components/app/AppContainer";
 import history from "./lib/history";
 import createStore from "./store/createStore";
+import { DSN } from "./lib/constants";
+
+Sentry.init({ dsn: DSN });
 
 const store = createStore();
 
