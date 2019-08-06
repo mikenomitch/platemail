@@ -144,12 +144,15 @@
     "not ie < 9"
   ],
   "reactSnap": {
-    "inlineCss": true,
-    "crawl": true,
+    "inlineCss": false,
+    "include": [
+      "/"
+    ],
+    "crawl": false,
     "preloadImages": true,
-    "concurrency": 1,
     "puppeteerArgs": [
       "--no-sandbox",
+      "--disable-dev-shm-usage",
       "--disable-setuid-sandbox"
     ],
     "puppeteerExecutablePath": "/usr/bin/chromium-browser"
