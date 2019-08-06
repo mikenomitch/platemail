@@ -145,13 +145,13 @@
   ],
   "reactSnap": {
     "inlineCss": true,
-    "include": [
-      "/",
-      "/hello"
-    ],
-    "crawl": false,
+    "crawl": true,
     "preloadImages": true,
-    "cacheAjaxRequests": false,
-    "fixWebpackChunksIssue": false
+    "concurrency": 1,
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "puppeteerExecutablePath": "/usr/bin/chromium-browser"
   }
 }

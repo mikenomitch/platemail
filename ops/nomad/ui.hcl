@@ -23,12 +23,12 @@ job "ui" {
         env         = true
         splay       = "5m"
         data = <<EOH
-FOO="{{key "platemail_ui/FOO"}}"
-PORT="{{key "platemail_ui/PORT"}}"
-API_PORT="{{key "platemail_ui/API_PORT"}}"
 API_HOST="{{key "platemail_ui/API_HOST"}}"
+API_PORT="{{key "platemail_ui/API_PORT"}}"
 NODE_ENV="{{key "platemail_ui/NODE_ENV"}}"
+PORT="{{key "platemail_ui/PORT"}}"
 REACT_APP="{{key "platemail_ui/REACT_APP"}}"
+UI_DSN="{{key "platemail_ui/UI_DSN"}}"
 EOH
       }
 

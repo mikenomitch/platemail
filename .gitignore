@@ -49,4 +49,5 @@
 /ops/terraform/.terraform/*
 /ops/terraform/terraform.tfstate
 /ops/terraform/terraform.tfstate.backup
+# FIXME: Remove the variables file
 /ops/terraform/variables.tf
