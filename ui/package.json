@@ -23,7 +23,7 @@
     "analyze": "source-map-explorer build/static/js/main.*",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "postbuild": "react-snap",
+    "pre_render": "react-snap",
     "start_prod": "node scripts/build.js && node scripts/start.js",
     "test": "node scripts/test.js --env=jsdom"
   },
