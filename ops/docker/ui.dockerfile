@@ -1,6 +1,7 @@
 # Dockerfile
 FROM node:10.16.0-alpine
 
+# Puppeteer deps required for server side rendering (see react-snap docs)
 RUN apk update && apk upgrade && \
   echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
   echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
@@ -11,7 +12,6 @@ RUN apk update && apk upgrade && \
   freetype-dev@edge \
   harfbuzz@edge \
   ttf-freefont@edge
-
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true

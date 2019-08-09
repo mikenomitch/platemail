@@ -3,14 +3,12 @@ import { useEffect } from "react";
 
 import "./Widgets.scss";
 
-import { IWidget } from "../../data/widgets";
+import withWidgetsContext, {
+  IWithWidgetsActions,
+  IWithWidgetsProps
+} from "../util/withWidgetsContext";
 
-import withWidgetsContext from "../util/withWidgetsContext";
-
-interface IProps {
-  getWidgets: () => void;
-  items: ReadonlyArray<IWidget>;
-}
+interface IProps extends IWithWidgetsProps, IWithWidgetsActions {}
 
 function Widgets({ items, getWidgets }: IProps) {
   useEffect(getWidgets);

@@ -3,12 +3,9 @@ import { useState } from "react";
 
 import Button from "../ui/Button";
 import Input from "../ui/TextInput";
-import withAuthActions from "../util/withAuthActions";
+import withAuthActions, { IWithAuthActions } from "../util/withAuthActions";
 
-interface IProps {
-  signUp: (params: any) => void;
-}
-function SignUp(props: IProps) {
+function SignUp(props: IWithAuthActions) {
   const [state, setState] = useState({ email: "", password: "", name: "" });
 
   const handleSubmit = evt => {

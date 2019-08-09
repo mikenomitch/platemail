@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 
+import { IWidget } from "../../data/widgets";
+
 import {
   createWidget,
   deleteWidget,
@@ -8,8 +10,20 @@ import {
   updateWidget
 } from "../../actions/widgets";
 
-export function mapStateToProps({ widgets: { items } }) {
+function mapStateToProps({ widgets: { items } }) {
   return { items };
+}
+
+export interface IWithWidgetsProps {
+  items: ReadonlyArray<IWidget>;
+}
+
+export interface IWithWidgetsActions {
+  createWidget: () => void;
+  deleteWidget: () => void;
+  getWidget: () => void;
+  getWidgets: () => void;
+  updateWidget: () => void;
 }
 
 export default (WrappedComponent: any) =>

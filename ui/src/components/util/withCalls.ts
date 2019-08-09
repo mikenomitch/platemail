@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-export function mapStateToProps({ calls }) {
+function mapStateToProps({ calls }) {
   return { calls };
 }
 

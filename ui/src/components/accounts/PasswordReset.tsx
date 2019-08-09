@@ -3,11 +3,10 @@ import { useState } from "react";
 
 import Button from "../ui/Button";
 import Input from "../ui/TextInput";
-import withAuthActions from "../util/withAuthActions";
+import withAuthActions, { IWithAuthActions } from "../util/withAuthActions";
 
-interface IProps {
+interface IProps extends IWithAuthActions {
   match: { params: { reset_token: string } };
-  passwordReset: (params: any) => void;
 }
 
 function PasswordReset({ passwordReset, match }: IProps) {

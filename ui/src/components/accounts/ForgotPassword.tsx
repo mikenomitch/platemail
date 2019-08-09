@@ -4,14 +4,9 @@ import { useState } from "react";
 import Button from "../ui/Button";
 import Link from "../ui/Link";
 import Input from "../ui/TextInput";
-import withAuthActions from "../util/withAuthActions";
+import withAuthActions, { IWithAuthActions } from "../util/withAuthActions";
 
-interface IProps {
-  sendPasswordReset: (email: string) => void;
-  sendMagicLink: (email: string) => void;
-}
-
-function ForgotPassword(props: IProps) {
+function ForgotPassword(props: IWithAuthActions) {
   const [email, setEmail] = useState("");
 
   const sendReset = () => {

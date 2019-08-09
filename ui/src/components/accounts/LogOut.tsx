@@ -2,11 +2,10 @@ import * as React from "react";
 import { withRouter } from "react-router-dom";
 
 import Button from "../ui/Button";
-import withAuthActions from "../util/withAuthActions";
+import withAuthActions, { IWithAuthActions } from "../util/withAuthActions";
 
-interface IProps {
+interface IProps extends IWithAuthActions {
   history: any;
-  logOut: () => void;
 }
 
 function LogOut({ logOut, history }: IProps) {

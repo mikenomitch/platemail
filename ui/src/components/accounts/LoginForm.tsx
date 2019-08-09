@@ -4,11 +4,10 @@ import { useState } from "react";
 import Button from "../ui/Button";
 import Link from "../ui/Link";
 import Input from "../ui/TextInput";
-import withAuthActions from "../util/withAuthActions";
+import withAuthActions, { IWithAuthActions } from "../util/withAuthActions";
 
-interface IProps {
+interface IProps extends IWithAuthActions {
   history: any;
-  login: (params: any) => void;
 }
 
 function LoginForm(props: IProps) {
