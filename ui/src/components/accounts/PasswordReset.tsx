@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 
 import Button from "../ui/Button";
+import Card from "../ui/Card";
 import Input from "../ui/TextInput";
 import withAuthActions, { IWithAuthActions } from "../util/withAuthActions";
 
@@ -27,21 +28,23 @@ function PasswordReset({ passwordReset, match }: IProps) {
   };
 
   return (
-    <div>
-      <h1> Password Reset </h1>
+    <Card className="wide">
       <div>
-        <form onSubmit={handleSubmit}>
-          <Input
-            onChange={handleChangeFor("password")}
-            label="Your new password:"
-            type="password"
-            placeholder="new password"
-          />
-          <br /> <br />
-          <Button onClick={handleSubmit}> Reset Password </Button>
-        </form>
+        <h1> Password Reset </h1>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <Input
+              onChange={handleChangeFor("password")}
+              label="Your new password:"
+              type="password"
+              placeholder="new password"
+            />
+            <br /> <br />
+            <Button onClick={handleSubmit}> Reset Password </Button>
+          </form>
+        </div>
       </div>
-    </div>
+    </Card>
   );
 }
 

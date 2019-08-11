@@ -16,3 +16,7 @@
   @include clickable(transparent);
   @include focus-margin($spacing-md);
 }
+
+.card.wide {
+  padding: $spacing-md $spacing-xxl;
+}

@@ -7,10 +7,11 @@ import "./Card.scss";
 export interface IProps {
   clickable?: boolean;
   children: ReactFragment;
+  className?: string;
 }
 
-export default ({ clickable, children }: IProps) => {
-  const cardClasses = cx("card", {
+export default ({ clickable, children, className }: IProps) => {
+  const cardClasses = cx(className, "card", {
     clickable
   });
 
