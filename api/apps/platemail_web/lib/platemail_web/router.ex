@@ -22,6 +22,15 @@ defmodule PlatemailWeb.Router do
     plug(PlatemailWeb.Authentication.ApiAuthPipeline)
   end
 
+  # ==================
+  #   Health Check
+  # ==================
+
+  scope "/", PlatemailWeb do
+    get("/api/health", PageController, :healthcheck)
+    get("/health", PageController, :healthcheck)
+  end
+
   # ==============
   #   API ROUTES
   # ==============
@@ -67,14 +76,6 @@ defmodule PlatemailWeb.Router do
         title: "Platemail"
       }
     }
-  end
-
-  # ==================
-  #   Health Check
-  # ==================
-
-  scope "/", PlatemailWeb do
-    get("/health", PageController, :healthcheck)
   end
 
   # ==================

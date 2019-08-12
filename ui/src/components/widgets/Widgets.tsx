@@ -11,7 +11,7 @@ import withWidgetsContext, {
 interface IProps extends IWithWidgetsProps, IWithWidgetsActions {}
 
 function Widgets({ items, getWidgets }: IProps) {
-  useEffect(getWidgets);
+  useEffect(getWidgets, []);
 
   return (
     <div className="widgets-wrapper">

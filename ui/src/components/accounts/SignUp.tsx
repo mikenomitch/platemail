@@ -2,7 +2,6 @@ import * as React from "react";
 import { useState } from "react";
 
 import Button from "../ui/Button";
-import Card from "../ui/Card";
 import Input from "../ui/TextInput";
 import withAuthActions, { IWithAuthActions } from "../util/withAuthActions";
 
@@ -25,26 +24,24 @@ function SignUp(props: IWithAuthActions) {
   };
 
   return (
-    <Card className="wide">
+    <div>
+      <h1> Sign Up </h1>
       <div>
-        <h1> Sign Up </h1>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <Input onChange={handleChangeFor("name")} placeholder="name" />
-            <br /> <br />
-            <Input onChange={handleChangeFor("email")} placeholder="email" />
-            <br /> <br />
-            <Input
-              onChange={handleChangeFor("password")}
-              type="password"
-              placeholder="password"
-            />
-            <br /> <br />
-            <Button onClick={handleSubmit}> Sign Up </Button>
-          </form>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <Input onChange={handleChangeFor("name")} placeholder="name" />
+          <br /> <br />
+          <Input onChange={handleChangeFor("email")} placeholder="email" />
+          <br /> <br />
+          <Input
+            onChange={handleChangeFor("password")}
+            type="password"
+            placeholder="password"
+          />
+          <br /> <br />
+          <Button onClick={handleSubmit}> Sign Up </Button>
+        </form>
       </div>
-    </Card>
+    </div>
   );
 }
 

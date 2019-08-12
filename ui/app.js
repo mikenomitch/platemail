@@ -5,7 +5,7 @@ const fs = require("fs");
 const envHash = require("./config/envVars");
 const app = express();
 
-const handleIndex = (req, res, route = nil) => {
+const handleIndex = (req, res, route = null) => {
   const buildDir = route ? `build/${route}` : "build";
   const indexPath = path.join(__dirname, buildDir, "index.html");
   const envString = JSON.stringify(envHash);
@@ -15,6 +15,10 @@ const handleIndex = (req, res, route = nil) => {
 
   res.send(withEnv);
 };
+
+app.get("/health", function(req, res) {
+  return res.sendStatus(200);
+});
 
 app.get("/", function(req, res) {
   return handleIndex(req, res);

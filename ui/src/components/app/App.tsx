@@ -1,8 +1,9 @@
 import { parse } from "query-string";
 import * as React from "react";
-import { useEffect } from "react";
-import Loadable from "react-loadable";
+import { ReactFragment, useEffect } from "react";
 import { Route } from "react-router-dom";
+
+import Loadable from "react-loadable";
 
 import "sanitize.css";
 import "sanitize.css/forms.css";
@@ -11,6 +12,8 @@ import "sanitize.css/typography.css";
 import "./App.scss";
 
 import AppHeader from "./AppHeader";
+
+import Card from "../ui/Card";
 
 import Loader from "../loader/Loader";
 import Toasts from "./ToastsContainer";
@@ -61,6 +64,16 @@ interface IProps {
   loadInitialData: () => void;
 }
 
+const cardPaths = ["/login", "/signup", "/signout", "/login/forgot_password"];
+
+const wrapInCardIfRouteMatches = (pathname: string, content: ReactFragment) => {
+  if (cardPaths.includes(pathname)) {
+    return <Card mainContent={true}>{content}</Card>;
+  } else {
+    return <div className="content">{content}</div>;
+  }
+};
+
 export default function App(props: IProps) {
   const {
     connectToSocket,
@@ -84,26 +97,29 @@ export default function App(props: IProps) {
 
   useEffect(onMount, []);
 
+  const content = wrapInCardIfRouteMatches(
+    pathname,
+    <div>
+      <Route exact={true} path="/" component={LoadableLanding} />
+      <Route path="/hello" component={LoadableHello} />
+      <Route path="/widgets" component={LoadableWidgets} />
+      <Route path="/login" component={LoadableLogin} />
+      <Route
+        path="/password_reset/:reset_token"
+        component={LoadablePasswordReset}
+      />
+      <Route path="/signup" component={LoadableSignUp} />
+      <Route path="/logout" component={LoadableLogOut} />
+    </div>
+  );
+
   return (
     <div>
       <div>
         <Toasts />
       </div>
-
       <AppHeader token={token} />
-
-      <div className="content">
-        <Route exact={true} path="/" component={LoadableLanding} />
-        <Route path="/hello" component={LoadableHello} />
-        <Route path="/widgets" component={LoadableWidgets} />
-        <Route path="/login" component={LoadableLogin} />
-        <Route
-          path="/password_reset/:reset_token"
-          component={LoadablePasswordReset}
-        />
-        <Route path="/signup" component={LoadableSignUp} />
-        <Route path="/logout" component={LoadableLogOut} />
-      </div>
+      {content}
     </div>
   );
 }

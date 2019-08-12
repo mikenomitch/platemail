@@ -20,3 +20,11 @@
 .card.wide {
   padding: $spacing-md $spacing-xxl;
 }
+
+.card.main-content {
+  margin: 0px !important;
+
+  @include desktop {
+    margin: $spacing-md !important;
+  }
+}

@@ -1,0 +1,1 @@
+nomad job run ./ops/nomad/proxy.hcl

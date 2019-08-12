@@ -24,19 +24,21 @@ job "api" {
         splay       = "5m"
         data = <<EOH
 API_DSN="{{key "platemail_api/API_DSN"}}"
-DB_HOST="{{key "platemail_api/DB_HOST"}}"
-DB_NAME="{{key "platemail_api/DB_NAME"}}"
-DB_PASSWORD="{{key "platemail_api/DB_PASSWORD"}}"
-DB_USER="{{key "platemail_api/DB_USER"}}"
-PORT="{{key "platemail_api/PORT"}}"
-REPLACE_OS_VARS="{{key "platemail_api/REPLACE_OS_VARS"}}"
+DATABASE_URL="{{key "platemail_api/DATABASE_URL"}}"
+PORT="4000"
 SECRET_KEY_BASE="{{key "platemail_api/SECRET_KEY_BASE"}}"
+MIX_ENV="{{key "platemail_api/MIX_ENV"}}"
 EOH
       }
 
       service {
         name = "platemail-api"
-        tags = ["urlprefix-/api", "urlprefix-/docs"]
+        tags = [
+          "urlprefix-/api",
+          "urlprefix-/auth",
+          "urlprefix-/docs",
+          "urlprefix-/socket"
+        ]
         port = "https"
 
         check {

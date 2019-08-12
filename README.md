@@ -73,9 +73,10 @@ Devops featues:
 - Infrastructure as Code (Terraform)
 - Containerized Orchestration (Docker & Nomad)
 - Load balanced (Fabio)
-- Single command deploys (TODO)
-- Error Alerting & Logging (TODO)
-  - set up via Terraform Providers (TODO)
+- Single command deploys
+- Error Alerting
+  - set up via Terraform (TODO)
+- Logging (TODO)
 
 ## Setting Up for Local Dev
 

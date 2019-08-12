@@ -5,14 +5,16 @@ import { ReactFragment } from "react";
 import "./Card.scss";
 
 export interface IProps {
-  clickable?: boolean;
   children: ReactFragment;
-  className?: string;
+  clickable?: boolean;
+  mainContent?: boolean;
+  wide?: boolean;
 }
 
-export default ({ clickable, children, className }: IProps) => {
-  const cardClasses = cx(className, "card", {
-    clickable
+export default ({ clickable, children, wide, mainContent }: IProps) => {
+  const cardClasses = cx("card", {
+    "main-content": mainContent,
+    wide
   });
 
   let tabIndex;

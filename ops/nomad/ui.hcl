@@ -24,6 +24,7 @@ job "ui" {
         splay       = "5m"
         data = <<EOH
 API_HOST="{{key "platemail_ui/API_HOST"}}"
+HOST="{{key "platemail_ui/HOST"}}"
 API_PORT="{{key "platemail_ui/API_PORT"}}"
 NODE_ENV="{{key "platemail_ui/NODE_ENV"}}"
 PORT="{{key "platemail_ui/PORT"}}"
@@ -61,7 +62,7 @@ EOH
         }
       }
 
-      kill_timeout = "10m"
+      kill_timeout = "5m"
 
       env {
         HTTPS = true
